@@ -1,17 +1,16 @@
 import React from 'react'
-import logo from './assets/logo.svg'
-import './App.css'
+import './pages/home/index.css'
+
+import AppRouter from "@/router";
 
 function App() {
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>React is yyds</p>
-            </header>
-        </div>
+        <AppRouter/>
     )
 }
 
 export default App
+
+
+
