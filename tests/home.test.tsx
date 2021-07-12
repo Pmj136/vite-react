@@ -1,19 +1,15 @@
 import React from 'react'
-import {fireEvent, render} from '@testing-library/react'
+import {fireEvent, render, cleanup} from '@testing-library/react'
 import Home from '@/pages/home/home'
 
+afterEach(cleanup)
 
-describe('a simple test', () => {
-    it('should render the correct home', () => {
-        const wrapper = render(<Home/>)
-        const {getByText} = wrapper
-        const count = getByText(0);
-        const incrementButton = getByText("加1");
+test('测试点击事件', () => {
+    const {getByText} = render(<Home/>);
 
-        //Act
-        fireEvent.click(incrementButton);
+    //Action
+    fireEvent.click(getByText('加1'))
 
-        //Assert
-        expect(count.textContent).toEqual("1")
-    })
+    //Assert
+    expect(getByText("1").textContent).toEqual("1")
 })

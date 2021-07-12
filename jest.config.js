@@ -5,6 +5,7 @@ module.exports = {
     verbose: true,
     transform: {
         "^.+\\.(ts|tsx)$": "ts-jest",
+        "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$": "jest-transform-stub"
     },
     moduleNameMapper: {
         "@/(.*)": "<rootDir>/src/$1"

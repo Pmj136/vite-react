@@ -1,9 +1,11 @@
-import {lazy} from "react";
+// import {lazy} from "react";
 import {RouteType} from "react-router-control";
 import NotFound from "@/router/NotFound";
 
-const Welcome = lazy(() => import("@/pages/welcome/welcome")),
-    Home = lazy(() => import("@/pages/home/home"))
+import Welcome from "@/pages/welcome/welcome";
+import Home from "@/pages/home/home";
+// const Welcome = lazy(() => import("@/pages/welcome/welcome")),
+//     Home = lazy(() => import("@/pages/home/home"))
 const routes: Array<RouteType> = [
     {
         path: "/",
