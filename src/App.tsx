@@ -1,16 +1,14 @@
-import React from 'react'
-import './pages/home/index.css'
+import React, {Suspense} from 'react'
 
 import AppRouter from "@/router";
 
 function App() {
-
+    console.log("render App")
     return (
-        <AppRouter/>
+        <Suspense fallback={<div>loading</div>}>
+            <AppRouter/>
+        </Suspense>
     )
 }
 
 export default App
-
-
-
