@@ -7,7 +7,6 @@ const pathResolve = (dir: string): string => path.resolve(__dirname, dir);
 // https://vitejs.dev/config/
 export default defineConfig({
     publicDir: "public",
-    envDir: "env",
     css: {
         preprocessorOptions: {
             scss: {
