@@ -3,6 +3,8 @@ import {shallowEqual} from "react-redux"
 import {useAppSelector, useAppDispatch} from "@/store"
 import {decrement, increment, slowIncrement} from '@/store/slices/counter'
 
+import { Button ,BackTop,Input} from 'antd';
+
 interface IProps {
 
 }
@@ -13,23 +15,25 @@ function Counter(props: IProps) {
 
     return (
         <div>
+            <BackTop/>
+            <Input/>
             <h2>{count}</h2>
             <div>
-                <button
+                <Button
                     onClick={() => dispatch(increment())}
                 >
                     Increment
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={() => dispatch(slowIncrement())}
                 >
                     SlowIncrement
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={() => dispatch(decrement())}
                 >
                     Decrement
-                </button>
+                </Button>
             </div>
         </div>
     )

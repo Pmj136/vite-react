@@ -1,6 +1,6 @@
 import {defineConfig} from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
-import legacy from '@vitejs/plugin-legacy'
+import vitePluginImp from 'vite-plugin-imp';
 import path from "path";
 
 const pathResolve = (dir: string): string => path.resolve(__dirname, dir);
@@ -9,9 +9,14 @@ const pathResolve = (dir: string): string => path.resolve(__dirname, dir);
 export default defineConfig({
     plugins: [
         reactRefresh(),
-        legacy({
-            targets: ['defaults', 'not IE 11']
-        })
+        vitePluginImp({
+            libList: [
+                {
+                    libName: 'antd',
+                    style: (name) => `antd/es/${name}/style/index.css`,
+                },
+            ],
+        }),
     ],
     publicDir: "public",
     resolve: {
