@@ -14,6 +14,11 @@ export default defineConfig({
         })
     ],
     publicDir: "public",
+    resolve: {
+        alias: {
+            "@": pathResolve("./src")
+        }
+    },
     css: {
         preprocessorOptions: {
             scss: {
@@ -21,14 +26,12 @@ export default defineConfig({
             }
         },
     },
+    clearScreen:false,
     server: {
         host: "0.0.0.0",
         port: 9979
     },
-    resolve: {
-        alias: {
-            "@": pathResolve("./src")
-        }
-    },
-    plugins: [reactRefresh()],
+    build: {
+        brotliSize: false
+    }
 })
