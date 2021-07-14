@@ -1,16 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import "./home.css"
 
+import Counter from "@/components/Counter";
 
 function Home() {
-    const [count, setCount] = useState(0);
     return (
-        <>
-            <div>home</div>
-            <hr/>
-            <h2>{count}</h2>
-            <button onClick={() => setCount(count + 1)}>加1</button>
-        </>
+        <Counter/>
     );
 }
 
