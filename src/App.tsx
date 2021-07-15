@@ -1,13 +1,13 @@
-import React, {Suspense} from 'react'
-import AppRouter from "@/router";
-import {Provider} from "react-redux"
-import store from "@/store"
+import React, { Suspense } from 'react'
+import AppRouter from '@/router'
+import { Provider } from 'react-redux'
+import store from '@/store'
 
 function App() {
     return (
         <Suspense fallback={<div>loading</div>}>
             <Provider store={store}>
-                <AppRouter/>
+                <AppRouter />
             </Provider>
         </Suspense>
     )

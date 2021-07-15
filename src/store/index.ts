@@ -1,12 +1,12 @@
-import {configureStore} from '@reduxjs/toolkit'
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import { configureStore } from '@reduxjs/toolkit'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
-import counterSlice from "./slices/counter";
+import counterSlice from './slices/counter'
 
 const store = configureStore({
     reducer: {
-        counter: counterSlice
-    }
+        counter: counterSlice,
+    },
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
@@ -16,6 +16,5 @@ type AppDispatch = typeof store.dispatch
 //hooks
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export const useAppDispatch = () => useDispatch<AppDispatch>()
-
 
 export default store

@@ -1,12 +1,10 @@
-import React from 'react';
-import "./home.css"
+import React from 'react'
+import './home.css'
 
-import Counter from "@/components/Counter";
+import Counter from '@/components/Counter'
 
 function Home() {
-    return (
-        <Counter/>
-    );
+    return <Counter />
 }
 
-export default Home;
+export default Home

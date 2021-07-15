@@ -1,4 +1,9 @@
-import {createSlice, PayloadAction, createAsyncThunk, current} from '@reduxjs/toolkit'
+import {
+    createSlice,
+    PayloadAction,
+    createAsyncThunk,
+    current,
+} from '@reduxjs/toolkit'
 
 // Define a type for the slice state
 interface CounterState {
@@ -9,10 +14,13 @@ interface CounterState {
 const initialState: CounterState = {
     value: 0,
 }
-export const slowIncrement = createAsyncThunk("counter/slowIncrement", async () => {
-    await mockXhr()
-    return null
-})
+export const slowIncrement = createAsyncThunk(
+    'counter/slowIncrement',
+    async () => {
+        await mockXhr()
+        return null
+    }
+)
 
 export const counterSlice = createSlice({
     name: 'counter',
@@ -32,21 +40,21 @@ export const counterSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addCase(slowIncrement.fulfilled, state => {
+        builder.addCase(slowIncrement.fulfilled, (state) => {
             state.value += 1
         })
-    }
+    },
 })
 
 function mockXhr() {
-    return new Promise<void>(resolve => {
+    return new Promise<void>((resolve) => {
         const timer = setTimeout(() => {
+            clearTimeout(timer)
             resolve()
         }, 1000)
     })
 }
 
-export const {increment, decrement, incrementByAmount} = counterSlice.actions
-
+export const { increment, decrement, incrementByAmount } = counterSlice.actions
 
 export default counterSlice.reducer
