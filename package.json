@@ -9,21 +9,8 @@
     "serve": "vite preview"
   },
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "src/*.{js,jsx,mjs,ts,tsx}": [
-      "node_modules/.bin/prettier --write",
-      "node_modules/.bin/eslint --fix",
-      "git add"
-    ],
-    "src/*.{css,scss,less,json,html,md,markdown}": [
-      "node_modules/.bin/prettier --write",
-      "git add"
-    ]
+    "*.{ts,tsx,js}": "eslint --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
