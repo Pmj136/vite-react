@@ -3277,11 +3277,6 @@ normalize-path@^3.0.0:
   resolved "https://registry.nlark.com/normalize-path/download/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha1-Dc1p/yOhybEf0JeDFmRKA4ghamU=
 
-normalize.css@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
-  integrity sha1-m5iiCHOLnMJjTKrLxC0THJdIe/M=
-
 npm-run-path@^4.0.1:
   version "4.0.1"
   resolved "https://registry.nlark.com/npm-run-path/download/npm-run-path-4.0.1.tgz#b7ecd1e5ed53da8e37a55e1c2269e0b97ed748ea"
@@ -3504,10 +3499,10 @@ please-upgrade-node@^3.2.0:
   dependencies:
     semver-compare "^1.0.0"
 
-postcss@^8.3.5:
-  version "8.3.5"
-  resolved "https://registry.nlark.com/postcss/download/postcss-8.3.5.tgz#982216b113412bc20a86289e91eb994952a5b709"
-  integrity sha1-mCIWsRNBK8IKhiiekeuZSVKltwk=
+postcss@^8.3.6:
+  version "8.3.6"
+  resolved "https://registry.nlark.com/postcss/download/postcss-8.3.6.tgz?cache=0&sync_timestamp=1626882960231&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpostcss%2Fdownload%2Fpostcss-8.3.6.tgz#2730dd76a97969f37f53b9a6096197be311cc4ea"
+  integrity sha1-JzDddql5afN/U7mmCWGXvjEcxOo=
   dependencies:
     colorette "^1.2.2"
     nanoid "^3.1.23"
@@ -4654,13 +4649,13 @@ vite-plugin-imp@^2.0.7:
     chalk "^4.1.0"
     param-case "^3.0.4"
 
-vite@^2.4.0:
-  version "2.4.1"
-  resolved "https://registry.nlark.com/vite/download/vite-2.4.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvite%2Fdownload%2Fvite-2.4.1.tgz#2e48b8dbfc69e4edbf7f4d1c0798d621585cb8da"
-  integrity sha1-Lki42/xp5O2/f00cB5jWIVhcuNo=
+vite@^2.4.4:
+  version "2.4.4"
+  resolved "https://registry.nlark.com/vite/download/vite-2.4.4.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvite%2Fdownload%2Fvite-2.4.4.tgz#8c402a07ad45f168f6eb5428bead38f3e4363e47"
+  integrity sha1-jEAqB61F8Wj261Qovq048+Q2Pkc=
   dependencies:
     esbuild "^0.12.8"
-    postcss "^8.3.5"
+    postcss "^8.3.6"
     resolve "^1.20.0"
     rollup "^2.38.5"
   optionalDependencies:
