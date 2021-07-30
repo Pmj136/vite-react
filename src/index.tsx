@@ -7,10 +7,10 @@ import 'antd/dist/antd.css'
 
 // console.log(import.meta.env.VITE_SOME_KEY)
 ReactDOM.render(
-    <React.StrictMode>
-        <ConfigProvider locale={zhCN}>
-            <App />
-        </ConfigProvider>
-    </React.StrictMode>,
-    document.getElementById('vite-react')
+  <React.StrictMode>
+    <ConfigProvider locale={zhCN}>
+      <App />
+    </ConfigProvider>
+  </React.StrictMode>,
+  document.getElementById('vite-react')
 )
