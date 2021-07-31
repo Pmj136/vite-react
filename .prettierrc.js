@@ -1,5 +1,5 @@
 module.exports = {
     semi: false,//不添加分号结尾
-    tabWidth: 2,
+    tabWidth: 4,
     singleQuote: true
 }
