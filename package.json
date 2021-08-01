@@ -13,7 +13,7 @@
     "*.{ts,tsx,js}": "eslint --fix"
   },
   "dependencies": {
-    "antd": "^4.16.7",
+    "@material-ui/core": "^4.12.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-control": "2.0.0",
