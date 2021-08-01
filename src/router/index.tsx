@@ -4,11 +4,11 @@ import RouterControl from 'react-router-control'
 import routes from '@/router/routes'
 
 function AppRouter() {
-  return (
-    <BrowserRouter>
-      <RouterControl routes={routes} />
-    </BrowserRouter>
-  )
+	return (
+		<BrowserRouter>
+			<RouterControl routes={routes} />
+		</BrowserRouter>
+	)
 }
 
 export default AppRouter
