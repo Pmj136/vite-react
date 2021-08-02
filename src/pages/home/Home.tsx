@@ -1,8 +1,8 @@
 import React from 'react'
-import { Trans } from 'react-i18next'
+import TransI18N from '@/components/TransI18n'
 
 function Home() {
-    return <Trans>hello</Trans>
+    return <TransI18N kw="hello" />
 }
 
 export default Home
