@@ -2,6 +2,12 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import logo from '@/assets/logo.svg'
 import './welcome.css'
+import {
+    FormControl,
+    FormHelperText,
+    Input,
+    InputLabel,
+} from '@material-ui/core'
 
 function Welcome() {
     const history = useHistory()
@@ -9,15 +15,10 @@ function Welcome() {
         history.replace('/home')
     }
     return (
-        <div className="app-welcome">
-            <header className="app-welcome-header">
-                <img src={logo} className="app-welcome-logo" alt="logo" />
-                <p className="yyds">React is yyds</p>
-                <span className="entry-btn" onClick={toHome}>
-                    进入主站
-                </span>
-            </header>
-        </div>
+        <FormControl error={true}>
+            <InputLabel htmlFor="component-error">Name</InputLabel>
+            <Input />
+        </FormControl>
     )
 }
 

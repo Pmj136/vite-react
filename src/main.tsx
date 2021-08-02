@@ -9,5 +9,5 @@ ReactDOM.render(
     <React.StrictMode>
         <App />
     </React.StrictMode>,
-    document.getElementById('vite-react')
+    document.getElementById('global-entry')
 )
