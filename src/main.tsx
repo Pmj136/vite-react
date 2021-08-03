@@ -6,4 +6,4 @@ import App from './App'
 import './i18n'
 
 // console.log(import.meta.env.VITE_SOME_KEY)
-ReactDOM.render(<App />, document.getElementById('global-entry'))
+ReactDOM.render(<App />, document.getElementById('app'))

@@ -36,14 +36,11 @@ function LoginForm(props: IProps) {
     }
     return (
         <>
-            <Button
-                variant="outlined"
-                color="primary"
-                onClick={handleClickOpen}
-            >
+            <Button color="primary" onClick={handleClickOpen}>
                 登录
             </Button>
             <Dialog
+                // disablePortal
                 disableEscapeKeyDown
                 fullWidth
                 maxWidth="xs"
