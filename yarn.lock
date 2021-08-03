@@ -3649,10 +3649,10 @@ react-refresh@^0.10.0:
   resolved "https://registry.nlark.com/react-refresh/download/react-refresh-0.10.0.tgz?cache=0&sync_timestamp=1625847651773&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-refresh%2Fdownload%2Freact-refresh-0.10.0.tgz#2f536c9660c0b9b1d500684d9e52a65e7404f7e3"
   integrity sha1-L1NslmDAubHVAGhNnlKmXnQE9+M=
 
-react-router-control@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.nlark.com/react-router-control/download/react-router-control-2.0.0.tgz#7b2c075e1e5d1086968d9440f89e7c934382599a"
-  integrity sha1-eywHXh5dEIaWjZRA+J58k0OCWZo=
+react-router-control@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.nlark.com/react-router-control/download/react-router-control-2.0.9.tgz#788fc3176e1dc1bdf33bdb182735826b82f0513f"
+  integrity sha1-eI/DF24dwb3zO9sYJzWCa4LwUT8=
 
 react-router-dom@^5.2.0:
   version "5.2.0"

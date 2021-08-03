@@ -13,6 +13,9 @@ const routes: Array<RouteItem> = [
             {
                 path: '',
                 component: Welcome,
+                meta: {
+                    title: '首页',
+                },
             },
         ],
     },
@@ -20,10 +23,10 @@ const routes: Array<RouteItem> = [
     //     path: '/home',
     //     component: Home,
     // },
-    // {
-    //     path: '*',
-    //     component: NotFound,
-    // },
+    {
+        path: '*',
+        component: NotFound,
+    },
 ]
 
 export default routes

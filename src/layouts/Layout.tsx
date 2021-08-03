@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
-import Header from '@/layouts/header/Header'
+import Header from './header/Header'
+import CopyRight from './copyright/CopyRight'
 
 interface IProps {
     children: ReactElement | string
@@ -9,7 +10,8 @@ function Layout(props: IProps) {
     return (
         <>
             <Header />
-            {props.children}
+            <section>{props.children}</section>
+            <CopyRight />
         </>
     )
 }
