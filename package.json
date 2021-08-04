@@ -16,6 +16,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "dayjs": "^1.10.6",
     "i18next": "^20.3.5",
     "i18next-browser-languagedetector": "^6.1.2",
@@ -23,6 +24,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.12.2",
+    "react-hot-toast": "^2.1.0",
+    "react-i18next": "^11.11.4",
     "react-router-control": "^2.0.9",
     "react-router-dom": "^5.2.0"
   },

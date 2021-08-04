@@ -36,9 +36,7 @@ function LoginForm(props: IProps) {
     }
     return (
         <>
-            <Button color="primary" onClick={handleClickOpen}>
-                登录
-            </Button>
+            <Button onClick={handleClickOpen}>登录</Button>
             <Dialog
                 // disablePortal
                 disableEscapeKeyDown
@@ -63,7 +61,6 @@ function LoginForm(props: IProps) {
                         type="email"
                         {...register('email', { required: '请输入邮箱' })}
                         error={!!errors.email}
-                        helperText={errors.email ? errors.email.message : ''}
                         margin="dense"
                         fullWidth
                         autoComplete="off"
@@ -74,7 +71,6 @@ function LoginForm(props: IProps) {
                         type="code"
                         {...register('code', { required: '请输入验证码' })}
                         error={!!errors.code}
-                        helperText={errors.code ? errors.code.message : ''}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">

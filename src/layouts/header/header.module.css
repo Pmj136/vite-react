@@ -1,11 +1,26 @@
 .app-header {
-    background-color: #eee;
-    height: 60px;
+    background-color: #fff;
+    height: 62px;
     position: sticky;
     top: 0;
+    padding: 0 120px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
-    box-sizing: border-box;
+}
+
+.header-item {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*.header-item:last-child > * {*/
+/*    margin: 0 4px;*/
+/*}*/
+
+.logo {
+    height: 100%;
 }

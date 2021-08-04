@@ -2,17 +2,17 @@ import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Button } from '@material-ui/core'
 
-function LinkList() {
+function NavList() {
     return (
-        <>
+        <nav>
             <Button color="primary" component={RouterLink} to="/home">
-                Primary
+                首页
             </Button>
-            <Button color="secondary" component={RouterLink} to="/about">
-                Secondary
+            <Button color="primary" component={RouterLink} to="/about">
+                关于
             </Button>
-        </>
+        </nav>
     )
 }
 
-export default LinkList
+export default NavList

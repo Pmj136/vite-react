@@ -1,13 +1,16 @@
-import React from 'react'
-import { Input, InputAdornment } from '@material-ui/core'
+import React, { useState } from 'react'
+import { IconButton, Input, InputAdornment } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {}
 
 function SearchInput(props: IProps) {
+    const { t } = useTranslation()
     return (
         <Input
-            placeholder="输入关键字搜索"
+            style={{ width: 140 }}
+            placeholder={t('header.searchPlaceholder')}
             startAdornment={
                 <InputAdornment position="start">
                     <SearchIcon />
