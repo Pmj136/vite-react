@@ -1,5 +1,5 @@
-import { RouteItem } from 'react-router-control'
-import NotFound from '@/router/NotFound'
+import type { RouteItem } from './types'
+import NotFound from '@/components/NotFound'
 
 import Welcome from '@/pages/welcome/Welcome'
 import Home from '@/pages/home/Home'
@@ -11,21 +11,18 @@ const routes: Array<RouteItem> = [
         component: Layout,
         children: [
             {
-                path: '',
+                path: '/',
+                component: Home,
+            },
+            {
+                path: '/about',
                 component: Welcome,
-                meta: {
-                    title: '首页',
-                },
+            },
+            {
+                path: '*',
+                component: NotFound,
             },
         ],
-    },
-    // {
-    //     path: '/home',
-    //     component: Home,
-    // },
-    {
-        path: '*',
-        component: NotFound,
     },
 ]
 

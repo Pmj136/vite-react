@@ -1,29 +1,17 @@
 import { createTheme } from '@material-ui/core'
-import type { Overrides } from '@material-ui/core/styles/overrides'
-import type { ThemeOptions } from '@material-ui/core/styles/createTheme'
-
-const commonThemeOptions: ThemeOptions = {
-    zIndex: {
-        modal: 3000,
-    },
-}
-
-const commonOverrides: Overrides = {
-    MuiButton: {
-        label: {
-            whiteSpace: 'nowrap',
-        },
-    },
-}
+import { yellow } from '@material-ui/core/colors'
 
 /*light theme*/
 export const light = createTheme({
     palette: {
         type: 'light',
     },
-    ...commonThemeOptions,
     overrides: {
-        ...commonOverrides,
+        MuiButton: {
+            label: {
+                whiteSpace: 'nowrap',
+            },
+        },
     },
 })
 
@@ -31,9 +19,13 @@ export const light = createTheme({
 export const dark = createTheme({
     palette: {
         type: 'dark',
+        primary: yellow,
     },
-    ...commonThemeOptions,
     overrides: {
-        ...commonOverrides,
+        MuiButton: {
+            label: {
+                whiteSpace: 'nowrap',
+            },
+        },
     },
 })

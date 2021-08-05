@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import RouterControl from 'react-router-control'
-import routes from '@/router/routes'
+import RouterControl from './RouterControl'
+import routes from './routes'
 
 function AppRouter() {
     return (

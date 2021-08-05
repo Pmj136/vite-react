@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from './coderFetcher.module.css'
+import styles from '../styles/coderFetcher.module.css'
 
 interface IProps {}
 

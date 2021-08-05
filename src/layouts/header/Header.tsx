@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './header.module.css'
+
 import SearchInput from './components/SearchInput'
 import NavList from './components/NavList'
 import UserAvatar from './components/UserAvatar'
@@ -9,8 +9,10 @@ import NotificationLink from './components/NotificationLink'
 import WriteLink from './components/WriteLink'
 import ThemeSwitch from './components/ThemeSwitch'
 
-import logo from '@/assets/logo.svg'
 import { Paper } from '@material-ui/core'
+
+import styles from './styles/header.module.css'
+import GithubLink from '@/layouts/header/components/GithubLink'
 
 interface IProps {}
 
@@ -21,25 +23,20 @@ function Header(props: IProps) {
         <Paper
             component="header"
             square
-            elevation={1}
+            elevation={0}
             className={styles['app-header']}
         >
             <section className={styles['header-item']}>
-                <img className={styles.logo} src={logo} alt="logo" />
+                <h2 className={styles.title}>CABIN</h2>
                 <NavList />
             </section>
             <section className={styles['header-item']}>
                 <SearchInput />
+                {isLogin && <NotificationLink />}
                 <LanguageSwitch />
                 <ThemeSwitch />
-                {isLogin ? (
-                    <>
-                        <NotificationLink />
-                        <UserAvatar />
-                    </>
-                ) : (
-                    <LoginForm />
-                )}
+                {/*<GithubLink />*/}
+                {isLogin ? <UserAvatar /> : <LoginForm />}
                 <WriteLink />
             </section>
         </Paper>

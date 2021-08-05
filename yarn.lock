@@ -600,17 +600,6 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/lab@^4.0.0-alpha.60":
-  version "4.0.0-alpha.60"
-  resolved "https://registry.nlark.com/@material-ui/lab/download/@material-ui/lab-4.0.0-alpha.60.tgz#5ad203aed5a8569b0f1753945a21a05efa2234d2"
-  integrity sha1-WtIDrtWoVpsPF1OUWiGgXvoiNNI=
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "^4.11.2"
-    clsx "^1.0.4"
-    prop-types "^15.7.2"
-    react-is "^16.8.0 || ^17.0.0"
-
 "@material-ui/styles@^4.11.4":
   version "4.11.4"
   resolved "https://registry.nlark.com/@material-ui/styles/download/@material-ui/styles-4.11.4.tgz#eb9dfccfcc2d208243d986457dff025497afa00d"
@@ -3694,11 +3683,6 @@ react-refresh@^0.10.0:
   version "0.10.0"
   resolved "https://registry.nlark.com/react-refresh/download/react-refresh-0.10.0.tgz?cache=0&sync_timestamp=1625847651773&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-refresh%2Fdownload%2Freact-refresh-0.10.0.tgz#2f536c9660c0b9b1d500684d9e52a65e7404f7e3"
   integrity sha1-L1NslmDAubHVAGhNnlKmXnQE9+M=
-
-react-router-control@^2.0.9:
-  version "2.0.9"
-  resolved "https://registry.nlark.com/react-router-control/download/react-router-control-2.0.9.tgz#788fc3176e1dc1bdf33bdb182735826b82f0513f"
-  integrity sha1-eI/DF24dwb3zO9sYJzWCa4LwUT8=
 
 react-router-dom@^5.2.0:
   version "5.2.0"

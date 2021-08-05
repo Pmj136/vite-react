@@ -1,9 +1,9 @@
 .app-header {
-    z-index: 2999;
+    z-index: 1200;
     height: 64px;
     position: sticky;
     top: 0;
-    padding: 0 120px;
+    padding: 0 160px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -17,10 +17,7 @@
     justify-content: center;
 }
 
-/*.header-item:last-child > * {*/
-/*    margin: 0 4px;*/
-/*}*/
-
-.logo {
-    height: 100%;
+.title {
+    margin-right: 30px;
+    user-select: none;
 }

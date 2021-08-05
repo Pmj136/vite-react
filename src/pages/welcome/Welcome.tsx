@@ -1,7 +1,5 @@
 import React from 'react'
-
 import toast from 'react-hot-toast'
-import { Button } from '@material-ui/core'
 
 interface IProps {}
 
@@ -11,7 +9,7 @@ function Welcome(props: IProps) {
     }
     return (
         <>
-            <Button>哈哈</Button>
+            <span>哈哈</span>
             <button onClick={showTip}>show</button>
         </>
     )

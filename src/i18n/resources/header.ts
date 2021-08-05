@@ -7,6 +7,10 @@ export const zhHeader = {
     },
     writeBtnText: '写文章',
     searchPlaceholder: '搜索',
+    nav: {
+        home: '首页',
+        about: '关于作者',
+    },
 }
 export const enHeader = {
     userDropDown: {
@@ -17,4 +21,8 @@ export const enHeader = {
     },
     writeBtnText: 'write article',
     searchPlaceholder: 'Search',
+    nav: {
+        home: 'Home',
+        about: 'About Me',
+    },
 }

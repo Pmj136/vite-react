@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core'
 import { useForm } from 'react-hook-form'
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons'
-import styles from './loginForm.module.css'
+import styles from '../styles/loginForm.module.css'
 import CodeFetcher from './CodeFetcher'
 import OtherLogin from './OtherLogin'
 
