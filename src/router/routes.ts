@@ -1,9 +1,9 @@
 import type { RouteItem } from './types'
 import NotFound from '@/components/NotFound'
 
-import Welcome from '@/pages/Welcome'
-import Home from '@/pages/Home'
+import Home from '@/pages/home/Home'
 import Layout from '@/layouts/Layout'
+import About from '@/pages/about/About'
 
 const routes: Array<RouteItem> = [
     {
@@ -16,7 +16,7 @@ const routes: Array<RouteItem> = [
             },
             {
                 path: '/about',
-                component: Welcome,
+                component: About,
             },
             {
                 path: '*',

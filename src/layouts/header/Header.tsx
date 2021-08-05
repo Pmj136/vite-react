@@ -24,21 +24,23 @@ function Header(props: IProps) {
         <Paper
             component="header"
             square
-            elevation={0}
+            elevation={1}
             className={styles['app-header']}
         >
-            <section className={styles['header-item']}>
-                <h2 className={styles.title}>CABIN</h2>
-                <NavList />
-            </section>
-            <section className={styles['header-item']}>
-                <SearchInput />
-                {isLogin && <NotificationLink />}
-                <LanguageSwitch />
-                <ThemeSwitch />
-                {/*<GithubLink />*/}
-                {isLogin ? <UserAvatar /> : <LoginForm />}
-                <WriteLink />
+            <section className={styles.container}>
+                <section className={styles['header-item']}>
+                    <h2 className={styles.title}>CABIN</h2>
+                    <NavList />
+                </section>
+                <section className={styles['header-item']}>
+                    <SearchInput />
+                    {isLogin && <NotificationLink />}
+                    <LanguageSwitch />
+                    <ThemeSwitch />
+                    {/*<GithubLink />*/}
+                    {isLogin ? <UserAvatar /> : <LoginForm />}
+                    <WriteLink />
+                </section>
             </section>
         </Paper>
     )

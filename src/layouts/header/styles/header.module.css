@@ -1,10 +1,14 @@
 .app-header {
-    z-index: 1200;
+    /*z-index: 1200;*/
     height: 64px;
     position: sticky;
     top: 0;
-    padding: 0 160px;
-    box-sizing: border-box;
+}
+
+.container {
+    width: var(--wrap-width);
+    margin: 0 auto;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;

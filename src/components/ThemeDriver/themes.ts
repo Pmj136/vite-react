@@ -12,6 +12,10 @@ export const light = createTheme({
                 whiteSpace: 'nowrap',
             },
         },
+        // MuiPaper: {
+        //     root: {
+        //     }
+        // }
     },
 })
 

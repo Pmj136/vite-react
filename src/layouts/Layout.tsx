@@ -3,7 +3,7 @@ import Header from './header/Header'
 import Main from './Main'
 import CopyRight from './CopyRight'
 
-import styles from './styles/layout.module.css'
+import styles from './layout.module.css'
 
 interface IProps {
     children: ReactElement

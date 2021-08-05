@@ -83,7 +83,7 @@ function DropDown(props: IProps) {
                                     : 'center bottom',
                         }}
                     >
-                        <Paper>
+                        <Paper elevation={4}>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList
                                     autoFocusItem={open}

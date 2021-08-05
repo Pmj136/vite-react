@@ -1,12 +1,7 @@
-import React, {
-    ComponentType,
-    createContext,
-    ReactElement,
-    useState,
-} from 'react'
+import React, { ReactElement, useState, createContext } from 'react'
 
 interface IProps {
-    children: ComponentType<any> | ReactElement
+    children: ReactElement
 }
 
 const initState: any = {

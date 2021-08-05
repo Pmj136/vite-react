@@ -8,11 +8,7 @@ body,
 }
 
 :root {
-    /*--palette-background-default: #fafafa*/
-}
-
-.icon {
-    cursor: pointer;
+    --wrap-width: 1200px;
 }
 
 ::-webkit-scrollbar {
@@ -28,3 +24,26 @@ body,
 ::-webkit-scrollbar-track {
     background: hsla(210, 8%, 51%, .09);
 }
+
+[data-theme='dark'] .theme-bg {
+    background-color: #555555 !important;
+}
+
+[data-theme='dark'] .theme-fc {
+    color: #ffffff !important;
+}
+
+[data-theme='light'] .theme-bg {
+    background-color: #f1f1f1 !important;
+}
+
+[data-theme='light'] .theme-fc {
+    color: #333333 !important;
+}
+
+
+.icon {
+    cursor: pointer;
+}
+
+

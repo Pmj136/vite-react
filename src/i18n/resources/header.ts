@@ -1,7 +1,7 @@
 export const zhHeader = {
     userDropDown: {
         homePage: '我的主页',
-        myNews: '我的消息',
+        myNews: '我的通知',
         accountManage: '账号管理',
         exit: '退出',
     },
@@ -15,7 +15,7 @@ export const zhHeader = {
 export const enHeader = {
     userDropDown: {
         homePage: 'Home Page',
-        myNews: 'My News',
+        myNews: 'Notification',
         accountManage: 'Account',
         exit: 'Exit',
     },

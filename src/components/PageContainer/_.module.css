@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    width: var(--wrap-width);
+    margin: 16px auto;
+}
+
+.main {
+    flex: 1;
+}
+
+.right {
+}

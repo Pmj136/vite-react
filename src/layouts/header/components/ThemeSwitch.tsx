@@ -6,7 +6,9 @@ import { ThemeStore } from '@/context/ThemeContext'
 function ThemeSwitch() {
     const { theme, setTheme } = useContext(ThemeStore)
     const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light')
+        const targetTheme = theme === 'light' ? 'dark' : 'light'
+        setTheme(targetTheme)
+        document.body.setAttribute('data-theme', targetTheme)
     }
     return (
         <IconButton onClick={toggleTheme}>
