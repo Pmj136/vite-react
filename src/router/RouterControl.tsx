@@ -2,6 +2,8 @@ import React, { ComponentType } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { RouteItem, RouterControlProps } from './types'
 
+const isLogin = true
+
 function renderRoutes(routes: Array<RouteItem>) {
     return (
         <Switch>
@@ -31,9 +33,12 @@ function renderRoutes(routes: Array<RouteItem>) {
                             if (v.children && v.children.length > 0) {
                                 return <Child>{renderRoutes(v.children)}</Child>
                             }
-                            const title = v?.meta?.title
-                            if (title) document.title = title
-                            return <Child {...props} meta={v.meta} />
+                            if (!v?.auth || (v?.auth && isLogin)) {
+                                const title = v?.meta?.title
+                                if (title) document.title = title
+                                return <Child {...props} meta={v.meta} />
+                            }
+                            return <Redirect to="/403" />
                         }}
                     />
                 )

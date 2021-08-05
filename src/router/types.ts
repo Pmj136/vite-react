@@ -2,6 +2,7 @@ import { FC, ComponentType } from 'react'
 
 export interface IMeta {
     title?: string
+
     [propName: string]: any
 }
 
@@ -10,6 +11,7 @@ export type RouteItem =
           path: string
           component: ComponentType<any>
           children?: Array<RouteItem>
+          auth?: boolean
           meta?: IMeta
           redirect?: never
       }

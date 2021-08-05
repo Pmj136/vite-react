@@ -24,6 +24,12 @@ function NavList() {
             />
             <Box m={1} />
             <NavListItem
+                title={t('header.nav.post')}
+                path="/post"
+                activePath={activeRoute}
+            />
+            <Box m={1} />
+            <NavListItem
                 title={t('header.nav.about')}
                 path="/about"
                 activePath={activeRoute}

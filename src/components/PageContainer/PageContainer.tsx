@@ -5,7 +5,7 @@ import { Box } from '@material-ui/core'
 interface IProps {
     children: ReactNode
     right?: ReactNode
-    rightWidth?: number
+    rightWidth?: number | string
 }
 
 function PageContainer(props: IProps) {
@@ -17,7 +17,7 @@ function PageContainer(props: IProps) {
                     <Box m={1} />
                     <section
                         className={classes.right}
-                        style={{ width: props.rightWidth || 360 }}
+                        style={{ width: props.rightWidth || '30%' }}
                     >
                         {props.right}
                     </section>

@@ -5,10 +5,11 @@ export const zhHeader = {
         accountManage: '账号管理',
         exit: '退出',
     },
-    writeBtnText: '写文章',
+    writeBtnText: '发布帖子',
     searchPlaceholder: '搜索',
     nav: {
         home: '首页',
+        post: '帖子',
         about: '关于作者',
     },
 }
@@ -19,10 +20,11 @@ export const enHeader = {
         accountManage: 'Account',
         exit: 'Exit',
     },
-    writeBtnText: 'write article',
+    writeBtnText: 'create a post',
     searchPlaceholder: 'Search',
     nav: {
         home: 'Home',
+        post: 'Posts',
         about: 'About Me',
     },
 }

@@ -17,6 +17,9 @@ function Home() {
                         <p>1</p>
                         <p>1</p>
                         <p>1</p>
+                        <p>1</p>
+                        <p>1</p>
+                        <p>1</p>
                     </PagePaper>
                     <PagePaper>
                         <p>1</p>
@@ -40,7 +43,7 @@ function Home() {
                 </>
             }
         >
-            <HomeCarousel />
+            {/*<HomeCarousel />*/}
             <ArticleList />
         </PageContainer>
     )

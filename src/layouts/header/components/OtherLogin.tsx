@@ -2,6 +2,7 @@ import React from 'react'
 import { QqLogo, GithubLogo, GiteeLogo } from '@/svg'
 
 import styles from '../styles/otherLogin.module.css'
+import { GitHub as GithubIcon } from '@material-ui/icons'
 
 interface IProps {}
 
@@ -15,7 +16,7 @@ function OtherLogin(props: IProps) {
             </div>
             <div className={styles['svg-container']}>
                 <QqLogo />
-                <GithubLogo />
+                <GithubIcon fontSize="large" />
                 <GiteeLogo />
             </div>
         </>

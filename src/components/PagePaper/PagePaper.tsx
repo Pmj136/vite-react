@@ -8,7 +8,7 @@ interface IProps {
 
 function PagePaper(props: IProps) {
     return (
-        <Paper square elevation={0} className={classes.paper}>
+        <Paper elevation={0} className={classes.paper}>
             {props.children}
         </Paper>
     )
