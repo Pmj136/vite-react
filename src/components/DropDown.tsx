@@ -24,7 +24,7 @@ export interface DropDownItem {
 
 interface IProps {
     activeCommand?: string
-    top: ReactElement
+    header: ReactElement
     dropDownItems: Array<any>
     disableHistory?: boolean
     onSelect: (target: DropDownItem) => void
@@ -64,7 +64,7 @@ function DropDown(props: IProps) {
                 ref={anchorRef}
                 onClick={handleToggle}
             >
-                {props.top}
+                {props.header}
             </div>
             <Popper
                 open={open}

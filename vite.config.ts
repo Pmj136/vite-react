@@ -34,7 +34,7 @@ export default defineConfig({
                 'react',
                 'react-dom',
                 'react-router-dom',
-                '@material-ui/core',
+                // '@material-ui/core',
             ],
             output: {
                 format: 'umd',
@@ -46,7 +46,7 @@ export default defineConfig({
                     react: 'React',
                     'react-dom': 'ReactDOM',
                     'react-router-dom': 'ReactRouterDOM',
-                    '@material-ui/core': 'MaterialUI',
+                    // '@material-ui/core': 'MaterialUI',
                 },
             },
         },

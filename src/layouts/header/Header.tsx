@@ -7,9 +7,10 @@ import LoginForm from './components/LoginForm'
 import LanguageSwitch from './components/LanguageSwitch'
 import NotificationLink from './components/NotificationLink'
 import WriteLink from './components/WriteLink'
+import ThemeSwitch from './components/ThemeSwitch'
 
 import logo from '@/assets/logo.svg'
-import { Box } from '@material-ui/core'
+import { Paper } from '@material-ui/core'
 
 interface IProps {}
 
@@ -17,17 +18,20 @@ const isLogin = true
 
 function Header(props: IProps) {
     return (
-        <header className={styles['app-header']}>
+        <Paper
+            component="header"
+            square
+            elevation={1}
+            className={styles['app-header']}
+        >
             <section className={styles['header-item']}>
                 <img className={styles.logo} src={logo} alt="logo" />
-            </section>
-            <section className={styles['header-item']}>
                 <NavList />
             </section>
             <section className={styles['header-item']}>
                 <SearchInput />
-                <Box m={0.8} />
                 <LanguageSwitch />
+                <ThemeSwitch />
                 {isLogin ? (
                     <>
                         <NotificationLink />
@@ -36,10 +40,9 @@ function Header(props: IProps) {
                 ) : (
                     <LoginForm />
                 )}
-                <Box m={0.8} />
                 <WriteLink />
             </section>
-        </header>
+        </Paper>
     )
 }
 

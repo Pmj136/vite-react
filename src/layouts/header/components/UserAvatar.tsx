@@ -28,14 +28,17 @@ function UserAvatar(props: IProps) {
     return (
         <DropDown
             disableHistory
-            top={
+            header={
                 <IconButton>
-                    <Avatar style={{ width: 40, height: 40 }}>头</Avatar>
+                    <Avatar
+                        src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3517629023,609603298&fm=26&gp=0.jpg"
+                        style={{ width: 40, height: 40 }}
+                    />
                 </IconButton>
             }
             dropDownItems={dropDownItems}
-            onSelect={() => {
-                console.log(1)
+            onSelect={v => {
+                console.log(v)
             }}
         />
     )

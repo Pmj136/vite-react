@@ -7,7 +7,12 @@ function WriteLink() {
     const { t } = useTranslation()
 
     return (
-        <Button variant="contained" color="secondary" startIcon={<WriteIcon />}>
+        <Button
+            style={{ marginLeft: 16 }}
+            variant="contained"
+            color="secondary"
+            startIcon={<WriteIcon />}
+        >
             {t('header.writeBtnText')}
         </Button>
     )

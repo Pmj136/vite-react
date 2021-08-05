@@ -1,4 +1,5 @@
 .app-layout{
+    min-width: 1200px;
     height: 100%;
-    overflow-y: scroll;
+    overflow: auto;
 }

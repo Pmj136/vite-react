@@ -6,6 +6,7 @@ interface IProps {
 }
 
 function Main(props: IProps) {
+    console.log('main render')
     return <main className={styles['app-main']}>{props.children}</main>
 }
 

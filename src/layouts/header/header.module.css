@@ -1,6 +1,6 @@
 .app-header {
-    background-color: #fff;
-    height: 62px;
+    z-index: 2999;
+    height: 64px;
     position: sticky;
     top: 0;
     padding: 0 120px;
@@ -11,7 +11,7 @@
 }
 
 .header-item {
-    height: 62px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { GTranslate as LanguageIcon } from '@material-ui/icons'
+import { Translate as LanguageIcon } from '@material-ui/icons'
 import { IconButton } from '@material-ui/core'
 import DropDown, { DropDownItem } from '@/components/DropDown'
 import { toast } from 'react-hot-toast'
@@ -32,7 +32,7 @@ function LanguageSwitch() {
     return (
         <DropDown
             activeCommand={i18n.language}
-            top={
+            header={
                 <IconButton>
                     <LanguageIcon color="action" />
                 </IconButton>

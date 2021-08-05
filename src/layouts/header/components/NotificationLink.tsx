@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconButton, Badge } from '@material-ui/core'
-import { Notifications as NotificationIcon } from '@material-ui/icons'
+import { NotificationsNone as NotificationIcon } from '@material-ui/icons'
 
 function NotificationLink() {
     return (
