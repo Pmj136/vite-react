@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import styles from './main.module.css'
+import styles from './styles/main.module.css'
 
 interface IProps {
     children: ReactElement

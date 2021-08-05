@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-
-import classes from '../styles/nav.module.css'
-import NavListItem from '@/layouts/header/components/NavListItem'
+import NavListItem from './NavListItem'
 import { useTranslation } from 'react-i18next'
 import { Box } from '@material-ui/core'
+
+import classes from '../styles/nav.module.css'
 
 function NavList() {
     const { t } = useTranslation()

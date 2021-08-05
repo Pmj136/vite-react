@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from '../styles/otherLogin.module.css'
 import { QqLogo, GithubLogo, GiteeLogo } from '@/svg'
+
+import styles from '../styles/otherLogin.module.css'
 
 interface IProps {}
 

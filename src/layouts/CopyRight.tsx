@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import styles from './copyright.module.css'
+import styles from './styles/copyright.module.css'
 
 function CopyRight() {
     return (

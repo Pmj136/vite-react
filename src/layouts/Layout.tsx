@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
 import Header from './header/Header'
-import Main from './main/Main'
-import CopyRight from './copyright/CopyRight'
+import Main from './Main'
+import CopyRight from './CopyRight'
 
-import styles from './layout.module.css'
+import styles from './styles/layout.module.css'
 
 interface IProps {
     children: ReactElement

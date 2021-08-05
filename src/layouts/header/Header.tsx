@@ -11,8 +11,9 @@ import ThemeSwitch from './components/ThemeSwitch'
 
 import { Paper } from '@material-ui/core'
 
-import styles from './styles/header.module.css'
-import GithubLink from '@/layouts/header/components/GithubLink'
+import styles from '@/layouts/header/styles/header.module.css'
+
+// import GithubLink from '@/layouts/header/components/GithubLink'
 
 interface IProps {}
 
