@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 function Post(props: any) {
-    useEffect(() => {
-        console.log('fetch')
-    }, [])
     return <div>post</div>
 }
 

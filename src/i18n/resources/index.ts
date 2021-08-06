@@ -1,7 +1,7 @@
 import { zhHeader, enHeader } from './header'
 
 const resources = {
-    zh: {
+    'zh-CN': {
         translation: {
             hello: '你好，世界',
             header: zhHeader,

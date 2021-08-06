@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx'
+import { get, set } from '@/utils/storage'
 
 class Store {
     theme = 'light'

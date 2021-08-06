@@ -4,6 +4,7 @@ import Main from './Main'
 import CopyRight from './CopyRight'
 
 import styles from './layout.module.css'
+import AutoScrollToTop from '@/components/AutoScrollToTop'
 
 interface IProps {
     children: ReactElement
@@ -11,10 +12,11 @@ interface IProps {
 
 function Layout(props: IProps) {
     return (
-        <section className={styles['app-layout']}>
+        <section id="scroll-container" className={styles['app-layout']}>
             <Header />
             <Main>{props.children}</Main>
             <CopyRight />
+            <AutoScrollToTop selector="#scroll-container" />
         </section>
     )
 }

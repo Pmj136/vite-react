@@ -6,8 +6,7 @@ import { observer } from 'mobx-react-lite'
 
 function LoginControl() {
     const { isLogin } = userStore
-    if (isLogin) return <UserAvatar />
-    return <LoginForm />
+    return isLogin ? <UserAvatar /> : <LoginForm />
 }
 
 export default observer(LoginControl)

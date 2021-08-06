@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import classes from './_.module.css'
 import { Box } from '@material-ui/core'
 
@@ -14,10 +14,10 @@ function PageContainer(props: IProps) {
             <section className={classes.main}>{props.children}</section>
             {!!props.right && (
                 <>
-                    <Box m={1} />
+                    <Box m={3.5} />
                     <section
                         className={classes.right}
-                        style={{ width: props.rightWidth || '30%' }}
+                        style={{ width: props.rightWidth || '32%' }}
                     >
                         {props.right}
                     </section>

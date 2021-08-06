@@ -1,13 +1,15 @@
 import { makeAutoObservable } from 'mobx'
+import { get, set } from '@/utils/storage'
 
 class Store {
-    isLogin = false
+    isLogin = get('isLogin', false)
 
     constructor() {
         makeAutoObservable(this)
     }
 
     setLoginStatus(status: boolean) {
+        set('isLogin', status)
         this.isLogin = status
     }
 }

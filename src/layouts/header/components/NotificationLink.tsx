@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IconButton, Badge } from '@material-ui/core'
 import { NotificationsNone as NotificationIcon } from '@material-ui/icons'
 import userStore from '@/store/userStore'
 import { observer } from 'mobx-react-lite'
+import ButtonLink from '@/components/ButtonLink'
 
 function NotificationLink() {
     const { isLogin } = userStore
-    if (!isLogin) return null
-    return (
-        <IconButton>
-            <Badge variant="dot" color="secondary">
-                <NotificationIcon color="action" />
-            </Badge>
-        </IconButton>
-    )
+    const [hasMsg] = useState(true)
+    return isLogin ? (
+        <ButtonLink component={IconButton} to="/notification">
+            {hasMsg ? (
+                <Badge variant="dot" color="secondary">
+                    <NotificationIcon />
+                </Badge>
+            ) : (
+                <NotificationIcon />
+            )}
+        </ButtonLink>
+    ) : null
 }
 
 export default observer(NotificationLink)

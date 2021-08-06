@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SearchInput from './components/SearchInput'
+import SearchLink from './components/SearchLink'
 import NavList from './components/NavList'
 import LanguageSwitch from './components/LanguageSwitch'
 import NotificationLink from './components/NotificationLink'
@@ -21,7 +21,7 @@ function Header(props: IProps) {
         <Paper
             component="header"
             square
-            elevation={1}
+            elevation={0}
             className={styles['app-header']}
         >
             <section className={styles.container}>
@@ -30,7 +30,7 @@ function Header(props: IProps) {
                     <NavList />
                 </section>
                 <section className={styles['header-item']}>
-                    <SearchInput />
+                    <SearchLink />
                     <NotificationLink />
                     <LanguageSwitch />
                     <ThemeSwitch />

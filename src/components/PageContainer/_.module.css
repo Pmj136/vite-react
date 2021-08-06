@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    width: var(--wrap-width);
+    width: calc(var(--wrap-width) - 150px);
     margin: 16px auto;
 }
 

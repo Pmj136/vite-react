@@ -7,6 +7,8 @@ import Home from '@/pages/home/Home'
 import Post from '@/pages/post/Post'
 import About from '@/pages/about/About'
 import NotFound from '@/components/NotFound'
+import Search from '@/pages/search/Search'
+import Notification from '@/pages/notification/Notification'
 
 function AppRouter() {
     return (
@@ -16,6 +18,8 @@ function AppRouter() {
                     <Route path="/" exact component={Home} />
                     <AuthRoute path="/post" component={Post} />
                     <Route path="/about" component={About} />
+                    <Route path="/search" component={Search} />
+                    <Route path="/notification" component={Notification} />
                     <Route path="*" component={NotFound} />
                 </Switch>
             </Layout>

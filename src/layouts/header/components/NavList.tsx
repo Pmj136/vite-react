@@ -1,39 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import NavListItem from './NavListItem'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box } from '@material-ui/core'
+import ButtonLink from '@/components/ButtonLink'
+import { Box, Button } from '@material-ui/core'
 
 import classes from '../styles/nav.module.css'
 
 function NavList() {
     const { t } = useTranslation()
 
-    const location = useLocation()
-    const [activeRoute, setActiveRoute] = useState(location.pathname)
-
-    useEffect(() => {
-        setActiveRoute(location.pathname)
-    }, [location.pathname])
     return (
         <nav className={classes['nav']}>
-            <NavListItem
-                title={t('header.nav.home')}
-                path="/"
-                activePath={activeRoute}
-            />
+            <ButtonLink component={Button} to="/">
+                {t('header.nav.home')}
+            </ButtonLink>
             <Box m={1} />
-            <NavListItem
-                title={t('header.nav.post')}
-                path="/post"
-                activePath={activeRoute}
-            />
+            <ButtonLink component={Button} to="/post">
+                {t('header.nav.post')}
+            </ButtonLink>
             <Box m={1} />
-            <NavListItem
-                title={t('header.nav.about')}
-                path="/about"
-                activePath={activeRoute}
-            />
+            <ButtonLink component={Button} to="/about">
+                {t('header.nav.about')}
+            </ButtonLink>
         </nav>
     )
 }
