@@ -1,30 +1,11 @@
 import React from 'react'
 import { Avatar, IconButton } from '@material-ui/core'
-import DropDown, { DropDownItem } from '@/components/DropDown'
 import { useTranslation } from 'react-i18next'
+import DropDown from '@/components/DropDown/DropDown'
+import DropDownItem from '@/components/DropDown/DropDownItem'
 
-interface IProps {}
-
-function UserAvatar(props: IProps) {
+function UserAvatar() {
     const { t } = useTranslation()
-    const dropDownItems: Array<DropDownItem> = [
-        {
-            command: 'zh',
-            name: t('header.userDropDown.homePage'),
-        },
-        {
-            command: 'en',
-            name: t('header.userDropDown.myNews'),
-        },
-        {
-            command: '2',
-            name: t('header.userDropDown.accountManage'),
-        },
-        {
-            command: '1',
-            name: t('header.userDropDown.exit'),
-        },
-    ]
     return (
         <DropDown
             disableHistory
@@ -36,11 +17,20 @@ function UserAvatar(props: IProps) {
                     />
                 </IconButton>
             }
-            dropDownItems={dropDownItems}
             onSelect={v => {
                 console.log(v)
             }}
-        />
+        >
+            <DropDownItem command="1">
+                {t('header.userDropDown.homePage')}
+            </DropDownItem>
+            <DropDownItem command="2">
+                {t('header.userDropDown.accountManage')}
+            </DropDownItem>
+            <DropDownItem command="3">
+                {t('header.userDropDown.exit')}
+            </DropDownItem>
+        </DropDown>
     )
 }
 
