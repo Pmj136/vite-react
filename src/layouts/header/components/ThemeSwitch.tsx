@@ -1,13 +1,14 @@
-import React, { createElement, useContext } from 'react'
+import React, { createElement } from 'react'
 import { Brightness7Outlined, Brightness4Outlined } from '@material-ui/icons'
 import { IconButton, Tooltip } from '@material-ui/core'
-import { ThemeStore } from '@/context/ThemeContext'
+import ThemeStore from '@/store/themeStore'
+import { observer } from 'mobx-react-lite'
 
 function ThemeSwitch() {
-    const { theme, setTheme } = useContext(ThemeStore)
+    const { theme, setTheme } = ThemeStore
     const toggleTheme = () => {
         const targetTheme = theme === 'light' ? 'dark' : 'light'
-        setTheme(targetTheme)
+        setTheme.bind(ThemeStore)(targetTheme)
         document.body.setAttribute('data-theme', targetTheme)
     }
     return (
@@ -28,4 +29,4 @@ function ThemeSwitch() {
     )
 }
 
-export default ThemeSwitch
+export default observer(ThemeSwitch)

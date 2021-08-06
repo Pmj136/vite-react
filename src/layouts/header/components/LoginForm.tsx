@@ -12,10 +12,12 @@ import CodeFetcher from './CodeFetcher'
 import OtherLogin from './OtherLogin'
 
 import styles from '../styles/loginForm.module.css'
+import userStore from '@/store/userStore'
 
 interface IProps {}
 
 function LoginForm(props: IProps) {
+    const { setLoginStatus } = userStore
     const [open, setOpen] = useState(false)
     const {
         register,
@@ -33,7 +35,7 @@ function LoginForm(props: IProps) {
         setOpen(false)
     }
     const handleLogin = (data: any) => {
-        console.log(data)
+        setLoginStatus.call(userStore, true)
     }
     return (
         <>

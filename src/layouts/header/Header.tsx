@@ -2,12 +2,11 @@ import React from 'react'
 
 import SearchInput from './components/SearchInput'
 import NavList from './components/NavList'
-import UserAvatar from './components/UserAvatar'
-import LoginForm from './components/LoginForm'
 import LanguageSwitch from './components/LanguageSwitch'
 import NotificationLink from './components/NotificationLink'
-import WriteLink from './components/WriteLink'
 import ThemeSwitch from './components/ThemeSwitch'
+import LoginControl from './components/LoginControl'
+import WriteLink from './components/WriteLink'
 
 import { Paper } from '@material-ui/core'
 
@@ -16,8 +15,6 @@ import styles from '@/layouts/header/styles/header.module.css'
 // import GithubLink from '@/layouts/header/components/GithubLink'
 
 interface IProps {}
-
-const isLogin = false
 
 function Header(props: IProps) {
     return (
@@ -34,11 +31,11 @@ function Header(props: IProps) {
                 </section>
                 <section className={styles['header-item']}>
                     <SearchInput />
-                    {isLogin && <NotificationLink />}
+                    <NotificationLink />
                     <LanguageSwitch />
                     <ThemeSwitch />
                     {/*<GithubLink />*/}
-                    {isLogin ? <UserAvatar /> : <LoginForm />}
+                    <LoginControl />
                     <WriteLink />
                 </section>
             </section>

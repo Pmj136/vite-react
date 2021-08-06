@@ -1,7 +1,8 @@
-import React, { ReactElement, useContext } from 'react'
+import React, { ReactElement } from 'react'
 import { ThemeProvider } from '@material-ui/core'
 import { light as lightTheme, dark as darkTheme } from './themes'
-import { ThemeStore } from '@/context/ThemeContext'
+import ThemeStore from '@/store/themeStore'
+import { observer } from 'mobx-react-lite'
 
 // import { blue, cyan } from '@material-ui/core/colors';
 
@@ -10,7 +11,7 @@ interface IProps {
 }
 
 function ThemeDriver(props: IProps) {
-    const { theme } = useContext(ThemeStore)
+    const { theme } = ThemeStore
     return (
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
             {props.children}
@@ -18,4 +19,4 @@ function ThemeDriver(props: IProps) {
     )
 }
 
-export default ThemeDriver
+export default observer(ThemeDriver)
