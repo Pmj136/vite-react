@@ -19,7 +19,6 @@ interface IProps {
     header: ReactElement
     children: ReactNode
     selectedCommand?: any
-    activeCommand?: string
     disableHistory?: boolean
     onSelect: (target: string) => void
 }
