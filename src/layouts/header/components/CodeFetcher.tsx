@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
+import type { TFunction } from 'react-i18next'
 import { Typography } from '@material-ui/core'
 
-interface IProps {}
+interface IProps {
+    t: TFunction
+}
 
 const INIT_SECONDS = 59
 let timer: NodeJS.Timer
@@ -34,7 +36,7 @@ function CodeFetcher(props: IProps) {
     if (disabled) {
         return (
             <Typography>
-                <Trans>loginForm.text.retransmit</Trans>({resetTimes}s)
+                {props.t('loginForm.text.retransmit')}({resetTimes}s)
             </Typography>
         )
     }
@@ -44,7 +46,7 @@ function CodeFetcher(props: IProps) {
             style={{ cursor: 'pointer' }}
             onClick={getCode}
         >
-            <Trans>loginForm.btn.sendCode</Trans>
+            {props.t('loginForm.btn.sendCode')}
         </Typography>
     )
 }

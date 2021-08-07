@@ -1,14 +1,15 @@
 import React from 'react'
 import { Avatar, IconButton } from '@material-ui/core'
-import { Trans } from 'react-i18next'
 import DropDown from '@/components/DropDown/DropDown'
 import DropDownItem from '@/components/DropDown/DropDownItem'
-import { useHistory } from 'react-router-dom'
 import userStore from '@/store/userStore'
+import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router-dom'
 
 function UserAvatar() {
     const { logout } = userStore
     const history = useHistory()
+    const { t } = useTranslation()
     const handleSelect = (command: string) => {
         if (command === 'exit') {
             logout.call(userStore)
@@ -32,13 +33,13 @@ function UserAvatar() {
             onSelect={handleSelect}
         >
             <DropDownItem command="/profile">
-                <Trans>header.userDropDown.profile</Trans>
+                {t('header.userDropDown.profile')}
             </DropDownItem>
             <DropDownItem command="/account">
-                <Trans>header.userDropDown.account</Trans>
+                {t('header.userDropDown.account')}
             </DropDownItem>
             <DropDownItem command="exit">
-                <Trans>header.userDropDown.exit</Trans>
+                {t('header.userDropDown.exit')}
             </DropDownItem>
         </DropDown>
     )

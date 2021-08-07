@@ -14,7 +14,7 @@ import ThirdLogin from './ThirdLogin'
 
 import styles from '../styles/loginForm.module.css'
 import userStore from '@/store/userStore'
-import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import TextDriver from '@/components/TextDriver/TextDriver'
 
 enum LoginTypes {
@@ -23,6 +23,7 @@ enum LoginTypes {
 }
 
 function LoginForm() {
+    const { t } = useTranslation()
     const { login } = userStore
     const [open, setOpen] = useState(false)
     const [loginType, setLoginType] = useState(LoginTypes.CODE)
@@ -58,9 +59,7 @@ function LoginForm() {
     }
     return (
         <>
-            <Button onClick={handleClickOpen}>
-                <Trans>header.loginLink</Trans>
-            </Button>
+            <Button onClick={handleClickOpen}>{t('header.loginLink')}</Button>
             <Dialog
                 // disablePortal
                 disableEscapeKeyDown
@@ -79,13 +78,13 @@ function LoginForm() {
                 </div>
                 <div className={styles['dialog-wrap']}>
                     <h2 className={styles.title1}>
-                        <Trans>loginForm.text.welcome</Trans>
+                        {t('loginForm.text.welcome')}
                     </h2>
                     <h3 className={styles.title2}>
-                        <Trans>loginForm.text.info</Trans>
+                        {t('loginForm.text.info')}
                     </h3>
                     <TextField
-                        label={<Trans>loginForm.label.email</Trans>}
+                        label={t('loginForm.label.email')}
                         {...register('email', { required: true })}
                         error={!!errors.email}
                         margin="dense"
@@ -95,7 +94,7 @@ function LoginForm() {
 
                     {loginType === 'code' && (
                         <TextField
-                            label={<Trans>loginForm.label.code</Trans>}
+                            label={t('loginForm.label.code')}
                             {...register(LoginTypes.CODE, {
                                 required: true,
                                 maxLength: 6,
@@ -105,7 +104,7 @@ function LoginForm() {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
-                                        <CodeFetcher />
+                                        <CodeFetcher t={t} />
                                     </InputAdornment>
                                 ),
                             }}
@@ -117,7 +116,7 @@ function LoginForm() {
 
                     {loginType === 'password' && (
                         <TextField
-                            label={<Trans>loginForm.label.password</Trans>}
+                            label={t('loginForm.label.password')}
                             type="password"
                             {...register(LoginTypes.PASSWORD, {
                                 required: true,
@@ -137,12 +136,10 @@ function LoginForm() {
                         }}
                         onClick={switchLoginType}
                     >
-                        {loginType === LoginTypes.CODE && (
-                            <Trans>loginForm.text.loginType1</Trans>
-                        )}
-                        {loginType === LoginTypes.PASSWORD && (
-                            <Trans>loginForm.text.loginType2</Trans>
-                        )}
+                        {loginType === LoginTypes.CODE &&
+                            t('loginForm.text.loginType1')}
+                        {loginType === LoginTypes.PASSWORD &&
+                            t('loginForm.text.loginType2')}
                     </Typography>
                     <Button
                         variant="contained"
@@ -151,11 +148,9 @@ function LoginForm() {
                         disabled={disabled}
                         onClick={onLoginBtnClick}
                     >
-                        <Trans>loginForm.btn.sign</Trans>
+                        {t('loginForm.btn.sign')}
                     </Button>
-                    <TextDriver>
-                        <Trans>loginForm.text.third</Trans>
-                    </TextDriver>
+                    <TextDriver>{t('loginForm.text.third')}</TextDriver>
                     <ThirdLogin />
                 </div>
             </Dialog>
