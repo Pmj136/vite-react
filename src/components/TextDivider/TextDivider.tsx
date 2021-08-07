@@ -5,7 +5,7 @@ interface IProps {
     children: ReactNode
 }
 
-function TextDriver(props: IProps) {
+function TextDivider(props: IProps) {
     return (
         <div className={classes['driver-box']}>
             <div className={classes['driver-box-line']} />
@@ -15,4 +15,4 @@ function TextDriver(props: IProps) {
     )
 }
 
-export default TextDriver
+export default TextDivider

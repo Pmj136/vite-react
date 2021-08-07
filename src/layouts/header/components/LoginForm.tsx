@@ -15,7 +15,7 @@ import ThirdLogin from './ThirdLogin'
 import styles from '../styles/loginForm.module.css'
 import userStore from '@/store/userStore'
 import { useTranslation } from 'react-i18next'
-import TextDriver from '@/components/TextDriver/TextDriver'
+import TextDivider from '@/components/TextDivider/TextDivider'
 
 enum LoginTypes {
     PASSWORD = 'password',
@@ -150,7 +150,7 @@ function LoginForm() {
                     >
                         {t('loginForm.btn.sign')}
                     </Button>
-                    <TextDriver>{t('loginForm.text.third')}</TextDriver>
+                    <TextDivider>{t('loginForm.text.third')}</TextDivider>
                     <ThirdLogin />
                 </div>
             </Dialog>
