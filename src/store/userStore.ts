@@ -21,14 +21,13 @@ class Store {
     async login(e: any) {
         try {
             await loginApi(e)
-            toast.success('登录成功')
             runInAction(() => {
                 this.isLogin = true
             })
             set('isLogin', true)
             return Promise.resolve()
         } catch (e) {
-            return Promise.reject(e)
+            console.log(e)
         }
     }
 

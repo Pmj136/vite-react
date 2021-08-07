@@ -8,12 +8,16 @@ import { useTranslation } from 'react-i18next'
 import DropDown from '@/components/DropDown/DropDown'
 import DropDownItem from '@/components/DropDown/DropDownItem'
 
+const loadingId = 'ls-loading-id'
+
 function LanguageSwitch() {
     const { t, i18n } = useTranslation()
     const onSelect = (command: string) => {
-        toast.loading(t('header.switchTip.loading'))
+        toast.loading(t('header.switchTip.loading'), {
+            id: loadingId,
+        })
         const timer = setTimeout(() => {
-            toast.dismiss()
+            toast.dismiss(loadingId)
             clearTimeout(timer)
             changeLanguage(command).then(() => {
                 toast.success(t('header.switchTip.ok'))

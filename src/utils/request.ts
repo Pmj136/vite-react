@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
-import { CodeMsg } from '@/utils/constants'
+
+const toastId = 'request-toast-id'
 
 const service = axios.create({
     baseURL: import.meta.env.VITE_BASEURL,
@@ -10,22 +11,19 @@ const service = axios.create({
 
 service.interceptors.response.use(
     response => {
-        if (response.status === 200) {
-            const { code } = response.data
-            if (code !== 0) {
-                toast.dismiss()
-                toast(CodeMsg[code], {
-                    icon: '🙄',
-                })
-                return Promise.reject(response.data)
-            }
-            return response.data
+        const { code, msg } = response.data
+        if (code !== 1000) {
+            toast(msg, {
+                id: toastId,
+                duration: 2000,
+                icon: '😓',
+            })
+            return Promise.reject(response.data)
         }
-        toast.error('服务异常')
-        return Promise.reject('服务异常')
+        return response.data
     },
     error => {
-        toast.error('网络请求错误')
+        toast.error(error.message)
         return Promise.reject(error)
     }
 )

@@ -28,7 +28,6 @@
     "react-hook-form": "^7.12.2",
     "react-hot-toast": "^2.1.0",
     "react-i18next": "^11.11.4",
-    "react-responsive-carousel": "^3.2.20",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
