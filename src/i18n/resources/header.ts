@@ -1,7 +1,7 @@
 export const zhHeader = {
     userDropDown: {
-        homePage: '我的主页',
-        accountManage: '账号管理',
+        profile: '我的主页',
+        account: '账号管理',
         exit: '退出',
     },
     writeBtnText: '发布帖子',
@@ -18,8 +18,8 @@ export const zhHeader = {
 }
 export const enHeader = {
     userDropDown: {
-        homePage: 'Home Page',
-        accountManage: 'Account',
+        profile: 'Profile',
+        account: 'Account',
         exit: 'Exit',
     },
     writeBtnText: 'create a post',

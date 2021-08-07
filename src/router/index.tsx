@@ -16,10 +16,10 @@ function AppRouter() {
             <Layout>
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <AuthRoute path="/post" component={Post} />
+                    <Route path="/post" component={Post} />
                     <Route path="/about" component={About} />
                     <Route path="/search" component={Search} />
-                    <Route path="/notification" component={Notification} />
+                    <AuthRoute path="/notification" component={Notification} />
                     <Route path="*" component={NotFound} />
                 </Switch>
             </Layout>

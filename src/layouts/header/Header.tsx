@@ -5,14 +5,13 @@ import NavList from './components/NavList'
 import LanguageSwitch from './components/LanguageSwitch'
 import NotificationLink from './components/NotificationLink'
 import ThemeSwitch from './components/ThemeSwitch'
+// import GithubLink from './components/GithubLink'
 import LoginControl from './components/LoginControl'
 import WriteLink from './components/WriteLink'
 
 import { Paper } from '@material-ui/core'
 
 import styles from '@/layouts/header/styles/header.module.css'
-
-// import GithubLink from '@/layouts/header/components/GithubLink'
 
 interface IProps {}
 

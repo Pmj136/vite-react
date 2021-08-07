@@ -3,9 +3,24 @@ import { Avatar, IconButton } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import DropDown from '@/components/DropDown/DropDown'
 import DropDownItem from '@/components/DropDown/DropDownItem'
+import { useHistory } from 'react-router-dom'
+import userStore from '@/store/userStore'
 
 function UserAvatar() {
+    const { logout } = userStore
     const { t } = useTranslation()
+    const history = useHistory()
+    const handleSelect = (command: string) => {
+        if (command === 'profile') {
+            history.push('/profile')
+        }
+        if (command === 'account') {
+            history.push('/account')
+        }
+        if (command === 'exit') {
+            logout.call(userStore)
+        }
+    }
     return (
         <DropDown
             disableHistory
@@ -17,17 +32,15 @@ function UserAvatar() {
                     />
                 </IconButton>
             }
-            onSelect={v => {
-                console.log(v)
-            }}
+            onSelect={handleSelect}
         >
-            <DropDownItem command="1">
-                {t('header.userDropDown.homePage')}
+            <DropDownItem command="profile">
+                {t('header.userDropDown.profile')}
             </DropDownItem>
-            <DropDownItem command="2">
-                {t('header.userDropDown.accountManage')}
+            <DropDownItem command="account">
+                {t('header.userDropDown.account')}
             </DropDownItem>
-            <DropDownItem command="3">
+            <DropDownItem command="exit">
                 {t('header.userDropDown.exit')}
             </DropDownItem>
         </DropDown>

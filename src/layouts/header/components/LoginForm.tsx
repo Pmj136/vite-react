@@ -17,8 +17,9 @@ import userStore from '@/store/userStore'
 interface IProps {}
 
 function LoginForm(props: IProps) {
-    const { setLoginStatus } = userStore
+    const { login } = userStore
     const [open, setOpen] = useState(false)
+    const [isFetch, setFetch] = useState(false)
     const {
         register,
         handleSubmit,
@@ -35,7 +36,11 @@ function LoginForm(props: IProps) {
         setOpen(false)
     }
     const handleLogin = (data: any) => {
-        setLoginStatus.call(userStore, true)
+        if (isFetch) return
+        setFetch(true)
+        login.call(userStore).then(res => {
+            setFetch(false)
+        })
     }
     return (
         <>
