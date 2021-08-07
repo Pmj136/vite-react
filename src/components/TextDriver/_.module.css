@@ -1,0 +1,20 @@
+.driver-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.driver-box-line {
+    width: 100%;
+    background: #dad9d9;
+    height: 1px;
+}
+
+.driver-box-text {
+    margin: 0 10px;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 16px;
+}

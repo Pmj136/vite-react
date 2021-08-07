@@ -1,0 +1,13 @@
+.svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-container > * {
+    margin: 0 10px;
+}
+
+.svg-container > *:active {
+    transform: scale(1.1);
+}

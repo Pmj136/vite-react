@@ -1,6 +1,7 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, runInAction } from 'mobx'
 import { get, remove, set } from '@/utils/storage'
 import { toast } from 'react-hot-toast'
+import { loginApi } from '@/api/user'
 
 function testApi(time = 1000) {
     return new Promise<void>(resolve => {
@@ -17,17 +18,18 @@ class Store {
         makeAutoObservable(this)
     }
 
-    login() {
-        return new Promise<void>(resolve => {
-            toast.loading('正在登录')
-            testApi().then(() => {
-                toast.dismiss()
-                toast.success('登录成功')
+    async login(e: any) {
+        try {
+            await loginApi(e)
+            toast.success('登录成功')
+            runInAction(() => {
                 this.isLogin = true
-                set('isLogin', true)
-                resolve()
             })
-        })
+            set('isLogin', true)
+            return Promise.resolve()
+        } catch (e) {
+            return Promise.reject(e)
+        }
     }
 
     logout() {
@@ -35,7 +37,9 @@ class Store {
         testApi(1000).then(() => {
             toast.dismiss()
             toast.success('你已退出')
-            this.isLogin = false
+            runInAction(() => {
+                this.isLogin = false
+            })
             remove('isLogin')
         })
     }

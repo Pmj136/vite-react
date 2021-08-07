@@ -19,7 +19,6 @@ interface IProps {
     header: ReactElement
     children: ReactNode
     selectedCommand?: any
-    disableHistory?: boolean
     onSelect: (target: string) => void
 }
 
@@ -55,9 +54,8 @@ function DropDown(props: IProps) {
     }
 
     const onSelect = (event: MouseEvent<EventTarget>, command: string) => {
-        if (!props.disableHistory) {
-            setSelectedCommand(command)
-        }
+        if (command === selectedCommand) return
+        setSelectedCommand(command)
         props.onSelect(command)
         handleClose(event)
     }

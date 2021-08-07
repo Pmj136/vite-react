@@ -15,12 +15,13 @@ export const zhHeader = {
         loading: '正在切换',
         ok: '切换成功',
     },
+    loginLink: '登录',
 }
 export const enHeader = {
     userDropDown: {
         profile: 'Profile',
         account: 'Account',
-        exit: 'Exit',
+        exit: 'Sign out',
     },
     writeBtnText: 'create a post',
     searchPlaceholder: 'Search',
@@ -33,4 +34,5 @@ export const enHeader = {
         loading: 'Switching',
         ok: 'Switching succeeded',
     },
+    loginLink: 'Sign in',
 }

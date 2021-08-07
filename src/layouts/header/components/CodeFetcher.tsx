@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import styles from '../styles/coderFetcher.module.css'
+import { Trans } from 'react-i18next'
+import { Typography } from '@material-ui/core'
 
 interface IProps {}
 
@@ -32,15 +33,19 @@ function CodeFetcher(props: IProps) {
     }, [])
     if (disabled) {
         return (
-            <span className={styles['second-view']}>
-                重新发送({resetTimes}s)
-            </span>
+            <Typography>
+                <Trans>loginForm.text.retransmit</Trans>({resetTimes}s)
+            </Typography>
         )
     }
     return (
-        <span className={styles['init-view']} onClick={getCode}>
-            获取验证码
-        </span>
+        <Typography
+            color="primary"
+            style={{ cursor: 'pointer' }}
+            onClick={getCode}
+        >
+            <Trans>loginForm.btn.sendCode</Trans>
+        </Typography>
     )
 }
 

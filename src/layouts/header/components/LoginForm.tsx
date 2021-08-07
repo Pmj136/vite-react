@@ -5,24 +5,32 @@ import {
     IconButton,
     InputAdornment,
     TextField,
+    Typography,
 } from '@material-ui/core'
 import { useForm } from 'react-hook-form'
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons'
 import CodeFetcher from './CodeFetcher'
-import OtherLogin from './OtherLogin'
+import ThirdLogin from './ThirdLogin'
 
 import styles from '../styles/loginForm.module.css'
 import userStore from '@/store/userStore'
+import { Trans } from 'react-i18next'
+import TextDriver from '@/components/TextDriver/TextDriver'
 
-interface IProps {}
+enum LoginTypes {
+    PASSWORD = 'password',
+    CODE = 'code',
+}
 
-function LoginForm(props: IProps) {
+function LoginForm() {
     const { login } = userStore
     const [open, setOpen] = useState(false)
-    const [isFetch, setFetch] = useState(false)
+    const [loginType, setLoginType] = useState(LoginTypes.CODE)
+    const [disabled, setDisabled] = useState(false)
     const {
         register,
-        handleSubmit,
+        unregister,
+        handleSubmit: validForm,
         formState: { errors },
         reset,
     } = useForm()
@@ -35,16 +43,24 @@ function LoginForm(props: IProps) {
         if (reason === 'backdropClick') return
         setOpen(false)
     }
-    const handleLogin = (data: any) => {
-        if (isFetch) return
-        setFetch(true)
-        login.call(userStore).then(res => {
-            setFetch(false)
-        })
+    const switchLoginType = () => {
+        unregister(loginType)
+        if (loginType === LoginTypes.CODE) setLoginType(LoginTypes.PASSWORD)
+        else setLoginType(LoginTypes.CODE)
+    }
+    const onLoginBtnClick = () => {
+        validForm(e => {
+            setDisabled(true)
+            login.call(userStore, { ...e, type: loginType }).finally(() => {
+                setDisabled(false)
+            })
+        })()
     }
     return (
         <>
-            <Button onClick={handleClickOpen}>登录</Button>
+            <Button onClick={handleClickOpen}>
+                <Trans>header.loginLink</Trans>
+            </Button>
             <Dialog
                 // disablePortal
                 disableEscapeKeyDown
@@ -62,44 +78,85 @@ function LoginForm(props: IProps) {
                     </IconButton>
                 </div>
                 <div className={styles['dialog-wrap']}>
-                    <h2 className={styles.title1}>欢迎您，</h2>
-                    <h3 className={styles.title2}>填写以下信息登录</h3>
+                    <h2 className={styles.title1}>
+                        <Trans>loginForm.text.welcome</Trans>
+                    </h2>
+                    <h3 className={styles.title2}>
+                        <Trans>loginForm.text.info</Trans>
+                    </h3>
                     <TextField
-                        label="邮箱"
-                        type="email"
-                        {...register('email', { required: '请输入邮箱' })}
+                        label={<Trans>loginForm.label.email</Trans>}
+                        {...register('email', { required: true })}
                         error={!!errors.email}
                         margin="dense"
                         fullWidth
                         autoComplete="off"
                     />
 
-                    <TextField
-                        label="验证码"
-                        type="code"
-                        {...register('code', { required: '请输入验证码' })}
-                        error={!!errors.code}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <CodeFetcher />
-                                </InputAdornment>
-                            ),
+                    {loginType === 'code' && (
+                        <TextField
+                            label={<Trans>loginForm.label.code</Trans>}
+                            {...register(LoginTypes.CODE, {
+                                required: true,
+                                maxLength: 6,
+                                minLength: 6,
+                            })}
+                            error={!!errors.code}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <CodeFetcher />
+                                    </InputAdornment>
+                                ),
+                            }}
+                            fullWidth
+                            margin="dense"
+                            autoComplete="off"
+                        />
+                    )}
+
+                    {loginType === 'password' && (
+                        <TextField
+                            label={<Trans>loginForm.label.password</Trans>}
+                            type="password"
+                            {...register(LoginTypes.PASSWORD, {
+                                required: true,
+                            })}
+                            error={!!errors.password}
+                            fullWidth
+                            margin="dense"
+                            autoComplete="off"
+                        />
+                    )}
+                    <Typography
+                        color="primary"
+                        style={{
+                            margin: '10px 0',
+                            cursor: 'pointer',
+                            userSelect: 'none',
                         }}
-                        fullWidth
-                        margin="dense"
-                        autoComplete="off"
-                    />
+                        onClick={switchLoginType}
+                    >
+                        {loginType === LoginTypes.CODE && (
+                            <Trans>loginForm.text.loginType1</Trans>
+                        )}
+                        {loginType === LoginTypes.PASSWORD && (
+                            <Trans>loginForm.text.loginType2</Trans>
+                        )}
+                    </Typography>
                     <Button
-                        style={{ marginTop: 20 }}
                         variant="contained"
                         color="primary"
                         fullWidth
-                        onClick={handleSubmit(handleLogin)}
+                        disabled={disabled}
+                        onClick={onLoginBtnClick}
                     >
-                        立即登录
+                        <Trans>loginForm.btn.sign</Trans>
                     </Button>
-                    <OtherLogin />
+                    <TextDriver>
+                        <Trans>loginForm.text.third</Trans>
+                    </TextDriver>
+                    <ThirdLogin />
                 </div>
             </Dialog>
         </>

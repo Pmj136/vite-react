@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import { CodeMsg } from '@/utils/constants'
 
 const service = axios.create({
     baseURL: import.meta.env.VITE_BASEURL,
@@ -7,23 +8,15 @@ const service = axios.create({
     withCredentials: true,
 })
 
-service.interceptors.request.use(
-    config => {
-        return config
-    },
-    error => {
-        return Promise.reject(error)
-    }
-)
-
 service.interceptors.response.use(
     response => {
         if (response.status === 200) {
-            const { code, msg } = response.data
-            if (code > 400) {
-                // if (code === 403) {
-                //     store.dispatch(clearUser())
-                // }
+            const { code } = response.data
+            if (code !== 0) {
+                toast.dismiss()
+                toast(CodeMsg[code], {
+                    icon: '🙄',
+                })
                 return Promise.reject(response.data)
             }
             return response.data
