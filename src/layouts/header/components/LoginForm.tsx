@@ -28,13 +28,17 @@ function LoginForm() {
     const [open, setOpen] = useState(false)
     const [loginType, setLoginType] = useState(LoginTypes.CODE)
     const [disabled, setDisabled] = useState(false)
+
     const {
         register,
         unregister,
         handleSubmit: validForm,
         formState: { errors },
         reset,
+        watch,
     } = useForm()
+
+    const email = watch('email')
 
     const handleClickOpen = () => {
         reset()
@@ -104,7 +108,7 @@ function LoginForm() {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
-                                        <CodeFetcher t={t} />
+                                        <CodeFetcher t={t} email={email} />
                                     </InputAdornment>
                                 ),
                             }}

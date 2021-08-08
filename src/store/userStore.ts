@@ -22,9 +22,6 @@ class Store {
 
     async login(e: any) {
         try {
-            toast.loading('正在登录', {
-                id: toastLoadingId,
-            })
             await loginApi(e)
             runInAction(() => {
                 this.isLogin = true
@@ -33,8 +30,6 @@ class Store {
             return Promise.resolve()
         } catch (e) {
             console.log(e)
-        } finally {
-            toast.dismiss(toastLoadingId)
         }
     }
 

@@ -12,13 +12,6 @@ export default defineConfig({
             '@': pathResolve('./src'),
         },
     },
-    css: {
-        preprocessorOptions: {
-            scss: {
-                additionalData: `$primaryColor: orange;`,
-            },
-        },
-    },
     clearScreen: false,
     server: {
         host: '0.0.0.0',
@@ -26,29 +19,37 @@ export default defineConfig({
     },
     build: {
         brotliSize: false,
-        rollupOptions: {
-            external: [
-                'dayjs',
-                'i18next',
-                'i18next-browser-languagedetector',
-                'react',
-                'react-dom',
-                'react-router-dom',
-                // '@material-ui/core',
-            ],
-            output: {
-                format: 'umd',
-                globals: {
-                    dayjs: 'dayjs',
-                    i18next: 'i18next',
-                    'i18next-browser-languagedetector':
-                        'i18nextBrowserLanguageDetector',
-                    react: 'React',
-                    'react-dom': 'ReactDOM',
-                    'react-router-dom': 'ReactRouterDOM',
-                    // '@material-ui/core': 'MaterialUI',
-                },
-            },
-        },
+        // rollupOptions: {
+        //     external: [
+        //         'axios',
+        //         'dayjs',
+        //         'i18next',
+        //         'i18next-browser-languagedetector',
+        //         'mobx',
+        //         'mobx-react-lite',
+        //         'qs',
+        //         'react',
+        //         'react-dom',
+        //         'react-router-dom',
+        //         '@material-ui/core',
+        //     ],
+        //     output: {
+        //         format: 'umd',
+        //         globals: {
+        //             axios:'axios',
+        //             dayjs: 'dayjs',
+        //             i18next: 'i18next',
+        //             'i18next-browser-languagedetector':
+        //                 'i18nextBrowserLanguageDetector',
+        //             mobx:'mobx',
+        //             'mobx-react-lite':'mobxReactLite',
+        //             qs:'Qs',
+        //             react: 'React',
+        //             'react-dom': 'ReactDOM',
+        //             'react-router-dom': 'ReactRouterDOM',
+        //             '@material-ui/core': 'MaterialUI',
+        //         },
+        //     },
+        // },
     },
 })

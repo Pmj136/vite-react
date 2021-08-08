@@ -1,5 +1,5 @@
 import { createTheme } from '@material-ui/core'
-import { yellow } from '@material-ui/core/colors'
+import { amber } from '@material-ui/core/colors'
 
 /*light theme*/
 export const light = createTheme({
@@ -23,7 +23,7 @@ export const light = createTheme({
 export const dark = createTheme({
     palette: {
         type: 'dark',
-        primary: yellow,
+        primary: amber,
     },
     overrides: {
         MuiButton: {

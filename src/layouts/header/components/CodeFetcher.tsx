@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import type { TFunction } from 'react-i18next'
 import { Typography } from '@material-ui/core'
+import { sendCodeApi } from '@/api/user'
+import { send } from 'vite'
+import { toast } from 'react-hot-toast'
 
 interface IProps {
     t: TFunction
+    email: string
 }
 
 const INIT_SECONDS = 59
@@ -26,7 +30,10 @@ function CodeFetcher(props: IProps) {
         }, 1000)
     }
     const getCode = () => {
-        _lessSecond()
+        sendCodeApi(props.email).then((res: any) => {
+            toast.success(res.msg)
+            _lessSecond()
+        })
     }
     useEffect(() => {
         return () => {

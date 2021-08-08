@@ -5,7 +5,6 @@ import { Store } from './DropDown'
 interface IProps {
     command: any
     children: ReactNode
-    selected?: boolean
 }
 
 function DropDownItem(props: IProps) {
