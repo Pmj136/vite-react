@@ -3,6 +3,8 @@ import { get, remove, set } from '@/utils/storage'
 import { toast } from 'react-hot-toast'
 import { loginApi } from '@/api/user'
 
+const toastLoadingId = 'useStore-loading-id'
+
 function testApi(time = 1000) {
     return new Promise<void>(resolve => {
         setTimeout(() => {
@@ -20,6 +22,9 @@ class Store {
 
     async login(e: any) {
         try {
+            toast.loading('正在登录', {
+                id: toastLoadingId,
+            })
             await loginApi(e)
             runInAction(() => {
                 this.isLogin = true
@@ -28,6 +33,8 @@ class Store {
             return Promise.resolve()
         } catch (e) {
             console.log(e)
+        } finally {
+            toast.dismiss(toastLoadingId)
         }
     }
 
