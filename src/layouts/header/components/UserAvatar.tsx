@@ -4,11 +4,12 @@ import DropDown from '@/components/DropDown/DropDown'
 import DropDownItem from '@/components/DropDown/DropDownItem'
 import userStore from '@/store/userStore'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 function UserAvatar() {
     const { logout } = userStore
     const history = useHistory()
+    const location = useLocation()
     const { t } = useTranslation()
     const handleSelect = (command: string) => {
         if (command === 'exit') {
@@ -19,7 +20,7 @@ function UserAvatar() {
     }
     return (
         <DropDown
-            selectedCommand={history.location.pathname}
+            selectedCommand={location.pathname}
             header={
                 <IconButton>
                     <Avatar

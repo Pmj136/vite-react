@@ -4,6 +4,7 @@ import React, {
     MouseEvent,
     ReactElement,
     ReactNode,
+    useEffect,
     useRef,
     useState,
 } from 'react'
@@ -35,6 +36,10 @@ function DropDown(props: IProps) {
     )
     const [open, setOpen] = useState(false)
     const anchorRef = useRef<any>(null)
+
+    useEffect(() => {
+        setSelectedCommand(props.selectedCommand)
+    }, [props.selectedCommand])
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen)
