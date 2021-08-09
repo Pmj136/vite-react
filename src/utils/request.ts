@@ -12,7 +12,7 @@ const service = axios.create({
 service.interceptors.response.use(
     response => {
         const { code, msg } = response.data
-        if (code !== 1000) {
+        if (code !== 0) {
             toast(msg, {
                 id: toastId,
                 duration: 2000,

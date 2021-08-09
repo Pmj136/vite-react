@@ -16,6 +16,7 @@ import styles from '../styles/loginForm.module.css'
 import userStore from '@/store/userStore'
 import { useTranslation } from 'react-i18next'
 import TextDivider from '@/components/TextDivider/TextDivider'
+import { toast } from 'react-hot-toast'
 
 enum LoginTypes {
     PASSWORD = 'password',

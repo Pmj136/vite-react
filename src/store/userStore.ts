@@ -1,17 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import { get, remove, set } from '@/utils/storage'
 import { toast } from 'react-hot-toast'
-import { loginApi } from '@/api/user'
-
-const toastLoadingId = 'useStore-loading-id'
-
-function testApi(time = 1000) {
-    return new Promise<void>(resolve => {
-        setTimeout(() => {
-            resolve()
-        }, time)
-    })
-}
+import { loginApi, logoutApi } from '@/api/user'
 
 class Store {
     isLogin = get('isLogin', false)
@@ -34,15 +24,20 @@ class Store {
     }
 
     logout() {
-        toast.loading('正在退出')
-        testApi(1000).then(() => {
-            toast.dismiss()
-            toast.success('你已退出')
-            runInAction(() => {
-                this.isLogin = false
-            })
-            remove('isLogin')
+        toast.loading('正在退出', {
+            id: 'exit-toast-id',
         })
+        const timer = setTimeout(() => {
+            logoutApi().then(res => {
+                toast.dismiss('exit-toast-id')
+                toast.success('你已退出')
+                runInAction(() => {
+                    this.isLogin = false
+                })
+                remove('isLogin')
+                clearTimeout(timer)
+            })
+        }, 500)
     }
 }
 

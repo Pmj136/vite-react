@@ -5,13 +5,13 @@ import { stringify } from 'qs'
 export function sendCodeApi(email: string) {
     return request({
         url: '/user/sendCode',
-        method: 'post',
+        method: 'get',
         headers: {
             'Content-Type': ContentType.FORM_URLENCODED,
         },
-        data: stringify({
+        params: {
             email,
-        }),
+        },
     })
 }
 
@@ -21,6 +21,13 @@ export function loginApi({ type, email, code, password }: any) {
         url: '/user/login',
         method: 'post',
         data: params,
+    })
+}
+
+export function logoutApi() {
+    return request({
+        url: '/user/logout',
+        method: 'post',
     })
 }
 
