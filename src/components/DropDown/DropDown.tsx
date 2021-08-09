@@ -23,12 +23,7 @@ interface IProps {
     onSelect: (target: string) => void
 }
 
-const initState: any = {
-    selectedCommand: null,
-    setSelectedCommand: null,
-}
-
-export const Store = createContext(initState.selectedCommand)
+export const Store = createContext({})
 
 function DropDown(props: IProps) {
     const [selectedCommand, setSelectedCommand] = useState(
