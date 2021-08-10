@@ -6,7 +6,7 @@ interface IProps {
     children: ReactNode
 }
 
-function PagePaper(props: IProps) {
+function CommonPaper(props: IProps) {
     return (
         <Paper elevation={0} className={classes.paper}>
             {props.children}
@@ -14,4 +14,4 @@ function PagePaper(props: IProps) {
     )
 }
 
-export default PagePaper
+export default CommonPaper

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SearchLink from './components/SearchLink'
+import SearchInput from './components/SearchInput'
 import NavList from './components/NavList'
 import LanguageSwitch from './components/LanguageSwitch'
 import NotificationLink from './components/NotificationLink'
@@ -29,7 +29,7 @@ function Header(props: IProps) {
                     <NavList />
                 </section>
                 <section className={styles['header-item']}>
-                    <SearchLink />
+                    <SearchInput />
                     <NotificationLink />
                     <LanguageSwitch />
                     <ThemeSwitch />
