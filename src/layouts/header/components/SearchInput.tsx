@@ -22,7 +22,11 @@ function SearchInput() {
         <Input
             value={keyword}
             type="search"
-            style={{ width, transition: 'width ease-out 0.2s' }}
+            style={{
+                width,
+                transition: 'width ease-out 0.2s',
+                marginRight: 16,
+            }}
             placeholder={width === 120 ? '搜索' : '按回车键搜索'}
             startAdornment={
                 <InputAdornment position="start">
