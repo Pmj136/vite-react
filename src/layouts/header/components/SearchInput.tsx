@@ -9,7 +9,7 @@ function SearchInput() {
 
     const history = useHistory()
     const handleKeyDown = (e: any) => {
-        if (e.code === 'Enter') {
+        if (e.code === 'Enter' && keyword.trim() !== '') {
             let jump = history.push
             if (history.location.pathname === '/search') jump = history.replace
             jump({
