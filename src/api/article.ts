@@ -35,9 +35,9 @@ export function getDetailApi(params: { id: number }) {
 }
 
 export function listApi(params: {
-    keyword?: string
     page: number
     size?: number
+    keyword?: string
 }) {
     return request({
         url: '/articles',
