@@ -5,18 +5,18 @@ import { Store } from './DropDown'
 interface IProps {
     command: any
     children: ReactNode
+    active?: boolean
 }
 
 function DropDownItem(props: IProps) {
-    const { selectedCommand, onSelect } = useContext(Store)
+    const { onSelect } = useContext(Store)
     const onClick = (event: MouseEvent<EventTarget>) => {
         onSelect(event, props.command)
     }
     return (
         <MenuItem
             style={{
-                backgroundColor:
-                    selectedCommand === props.command ? 'rgba(0,0,0,0.04)' : '',
+                backgroundColor: props.active ? 'rgba(0,0,0,0.04)' : '',
             }}
             onClick={onClick}
         >

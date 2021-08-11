@@ -14,13 +14,16 @@ function UserAvatar() {
     const handleSelect = (command: string) => {
         if (command === 'exit') {
             logout.call(userStore)
-        } else {
-            history.push(command)
+        }
+        if (command === 'user') {
+            history.push('/user/1')
+        }
+        if (command === 'setting') {
+            history.push('/setting/profile')
         }
     }
     return (
         <DropDown
-            selectedCommand={location.pathname}
             header={
                 <IconButton>
                     <Avatar
@@ -33,11 +36,17 @@ function UserAvatar() {
             }
             onSelect={handleSelect}
         >
-            <DropDownItem command="/profile">
-                {t('header.userDropDown.profile')}
+            <DropDownItem
+                command="user"
+                active={location.pathname.includes('/user')}
+            >
+                {t('header.userDropDown.user')}
             </DropDownItem>
-            <DropDownItem command="/account">
-                {t('header.userDropDown.account')}
+            <DropDownItem
+                command="setting"
+                active={location.pathname.includes('/setting')}
+            >
+                {t('header.userDropDown.setting')}
             </DropDownItem>
             <DropDownItem command="exit">
                 {t('header.userDropDown.exit')}

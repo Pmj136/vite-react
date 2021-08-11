@@ -26,7 +26,6 @@ function LanguageSwitch() {
     }
     return (
         <DropDown
-            selectedCommand={i18n.language}
             header={
                 <IconButton>
                     <LanguageIcon color="action" />
@@ -34,8 +33,12 @@ function LanguageSwitch() {
             }
             onSelect={onSelect}
         >
-            <DropDownItem command="zh-CN">中文</DropDownItem>
-            <DropDownItem command="en">English</DropDownItem>
+            <DropDownItem command="zh-CN" active={i18n.language === 'zh-CN'}>
+                中文
+            </DropDownItem>
+            <DropDownItem command="en" active={i18n.language === 'en'}>
+                English
+            </DropDownItem>
         </DropDown>
     )
 }

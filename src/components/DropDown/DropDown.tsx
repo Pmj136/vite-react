@@ -4,7 +4,6 @@ import React, {
     MouseEvent,
     ReactElement,
     ReactNode,
-    useEffect,
     useRef,
     useState,
 } from 'react'
@@ -19,22 +18,16 @@ import {
 interface IProps {
     header: ReactElement
     children: ReactNode
-    selectedCommand?: any
     onSelect: (target: string) => void
 }
 
-export const Store = createContext({})
+const initState: any = {}
+export const Store = createContext(initState)
 
 function DropDown(props: IProps) {
-    const [selectedCommand, setSelectedCommand] = useState(
-        props.selectedCommand
-    )
+    const [selectedCommand, setSelectedCommand] = useState<string | null>(null)
     const [open, setOpen] = useState(false)
     const anchorRef = useRef<any>(null)
-
-    useEffect(() => {
-        setSelectedCommand(props.selectedCommand)
-    }, [props.selectedCommand])
 
     const handleToggle = () => {
         setOpen(prevOpen => !prevOpen)
@@ -60,7 +53,7 @@ function DropDown(props: IProps) {
         handleClose(event)
     }
     return (
-        <Store.Provider value={{ selectedCommand, onSelect }}>
+        <Store.Provider value={{ onSelect }}>
             <div
                 className="dropdown-header"
                 ref={anchorRef}
