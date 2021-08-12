@@ -1,12 +1,12 @@
 import React from 'react'
-import { Avatar, IconButton } from '@material-ui/core'
+import { useTranslation } from 'react-i18next'
+import { useHistory, useLocation } from 'react-router-dom'
 import DropDown from '@/components/DropDown/DropDown'
 import DropDownItem from '@/components/DropDown/DropDownItem'
 import userStore from '@/store/userStore'
-import { useTranslation } from 'react-i18next'
-import { useHistory, useLocation } from 'react-router-dom'
+import UserAvatar from './UserAvatar'
 
-function UserAvatar() {
+function DropDownLink() {
     const { logout } = userStore
     const history = useHistory()
     const location = useLocation()
@@ -23,19 +23,7 @@ function UserAvatar() {
         }
     }
     return (
-        <DropDown
-            header={
-                <IconButton>
-                    <Avatar
-                        src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3517629023,609603298&fm=26&gp=0.jpg"
-                        style={{ width: 40, height: 40 }}
-                    >
-                        T
-                    </Avatar>
-                </IconButton>
-            }
-            onSelect={handleSelect}
-        >
+        <DropDown header={<UserAvatar />} onSelect={handleSelect}>
             <DropDownItem
                 command="user"
                 active={location.pathname.includes('/user')}
@@ -55,4 +43,4 @@ function UserAvatar() {
     )
 }
 
-export default UserAvatar
+export default DropDownLink

@@ -2,11 +2,9 @@ import React from 'react'
 import { QqLogo, GiteeLogo } from '@/svg'
 import { GitHub as GithubIcon } from '@material-ui/icons'
 
-import styles from '../styles/thirdLogin.module.css'
+import styles from './thirdLogin.module.css'
 
-interface IProps {}
-
-function ThirdLogin(props: IProps) {
+function ThirdLogin() {
     return (
         <div className={styles['svg-container']}>
             <QqLogo />

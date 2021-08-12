@@ -1,21 +1,18 @@
 import React from 'react'
-
-import SearchInput from './components/SearchInput'
-import NavList from './components/NavList'
-import LanguageSwitch from './components/LanguageSwitch'
-import NotificationLink from './components/NotificationLink'
-import ThemeSwitch from './components/ThemeSwitch'
-// import GithubLink from './components/GithubLink'
-import LoginControl from './components/LoginControl'
-import WriteLink from './components/WriteLink'
-
 import { Paper } from '@material-ui/core'
 
-import styles from '@/layouts/header/styles/header.module.css'
+import SearchInput from './SearchInput'
+import NavLink from './NavLink/NavLink'
+import LanguageSwitch from './LanguageSwitch'
+import NotificationLink from './NotificationLink'
+import ThemeSwitch from './ThemeSwitch'
+// import GithubLink from './components/GithubLink'
+import LoginControl from './LoginControl/LoginControl'
+import WriteLink from './WriteLink'
 
-interface IProps {}
+import styles from './header.module.css'
 
-function Header(props: IProps) {
+function Header() {
     return (
         <Paper
             component="header"
@@ -26,7 +23,7 @@ function Header(props: IProps) {
             <section className={styles.container}>
                 <section className={styles['header-item']}>
                     <h2 className={styles.title}>CABIN</h2>
-                    <NavList />
+                    <NavLink />
                 </section>
                 <section className={styles['header-item']}>
                     <SearchInput />

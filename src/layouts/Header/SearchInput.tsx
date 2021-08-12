@@ -33,7 +33,7 @@ function SearchInput() {
                     <SearchIcon />
                 </InputAdornment>
             }
-            onFocus={() => setWidth(200)}
+            onFocus={() => setWidth(180)}
             onBlur={() => setWidth(120)}
             onKeyDown={handleKeyDown}
             onChange={e => setKeyword(e.target.value)}

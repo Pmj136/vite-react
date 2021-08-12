@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import ButtonLink from '@/components/ButtonLink'
 import { Box, Button } from '@material-ui/core'
 
-import classes from '../styles/nav.module.css'
+import classes from './_.module.css'
 
-function NavList() {
+function NavLink() {
     const { t } = useTranslation()
     return (
         <nav className={classes['nav']}>
@@ -24,4 +24,4 @@ function NavList() {
     )
 }
 
-export default NavList
+export default NavLink

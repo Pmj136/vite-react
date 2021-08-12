@@ -11,12 +11,11 @@ import { useForm } from 'react-hook-form'
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons'
 import CodeFetcher from './CodeFetcher'
 import ThirdLogin from './ThirdLogin'
-
-import styles from '../styles/loginForm.module.css'
 import userStore from '@/store/userStore'
 import { useTranslation } from 'react-i18next'
 import TextDivider from '@/components/TextDivider/TextDivider'
-import { toast } from 'react-hot-toast'
+
+import styles from './loginForm.module.css'
 
 enum LoginTypes {
     PASSWORD = 'password',
