@@ -15,7 +15,7 @@ service.interceptors.response.use(
         if (code !== 0) {
             toast(msg, {
                 id: toastId,
-                duration: 2000,
+                duration: 2500,
                 icon: '😓',
             })
             return Promise.reject(response.data)
