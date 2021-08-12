@@ -18,14 +18,12 @@ import {
 interface IProps {
     header: ReactElement
     children: ReactNode
-    onSelect: (target: string) => void
 }
 
 const initState: any = {}
 export const Store = createContext(initState)
 
 function DropDown(props: IProps) {
-    const [selectedCommand, setSelectedCommand] = useState<string | null>(null)
     const [open, setOpen] = useState(false)
     const anchorRef = useRef<any>(null)
 
@@ -38,24 +36,16 @@ function DropDown(props: IProps) {
             return
         }
         setOpen(false)
-        setSelectedCommand(null)
     }
     const handleListKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Tab') {
             event.preventDefault()
             setOpen(false)
-            setSelectedCommand(null)
         }
     }
 
-    const onSelect = (event: MouseEvent<EventTarget>, command: string) => {
-        if (command === selectedCommand) return
-        setSelectedCommand(command)
-        props.onSelect(command)
-        handleClose(event)
-    }
     return (
-        <Store.Provider value={{ onSelect }}>
+        <Store.Provider value={{ setOpen }}>
             <div
                 className="dropdown-header"
                 ref={anchorRef}

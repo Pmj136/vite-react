@@ -1,18 +1,19 @@
-import React, { MouseEvent, ReactNode, useContext } from 'react'
+import React, { ReactNode, useContext } from 'react'
 import { MenuItem } from '@material-ui/core'
 import { Store } from './DropDown'
 
 interface IProps {
-    command: any
     children: ReactNode
     active?: boolean
+    onClick: () => void
 }
 
 function DropDownItem(props: IProps) {
-    const { onSelect } = useContext(Store)
-    const onClick = (event: MouseEvent<EventTarget>) => {
+    const { setOpen } = useContext(Store)
+    const onClick = () => {
         if (props.active) return
-        onSelect(event, props.command)
+        props.onClick()
+        setOpen(false)
     }
     return (
         <MenuItem
