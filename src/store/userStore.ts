@@ -3,9 +3,10 @@ import { get, remove, set } from '@/utils/storage'
 import { toast } from 'react-hot-toast'
 import { loginApi, logoutApi } from '@/api/user'
 
+import { StorageInfoKey } from '@/utils/constants'
+
 export default makeAutoObservable({
-    // isLogin: get('isLogin', false),
-    info: get('c_user', null),
+    info: get(StorageInfoKey, null),
     get isLogin() {
         return this.info?.isLogin
     },
@@ -13,7 +14,7 @@ export default makeAutoObservable({
         runInAction(() => {
             this.info = null
         })
-        remove('c_user')
+        remove(StorageInfoKey)
     },
     async login(e: any) {
         try {
@@ -21,7 +22,7 @@ export default makeAutoObservable({
             runInAction(() => {
                 this.info = res.data
             })
-            set('c_user', res.data)
+            set(StorageInfoKey, res.data)
             return Promise.resolve()
         } catch (e) {
             console.log(e)
