@@ -11,6 +11,7 @@ interface IProps {
 function DropDownItem(props: IProps) {
     const { onSelect } = useContext(Store)
     const onClick = (event: MouseEvent<EventTarget>) => {
+        if (props.active) return
         onSelect(event, props.command)
     }
     return (
