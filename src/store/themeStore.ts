@@ -1,16 +1,8 @@
 import { makeAutoObservable } from 'mobx'
-import { get, set } from '@/utils/storage'
 
-class Store {
-    theme = 'light'
-
-    constructor() {
-        makeAutoObservable(this)
-    }
-
+export default makeAutoObservable({
+    theme: 'light',
     setTheme(theme: 'light' | 'dark') {
         this.theme = theme
-    }
-}
-
-export default new Store()
+    },
+})

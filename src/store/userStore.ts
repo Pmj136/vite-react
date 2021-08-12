@@ -3,42 +3,44 @@ import { get, remove, set } from '@/utils/storage'
 import { toast } from 'react-hot-toast'
 import { loginApi, logoutApi } from '@/api/user'
 
-class Store {
-    isLogin = get('isLogin', false)
-
-    constructor() {
-        makeAutoObservable(this)
-    }
-
+export default makeAutoObservable({
+    // isLogin: get('isLogin', false),
+    info: get('c_user', null),
+    get isLogin() {
+        return this.info?.isLogin
+    },
+    reset() {
+        runInAction(() => {
+            this.info = null
+        })
+        remove('c_user')
+    },
     async login(e: any) {
         try {
-            await loginApi(e)
+            const res = await loginApi(e)
             runInAction(() => {
-                this.isLogin = true
+                this.info = res.data
             })
-            set('isLogin', true)
+            set('c_user', res.data)
             return Promise.resolve()
         } catch (e) {
             console.log(e)
         }
-    }
-
+    },
     logout() {
         toast.loading('正在退出', {
             id: 'exit-toast-id',
         })
         const timer = setTimeout(() => {
-            logoutApi().then(res => {
-                toast.dismiss('exit-toast-id')
-                toast.success('你已退出')
-                runInAction(() => {
-                    this.isLogin = false
+            logoutApi()
+                .then(() => {
+                    toast.success('你已退出')
+                    this.reset()
+                    clearTimeout(timer)
                 })
-                remove('isLogin')
-                clearTimeout(timer)
-            })
+                .finally(() => {
+                    toast.dismiss('exit-toast-id')
+                })
         }, 500)
-    }
-}
-
-export default new Store()
+    },
+})
