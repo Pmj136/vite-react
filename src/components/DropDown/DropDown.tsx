@@ -38,11 +38,13 @@ function DropDown(props: IProps) {
             return
         }
         setOpen(false)
+        setSelectedCommand(null)
     }
     const handleListKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Tab') {
             event.preventDefault()
             setOpen(false)
+            setSelectedCommand(null)
         }
     }
 
