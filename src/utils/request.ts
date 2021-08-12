@@ -13,11 +13,13 @@ service.interceptors.response.use(
     response => {
         const { code, msg } = response.data
         if (code !== 0) {
-            toast(msg, {
-                id: toastId,
-                duration: 2500,
-                icon: '😓',
-            })
+            if (code % 1000 === 0) {
+                toast(msg, {
+                    id: toastId,
+                    duration: 2500,
+                    icon: '😓',
+                })
+            }
             return Promise.reject(response.data)
         }
         return response.data
