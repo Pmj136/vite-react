@@ -1,24 +1,22 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import ButtonLink from '@/components/ButtonLink'
-import { Box, Button } from '@material-ui/core'
+import { Box, Button, Typography } from '@material-ui/core'
 
 import classes from './_.module.css'
 
 function NavLink() {
-    const { t } = useTranslation()
     return (
         <nav className={classes['nav']}>
             <ButtonLink component={Button} to="/">
-                {t('header.nav.home')}
+                <Typography>首页</Typography>
             </ButtonLink>
             <Box m={1} />
             <ButtonLink component={Button} to="/post">
-                {t('header.nav.post')}
+                <Typography>帖子</Typography>
             </ButtonLink>
             <Box m={1} />
             <ButtonLink component={Button} to="/about">
-                {t('header.nav.about')}
+                <Typography>关于作者</Typography>
             </ButtonLink>
         </nav>
     )

@@ -12,10 +12,9 @@ import { ArrowBack as ArrowBackIcon } from '@material-ui/icons'
 import CodeFetcher from './CodeFetcher'
 import ThirdLogin from './ThirdLogin'
 import userStore from '@/store/userStore'
-import { useTranslation } from 'react-i18next'
 import TextDivider from '@/components/TextDivider/TextDivider'
 
-import styles from './loginForm.module.css'
+import styles from './index.module.css'
 
 enum LoginTypes {
     PASSWORD = 'password',
@@ -23,7 +22,6 @@ enum LoginTypes {
 }
 
 function LoginForm() {
-    const { t } = useTranslation()
     const { login } = userStore
     const [open, setOpen] = useState(false)
     const [loginType, setLoginType] = useState(LoginTypes.CODE)
@@ -63,7 +61,7 @@ function LoginForm() {
     }
     return (
         <>
-            <Button onClick={handleClickOpen}>{t('header.loginLink')}</Button>
+            <Button onClick={handleClickOpen}>登录</Button>
             <Dialog
                 // disablePortal
                 disableEscapeKeyDown
@@ -81,14 +79,10 @@ function LoginForm() {
                     </IconButton>
                 </div>
                 <div className={styles['dialog-wrap']}>
-                    <h2 className={styles.title1}>
-                        {t('loginForm.text.welcome')}
-                    </h2>
-                    <h3 className={styles.title2}>
-                        {t('loginForm.text.info')}
-                    </h3>
+                    <h2 className={styles.title1}>欢迎您，</h2>
+                    <h3 className={styles.title2}>填写以下信息登录</h3>
                     <TextField
-                        label={t('loginForm.label.email')}
+                        label="邮箱"
                         {...register('email', { required: true })}
                         error={!!errors.email}
                         margin="dense"
@@ -98,7 +92,7 @@ function LoginForm() {
 
                     {loginType === 'code' && (
                         <TextField
-                            label={t('loginForm.label.code')}
+                            label="验证码"
                             {...register(LoginTypes.CODE, {
                                 required: true,
                                 maxLength: 6,
@@ -108,7 +102,7 @@ function LoginForm() {
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
-                                        <CodeFetcher t={t} email={email} />
+                                        <CodeFetcher email={email} />
                                     </InputAdornment>
                                 ),
                             }}
@@ -120,7 +114,7 @@ function LoginForm() {
 
                     {loginType === 'password' && (
                         <TextField
-                            label={t('loginForm.label.password')}
+                            label="密码"
                             type="password"
                             {...register(LoginTypes.PASSWORD, {
                                 required: true,
@@ -140,10 +134,8 @@ function LoginForm() {
                         }}
                         onClick={switchLoginType}
                     >
-                        {loginType === LoginTypes.CODE &&
-                            t('loginForm.text.loginType1')}
-                        {loginType === LoginTypes.PASSWORD &&
-                            t('loginForm.text.loginType2')}
+                        {loginType === LoginTypes.CODE && '使用密码登录'}
+                        {loginType === LoginTypes.PASSWORD && '使用验证码登录'}
                     </Typography>
                     <Button
                         variant="contained"
@@ -152,9 +144,9 @@ function LoginForm() {
                         disabled={disabled}
                         onClick={onLoginBtnClick}
                     >
-                        {t('loginForm.btn.sign')}
+                        立即登录
                     </Button>
-                    <TextDivider>{t('loginForm.text.third')}</TextDivider>
+                    <TextDivider>其他登录方式</TextDivider>
                     <ThirdLogin />
                 </div>
             </Dialog>
