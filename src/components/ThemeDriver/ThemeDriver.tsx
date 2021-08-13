@@ -12,6 +12,7 @@ interface IProps {
 
 function ThemeDriver(props: IProps) {
     const { theme } = ThemeStore
+    document.body.setAttribute('data-theme', theme)
     return (
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
             {props.children}
