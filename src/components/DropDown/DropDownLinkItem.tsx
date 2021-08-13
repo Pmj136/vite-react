@@ -1,25 +1,33 @@
 import React, { ReactNode, useContext } from 'react'
 import { ListItem } from '@material-ui/core'
 import { Store } from './DropDown'
+import { Link } from 'react-router-dom'
 
 interface IProps {
     children: ReactNode
     active?: boolean
-    onClick: () => void
+    to: string
+    replace?: boolean
 }
 
-function DropDownItem(props: IProps) {
+function DropDownLinkItem(props: IProps) {
     const { setOpen } = useContext(Store)
     const onClick = () => {
         if (props.active) return
-        props.onClick()
         setOpen(false)
     }
     return (
-        <ListItem button selected={props.active} onClick={onClick}>
+        <ListItem
+            button
+            component={Link}
+            to={props.to}
+            replace={props.replace || false}
+            selected={props.active}
+            onClick={onClick}
+        >
             {props.children}
         </ListItem>
     )
 }
 
-export default DropDownItem
+export default DropDownLinkItem

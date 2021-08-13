@@ -1,5 +1,6 @@
 import React, {
     createContext,
+    createElement,
     KeyboardEvent,
     MouseEvent,
     ReactElement,
@@ -7,13 +8,7 @@ import React, {
     useRef,
     useState,
 } from 'react'
-import {
-    ClickAwayListener,
-    Grow,
-    MenuList,
-    Paper,
-    Popper,
-} from '@material-ui/core'
+import { ClickAwayListener, Grow, List, Paper, Popper } from '@material-ui/core'
 
 interface IProps {
     header: ReactElement
@@ -72,12 +67,12 @@ function DropDown(props: IProps) {
                     >
                         <Paper elevation={4}>
                             <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList
-                                    autoFocusItem={open}
+                                <List
+                                    component="div"
                                     onKeyDown={handleListKeyDown}
                                 >
                                     {props.children}
-                                </MenuList>
+                                </List>
                             </ClickAwayListener>
                         </Paper>
                     </Grow>
