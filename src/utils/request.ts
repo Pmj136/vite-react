@@ -25,7 +25,9 @@ service.interceptors.response.use(
         return response.data
     },
     error => {
-        toast.error(error.message)
+        toast.error(error.message, {
+            id: toastId,
+        })
         return Promise.reject(error)
     }
 )
