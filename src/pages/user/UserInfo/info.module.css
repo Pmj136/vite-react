@@ -1,0 +1,25 @@
+.container {
+    padding: 60px 30px 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.user-info {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.user-extra {
+    display: flex;
+    margin: 14px 0 4px 0;
+}
+
+.action-wrap {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
