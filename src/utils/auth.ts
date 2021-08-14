@@ -1,4 +1,4 @@
-import { authApi } from '@/api/app'
+import { authApi } from '@/api/user'
 import Cookie from 'js-cookie'
 import userStore from '@/store/userStore'
 

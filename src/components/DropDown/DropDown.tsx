@@ -1,6 +1,5 @@
 import React, {
     createContext,
-    createElement,
     KeyboardEvent,
     MouseEvent,
     ReactElement,

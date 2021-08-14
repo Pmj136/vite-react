@@ -5,3 +5,4 @@ export const ContentType = {
 }
 
 export const StorageInfoKey = 'c_user'
+export const StorageThemeKey = 'theme'

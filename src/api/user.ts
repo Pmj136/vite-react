@@ -1,6 +1,12 @@
 import request from '@/utils/request'
 import { ContentType } from '@/utils/constants'
-import { stringify } from 'qs'
+
+export function authApi() {
+    return request({
+        url: '/user/auth',
+        method: 'get',
+    })
+}
 
 export function sendCodeApi(email: string) {
     return request({
@@ -28,6 +34,16 @@ export function logoutApi() {
     return request({
         url: '/user/logout',
         method: 'post',
+    })
+}
+
+export function getInfoApi(id: number) {
+    return request({
+        url: '/user',
+        method: 'get',
+        params: {
+            id,
+        },
     })
 }
 

@@ -1,51 +1,26 @@
 import React from 'react'
-import PageContainer from '@/components/PageContainer/PageContainer'
-import HomeCarousel from '@/pages/home/Carousel'
+import Page from '@/components/Page'
 import ArticleList from '@/pages/home/ArticleList'
-import CommonPaper from '@/components/CommonPaper/CommonPaper'
+import { Card } from '@material-ui/core'
+
 // import dayjs from 'dayjs'
 
 // console.log(dayjs().format('YYYY-MM-DD'))
 function Home() {
     return (
-        <PageContainer
-            right={
-                <>
-                    <CommonPaper>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                    </CommonPaper>
-                    <CommonPaper>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                    </CommonPaper>
-                    <CommonPaper>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                        <p>1</p>
-                    </CommonPaper>
-                </>
-            }
-        >
-            {/*<HomeCarousel />*/}
-            <ArticleList />
-        </PageContainer>
+        <Page>
+            <Page.Section xs={9}>
+                <ArticleList />
+            </Page.Section>
+            <Page.Section xs={3}>
+                <div style={{ position: 'sticky', top: 80 }}>
+                    test
+                    <Card elevation={0} square>
+                        <p>1111</p>
+                    </Card>
+                </div>
+            </Page.Section>
+        </Page>
     )
 }
 

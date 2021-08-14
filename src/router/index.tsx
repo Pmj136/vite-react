@@ -9,6 +9,7 @@ import About from '@/pages/about/About'
 import NotFound from '@/components/NotFound'
 import Search from '@/pages/search/Search'
 import Notification from '@/pages/notification/Notification'
+import User from '@/pages/user/User'
 
 function AppRouter() {
     return (
@@ -19,6 +20,7 @@ function AppRouter() {
                     <Route path="/post" component={Post} />
                     <Route path="/about" component={About} />
                     <Route path="/search" component={Search} />
+                    <Route path="/user/:id" component={User} />
                     <AuthRoute path="/notification" component={Notification} />
                     <Route path="*" component={NotFound} />
                 </Switch>

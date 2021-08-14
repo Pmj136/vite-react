@@ -6,13 +6,18 @@ import { loginApi, logoutApi } from '@/api/user'
 import { StorageInfoKey } from '@/utils/constants'
 
 export default makeAutoObservable({
+    uId: 0,
     info: get(StorageInfoKey, null),
     get isLogin() {
         return this.info?.isLogin
     },
+    setUId(id: number) {
+        this.uId = id
+    },
     reset() {
         runInAction(() => {
             this.info = null
+            this.uId = 0
         })
         remove(StorageInfoKey)
     },
@@ -20,9 +25,10 @@ export default makeAutoObservable({
         try {
             const res = await loginApi(e)
             runInAction(() => {
-                this.info = res.data
+                this.uId = res.data.uId
+                this.info = res.data.info
             })
-            set(StorageInfoKey, res.data)
+            set(StorageInfoKey, res.data.info)
             return Promise.resolve()
         } catch (e) {
             console.log(e)
