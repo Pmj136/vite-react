@@ -1,10 +1,13 @@
 import { createTheme } from '@material-ui/core'
-import { amber } from '@material-ui/core/colors'
 
 /*light theme*/
 export const light = createTheme({
     palette: {
         type: 'light',
+    },
+    typography: {
+        fontSize: 15,
+        fontFamily: 'Comic Sans MS',
     },
     overrides: {
         MuiButton: {
@@ -12,10 +15,23 @@ export const light = createTheme({
                 whiteSpace: 'nowrap',
             },
         },
-        // MuiPaper: {
-        //     root: {
-        //     }
-        // }
+        MuiListItemIcon: {
+            root: {
+                minWidth: 42,
+            },
+        },
+        MuiSvgIcon: {
+            root: {
+                cursor: 'pointer',
+            },
+        },
+        MuiTab: {
+            root: {
+                '@media (min-width: 600px)': {
+                    minWidth: 120,
+                },
+            },
+        },
     },
 })
 
@@ -23,12 +39,35 @@ export const light = createTheme({
 export const dark = createTheme({
     palette: {
         type: 'dark',
-        primary: amber,
+        primary: {
+            main: '#1a91ca',
+        },
+    },
+    typography: {
+        fontSize: 15,
+        fontFamily: 'Comic Sans MS',
     },
     overrides: {
         MuiButton: {
             label: {
                 whiteSpace: 'nowrap',
+            },
+        },
+        MuiListItemIcon: {
+            root: {
+                minWidth: 42,
+            },
+        },
+        MuiSvgIcon: {
+            root: {
+                cursor: 'pointer',
+            },
+        },
+        MuiTab: {
+            root: {
+                '@media (min-width: 600px)': {
+                    minWidth: 120,
+                },
             },
         },
     },
