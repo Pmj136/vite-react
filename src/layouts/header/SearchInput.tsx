@@ -25,7 +25,8 @@ function SearchInput() {
             style={{
                 width,
                 transition: 'width ease-out 0.2s',
-                marginRight: 16,
+                marginRight: 10,
+                fontSize: 15,
             }}
             placeholder={width === 120 ? '搜索' : '按回车键搜索'}
             startAdornment={

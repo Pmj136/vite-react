@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Typography } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import { Create as WriteIcon } from '@material-ui/icons'
 
 function WriteLink() {
@@ -10,7 +10,7 @@ function WriteLink() {
             color="secondary"
             startIcon={<WriteIcon />}
         >
-            <Typography>发布帖子</Typography>
+            写文章
         </Button>
     )
 }

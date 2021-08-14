@@ -1,12 +1,10 @@
 import React from 'react'
 import { Paper } from '@material-ui/core'
-
 import SearchInput from './SearchInput'
 import NavLink from './NavLink/NavLink'
-import LanguageSwitch from './LanguageSwitch'
 import NotificationLink from './NotificationLink'
 import ThemeSwitch from './ThemeSwitch'
-// import GithubLink from './components/GithubLink'
+import GithubLink from './GithubLink'
 import LoginControl from './LoginControl/LoginControl'
 import WriteLink from './WriteLink'
 
@@ -17,10 +15,11 @@ function Header() {
         <Paper
             component="header"
             square
+            // variant="outlined"
             elevation={0}
             className={styles['app-header']}
         >
-            <section className={styles.container}>
+            <section className={styles['header-wrap']}>
                 <section className={styles['header-item']}>
                     <h2 className={styles.title}>CABIN</h2>
                     <NavLink />
@@ -28,9 +27,8 @@ function Header() {
                 <section className={styles['header-item']}>
                     <SearchInput />
                     <NotificationLink />
-                    <LanguageSwitch />
                     <ThemeSwitch />
-                    {/*<GithubLink />*/}
+                    <GithubLink />
                     <LoginControl />
                     <WriteLink />
                 </section>

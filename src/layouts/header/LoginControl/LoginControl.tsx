@@ -1,12 +1,12 @@
 import React from 'react'
 import userStore from '@/store/userStore'
-import DropDownLink from './logined/DropDownLink'
-import LoginForm from './unlogin/LoginForm'
+import AvatarFuncList from './AvatarFuncList/AvatarFuncList'
+import LoginForm from './LoginForm/LoginForm'
 import { observer } from 'mobx-react-lite'
 
 function LoginControl() {
     const { isLogin } = userStore
-    return isLogin ? <DropDownLink /> : <LoginForm />
+    return isLogin ? <AvatarFuncList /> : <LoginForm />
 }
 
 export default observer(LoginControl)

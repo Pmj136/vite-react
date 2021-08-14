@@ -1,6 +1,6 @@
 import React from 'react'
 import ButtonLink from '@/components/ButtonLink'
-import { Box, Button, Typography } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 
 import classes from './_.module.css'
 
@@ -8,15 +8,15 @@ function NavLink() {
     return (
         <nav className={classes['nav']}>
             <ButtonLink component={Button} to="/">
-                <Typography>首页</Typography>
+                首页
             </ButtonLink>
             <Box m={1} />
             <ButtonLink component={Button} to="/post">
-                <Typography>帖子</Typography>
+                帖子
             </ButtonLink>
             <Box m={1} />
             <ButtonLink component={Button} to="/about">
-                <Typography>关于作者</Typography>
+                关于作者
             </ButtonLink>
         </nav>
     )

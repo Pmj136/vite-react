@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import type { TFunction } from 'react-i18next'
 import { Typography } from '@material-ui/core'
 import { sendCodeApi } from '@/api/user'
-import { send } from 'vite'
 import { toast } from 'react-hot-toast'
 
 interface IProps {
-    t: TFunction
     email: string
 }
 
@@ -30,6 +27,10 @@ function CodeFetcher(props: IProps) {
         }, 1000)
     }
     const getCode = () => {
+        if (!props.email) {
+            toast('请输入验证码')
+            return
+        }
         sendCodeApi(props.email).then((res: any) => {
             toast.success(res.msg)
             _lessSecond()
@@ -41,11 +42,7 @@ function CodeFetcher(props: IProps) {
         }
     }, [])
     if (disabled) {
-        return (
-            <Typography>
-                {props.t('loginForm.text.retransmit')}({resetTimes}s)
-            </Typography>
-        )
+        return <Typography>重新发送({resetTimes}s)</Typography>
     }
     return (
         <Typography
@@ -53,7 +50,7 @@ function CodeFetcher(props: IProps) {
             style={{ cursor: 'pointer' }}
             onClick={getCode}
         >
-            {props.t('loginForm.btn.sendCode')}
+            发送验证码
         </Typography>
     )
 }

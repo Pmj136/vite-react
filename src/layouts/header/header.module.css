@@ -1,11 +1,12 @@
 .app-header {
     z-index: 1200;
-    height: 64px;
+    height: var(--header-height);
     position: sticky;
     top: 0;
+    /*border-bottom: 1px solid rgba(0, 0, 0, 0.12);*/
 }
 
-.container {
+.header-wrap {
     width: var(--wrap-width);
     margin: 0 auto;
     height: 100%;

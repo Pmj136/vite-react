@@ -14,7 +14,7 @@ import ThirdLogin from './ThirdLogin'
 import userStore from '@/store/userStore'
 import TextDivider from '@/components/TextDivider/TextDivider'
 
-import styles from './index.module.css'
+import styles from './loginform.module.css'
 
 enum LoginTypes {
     PASSWORD = 'password',

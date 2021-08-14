@@ -1,5 +1,0 @@
-.app-layout{
-    min-width: calc(var(--wrap-width) + 100px);
-    height: 100%;
-    overflow: auto;
-}
