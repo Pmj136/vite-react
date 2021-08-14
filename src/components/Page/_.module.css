@@ -1,12 +1,4 @@
 .container {
-    display: flex;
     width: calc(var(--wrap-width) - 200px);
     margin: 16px auto;
-}
-
-.main {
-    flex: 1;
-}
-
-.right {
 }
