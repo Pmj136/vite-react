@@ -22,5 +22,5 @@
 
 
 #app {
-    min-width: calc(var(--wrap-width) + 100);
+    min-width: calc(var(--wrap-width) + 100px);
 }
