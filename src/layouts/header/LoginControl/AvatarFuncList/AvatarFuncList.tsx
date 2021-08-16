@@ -19,7 +19,7 @@ function AvatarFuncList() {
         <DropDown header={<UserAvatar url={info.avatarUrl} />}>
             <DropDownLinkItem
                 active={location.pathname.includes('/user')}
-                to={'/user/' + uId}
+                to={'/user/' + uId + '/dynamic'}
             >
                 <Typography variant="body2">我的主页</Typography>
             </DropDownLinkItem>
