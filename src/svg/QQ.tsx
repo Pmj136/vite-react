@@ -3,7 +3,6 @@ import React from 'react'
 function Qq() {
     return (
         <svg
-            className="MuiSvgIcon-root MuiSvgIcon-fontSizeLarge"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
