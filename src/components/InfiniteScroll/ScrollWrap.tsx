@@ -5,8 +5,8 @@ interface IProps {
     isLoading: boolean
     hasData: boolean
     hasMore: boolean
-    noDataEl: ReactElement
     loadingEl: ReactElement
+    noDataEl: ReactElement
     noMoreEl: ReactElement
     children: ReactNode
     onLoadMore: () => void

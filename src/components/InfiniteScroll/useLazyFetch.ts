@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer } from 'react'
+import type { Reducer } from 'react'
 import type { AxiosPromise } from 'axios'
 
 interface IUseLazyFetchResult<T> {
@@ -8,32 +9,51 @@ interface IUseLazyFetchResult<T> {
     loadMore: () => void
 }
 
+interface IState<T> {
+    currPage: number
+    items: T[]
+    isLoading: boolean
+    hasMore: boolean
+}
+
 function useLazyFetch<T>(
     api: (p: any) => AxiosPromise,
-    extraArgs: any
+    extraArgs?: any
 ): IUseLazyFetchResult<T> {
-    const [currPage, setCurPage] = useState(1)
-    const [items, setItems] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [hasMore, setHasMore] = useState(true)
+    const [{ currPage, items, isLoading, hasMore }, setState] = useReducer<
+        Reducer<IState<T>, any>
+    >(
+        (state, data) => {
+            return Object.assign({}, state, { ...data })
+        },
+        {
+            currPage: 1,
+            items: [],
+            isLoading: true,
+            hasMore: true,
+        }
+    )
     const loadMore = () => {
-        setCurPage(currPage + 1)
-        setIsLoading(true)
+        setState({
+            currPage: currPage + 1,
+            isLoading: true,
+        })
     }
     const loadData = () => {
         api({ page: currPage, ...extraArgs })
             .then(res => {
                 const { records, pages } = res.data
-                setItems(arr => {
-                    return arr.concat(...records)
+                setState({
+                    items: items.concat(...records),
+                    hasMore: currPage < pages,
                 })
-                setHasMore(currPage < pages)
             })
             .finally(() => {
-                setIsLoading(false)
+                setState({
+                    isLoading: false,
+                })
             })
     }
-
     useEffect(() => {
         loadData()
     }, [currPage])
