@@ -1,21 +1,18 @@
 import React from 'react'
 import Page from '@/components/Page'
-import { useParams } from 'react-router-dom'
 import { Paper } from '@material-ui/core'
-
-import Info from './UserInfo/Info'
-import DetailList from './DetailList/DetailList'
+import Profile from './profile/Profile'
+import DataList from './data-list/DataList'
 
 function User() {
-    const params = useParams<any>()
     return (
         <Page>
             <Page.Section xs={9}>
                 <Paper elevation={0}>
-                    <Info id={params.id} />
+                    <Profile />
                 </Paper>
                 <Paper elevation={0} style={{ marginTop: 16 }}>
-                    <DetailList />
+                    <DataList />
                 </Paper>
             </Page.Section>
             <Page.Section xs={3}>
