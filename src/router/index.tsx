@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 import AuthRoute from './AuthRoute'
 
 import Layout from '@/layouts/Layout'
@@ -10,6 +10,7 @@ import NotFound from '@/components/NotFound'
 import Search from '@/pages/search/Search'
 import Notification from '@/pages/notification/Notification'
 import User from '@/pages/user/User'
+import Setting from '@/pages/setting/Setting'
 
 function AppRouter() {
     return (
@@ -20,7 +21,8 @@ function AppRouter() {
                     <Route path="/post" component={Post} />
                     <Route path="/about" component={About} />
                     <Route path="/search" component={Search} />
-                    <Route path="/user/:id" component={User} />
+                    <Route path="/user/:id/:type" component={User} />
+                    <AuthRoute path="/setting/:component" component={Setting} />
                     <AuthRoute path="/notification" component={Notification} />
                     <Route path="*" component={NotFound} />
                 </Switch>
