@@ -22,17 +22,12 @@ function useLazyFetch<T>(
 ): IUseLazyFetchResult<T> {
     const [{ currPage, items, isLoading, hasMore }, setState] = useReducer<
         Reducer<IState<T>, any>
-    >(
-        (state, data) => {
-            return Object.assign({}, state, { ...data })
-        },
-        {
-            currPage: 1,
-            items: [],
-            isLoading: true,
-            hasMore: true,
-        }
-    )
+    >((state, data) => ({ ...state, ...data }), {
+        currPage: 1,
+        items: [],
+        isLoading: true,
+        hasMore: true,
+    })
     const loadMore = () => {
         setState({
             currPage: currPage + 1,
