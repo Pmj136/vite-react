@@ -1,6 +1,18 @@
 import request from '@/utils/request'
 import { ContentType } from '@/utils/constants'
 
+// export function testApi(data: { email: string; code: string }) {
+//     return request({
+//         url: '/user/login',
+//         method: 'post',
+//         headers: {
+//             'Content-Type': ContentType.FORM_URLENCODED,
+//         },
+//         data: stringify(data),
+//     })
+// }
+
+//全局授权检测
 export function authApi() {
     return request({
         url: '/user/auth',
@@ -8,6 +20,7 @@ export function authApi() {
     })
 }
 
+//发送验证码
 export function sendCodeApi(email: string) {
     return request({
         url: '/user/sendCode',
@@ -21,6 +34,7 @@ export function sendCodeApi(email: string) {
     })
 }
 
+//登录
 export function loginApi({ type, email, code, password }: any) {
     const params = { type, email, credential: code || password }
     return request({
@@ -30,6 +44,7 @@ export function loginApi({ type, email, code, password }: any) {
     })
 }
 
+//退出
 export function logoutApi() {
     return request({
         url: '/user/logout',
@@ -37,7 +52,8 @@ export function logoutApi() {
     })
 }
 
-export function getInfoApi(id: number) {
+//获取用户信息
+export function getInfoApi(id?: number) {
     return request({
         url: '/user',
         method: 'get',
@@ -47,13 +63,41 @@ export function getInfoApi(id: number) {
     })
 }
 
-// export function testApi(data: { email: string; code: string }) {
-//     return request({
-//         url: '/user/login',
-//         method: 'post',
-//         headers: {
-//             'Content-Type': ContentType.FORM_URLENCODED,
-//         },
-//         data: stringify(data),
-//     })
-// }
+//获取动态
+export function getDynamicsApi(params: {
+    page: number
+    size?: number
+    userId?: number
+}) {
+    return request({
+        url: '/user/dynamics',
+        method: 'get',
+        params,
+    })
+}
+
+//获取创作
+export function getCreationsApi(params: {
+    page: number
+    size?: number
+    userId?: number
+}) {
+    return request({
+        url: '/user/creations',
+        method: 'get',
+        params,
+    })
+}
+
+//获取收藏
+export function getCollectionsApi(params: {
+    page: number
+    size?: number
+    userId?: number
+}) {
+    return request({
+        url: '/user/collections',
+        method: 'get',
+        params,
+    })
+}

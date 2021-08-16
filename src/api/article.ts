@@ -34,7 +34,7 @@ export function getDetailApi(params: { id: number }) {
     })
 }
 
-export function listApi(params: {
+export function getArticlesApi(params: {
     page: number
     size?: number
     keyword?: string
