@@ -3,15 +3,16 @@ import type { Reducer } from 'react'
 import type { AxiosPromise } from 'axios'
 
 interface IUseLazyFetchResult<T> {
-    items: T[]
+    list: T[]
     isLoading: boolean
     hasMore: boolean
     loadMore: () => void
+    reload: () => void
 }
 
 interface IState<T> {
     currPage: number
-    items: T[]
+    list: T[]
     isLoading: boolean
     hasMore: boolean
 }
@@ -20,43 +21,48 @@ function useLazyFetch<T>(
     api: (p: any) => AxiosPromise,
     extraArgs?: any
 ): IUseLazyFetchResult<T> {
-    const [{ currPage, items, isLoading, hasMore }, setState] = useReducer<
+    const [{ currPage, list, isLoading, hasMore }, setState] = useReducer<
         Reducer<IState<T>, any>
     >((state, data) => ({ ...state, ...data }), {
         currPage: 1,
-        items: [],
+        list: [],
         isLoading: true,
         hasMore: true,
     })
-    const loadMore = () => {
+    const fetchData = (page: number) => {
         setState({
-            currPage: currPage + 1,
             isLoading: true,
         })
-    }
-    const loadData = () => {
-        api({ page: currPage, ...extraArgs })
+        api({ page, ...extraArgs })
             .then(res => {
                 const { records, pages } = res.data
                 setState({
-                    items: items.concat(...records),
-                    hasMore: currPage < pages,
+                    list: page === 1 ? records : list.concat(...records),
+                    hasMore: page < pages,
                 })
             })
             .finally(() => {
                 setState({
                     isLoading: false,
+                    currPage: page,
                 })
             })
     }
+    const loadMore = () => {
+        fetchData(currPage + 1)
+    }
+    const reload = () => {
+        fetchData(1)
+    }
     useEffect(() => {
-        loadData()
-    }, [currPage])
+        fetchData(1)
+    }, [])
     return {
-        items,
+        list,
         isLoading,
         hasMore,
         loadMore,
+        reload,
     }
 }
 
