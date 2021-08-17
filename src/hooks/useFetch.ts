@@ -3,13 +3,13 @@ import type { AxiosPromise } from 'axios'
 
 type Api = () => Promise<any> | AxiosPromise
 
-interface ISWRResult<T> {
+interface IUseFetchResult<T> {
     data: T
     isLoading: boolean
     isError: boolean
 }
 
-function useFetch<T>(api: Api, initialState: T): ISWRResult<T> {
+function useFetch<T>(api: Api, initialState: T): IUseFetchResult<T> {
     const [data, setData] = useState<T>(initialState)
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
