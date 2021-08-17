@@ -1,15 +1,15 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { createElement, FC, ReactElement, ReactNode } from 'react'
 import Observer from './Observer'
 
 interface IProps {
     isLoading: boolean
     hasData: boolean
     hasMore: boolean
-    loadingEl: ReactElement
-    noDataEl: ReactElement
-    noMoreEl: ReactElement
+    loadingEl: FC<{ show: boolean }>
+    noDataEl: FC<{ show: boolean }>
+    noMoreEl: FC<{ show: boolean }>
     children: ReactNode
-    onLoadMore: () => void
+    onScrollToBottom: () => void
 }
 
 function ScrollWrap(props: IProps) {
@@ -20,10 +20,16 @@ function ScrollWrap(props: IProps) {
     return (
         <>
             {props.children}
-            {isRenderObserver && <Observer onShow={props.onLoadMore} />}
-            {isRenderLoadingEl && props.loadingEl}
-            {isRenderNoDataEl && props.noDataEl}
-            {isRenderNoMoreEl && props.noMoreEl}
+            {isRenderObserver && <Observer onShow={props.onScrollToBottom} />}
+            {createElement(props.loadingEl, {
+                show: isRenderLoadingEl,
+            })}
+            {createElement(props.noDataEl, {
+                show: isRenderNoDataEl,
+            })}
+            {createElement(props.noMoreEl, {
+                show: isRenderNoMoreEl,
+            })}
         </>
     )
 }

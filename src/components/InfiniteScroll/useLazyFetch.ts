@@ -4,12 +4,6 @@ import type { AxiosPromise } from 'axios'
 
 type apiType = (p: any) => AxiosPromise
 
-interface IUserLazyFetchProps {
-    api: apiType
-    extraArgs?: any
-    initData?: boolean | undefined
-}
-
 interface IUseLazyFetchResult<T> {
     list: T[]
     isLoading: boolean
@@ -26,20 +20,10 @@ interface IState<T> {
 }
 
 function useLazyFetch<T>(
-    args: IUserLazyFetchProps | apiType
+    api: apiType,
+    apiExtraArgs?: Record<string, unknown>,
+    defaultLoadData = true
 ): IUseLazyFetchResult<T> {
-    let api: apiType,
-        extraArgs = {},
-        initData = true
-    if (typeof args === 'function') {
-        api = args
-    }
-    if (typeof args === 'object') {
-        api = args.api
-        extraArgs = args.extraArgs
-        initData = args.initData === undefined ? true : args.initData
-    }
-
     const [{ currPage, list, isLoading, hasMore }, setState] = useReducer<
         Reducer<IState<T>, any>
     >((state, data) => ({ ...state, ...data }), {
@@ -49,7 +33,7 @@ function useLazyFetch<T>(
         hasMore: true,
     })
     const fetchData = (page: number) => {
-        api({ page, ...extraArgs })
+        api({ page, ...apiExtraArgs })
             .then(res => {
                 const { records, pages } = res.data
                 setState({
@@ -78,10 +62,7 @@ function useLazyFetch<T>(
         fetchData(1)
     }
     useEffect(() => {
-        if (initData) {
-            setState({
-                isLoading: true,
-            })
+        if (defaultLoadData) {
             fetchData(1)
         }
     }, [])
