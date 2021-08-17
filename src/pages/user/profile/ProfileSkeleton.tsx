@@ -7,7 +7,7 @@ function ProfileSkeleton() {
     return (
         <div className={styles.container}>
             <Skeleton variant="circle" width={100} height={100} />
-            <div className={styles['user-profile']}>
+            <div className={styles['user-info']}>
                 <Skeleton width={120} height={25.6} />
             </div>
             <div className={styles['user-extra']}>
