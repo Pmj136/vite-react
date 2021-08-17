@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import type { AxiosPromise } from 'axios'
+
+type Api = () => Promise<any> | AxiosPromise
 
 interface ISWRResult<T> {
     data: T
@@ -6,8 +9,8 @@ interface ISWRResult<T> {
     isError: boolean
 }
 
-export function useSWR<T>(api: () => Promise<any>, initData: T): ISWRResult<T> {
-    const [data, setData] = useState<T>(initData)
+function useFetch<T>(api: Api, initialState: T): ISWRResult<T> {
+    const [data, setData] = useState<T>(initialState)
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
     useEffect(() => {
@@ -25,3 +28,5 @@ export function useSWR<T>(api: () => Promise<any>, initData: T): ISWRResult<T> {
     }, [])
     return { data, isLoading, isError }
 }
+
+export default useFetch
