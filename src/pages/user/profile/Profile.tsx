@@ -35,7 +35,7 @@ function Profile() {
                     src={data.avatarUrl}
                 />
             </Badge>
-            <div className={styles['user-profile']}>
+            <div className={styles['user-info']}>
                 <Typography color="primary" component="span">
                     {data.nick}
                 </Typography>
