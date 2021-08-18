@@ -36,11 +36,10 @@ export default makeAutoObservable({
         try {
             const res = await loginApi(e)
             this.savaUser(res.data)
+            history.go(0)
             return Promise.resolve()
         } catch (e) {
             console.log(e)
-        } finally {
-            history.go(0)
         }
     },
     logout() {
@@ -52,11 +51,11 @@ export default makeAutoObservable({
                 .then(() => {
                     toast.success('你已退出')
                     this.reset()
+                    history.go(0)
                     clearTimeout(timer)
                 })
                 .finally(() => {
                     toast.dismiss('exit-toast-id')
-                    history.go(0)
                 })
         }, 500)
     },
