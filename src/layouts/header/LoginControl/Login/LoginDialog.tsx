@@ -8,14 +8,14 @@ interface IProps {
 }
 
 function LoginDialog(props: IProps) {
-    const { loginFormVisible } = appStore
+    const { loginDialogVisible } = appStore
     return (
         <Dialog
             // disablePortal
             disableEscapeKeyDown
             fullWidth
             maxWidth="xs"
-            open={loginFormVisible}
+            open={loginDialogVisible}
         >
             {props.children}
         </Dialog>

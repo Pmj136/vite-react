@@ -10,8 +10,8 @@ export default makeAutoObservable({
         set(StorageThemeKey, theme)
     },
     //登录弹窗可见性
-    loginFormVisible: false,
-    setLoginFormVisible(visible: boolean) {
-        this.loginFormVisible = visible
+    loginDialogVisible: false,
+    setLoginDialogVisible(visible: boolean) {
+        this.loginDialogVisible = visible
     },
 })

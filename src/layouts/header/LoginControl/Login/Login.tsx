@@ -5,9 +5,9 @@ import LoginForm from './LoginForm/LoginForm'
 import appStore from '@/store/appStore'
 
 function Login() {
-    const { setLoginFormVisible } = appStore
+    const { setLoginDialogVisible } = appStore
     const showDialog = () => {
-        setLoginFormVisible.call(appStore, true)
+        setLoginDialogVisible.call(appStore, true)
     }
     return (
         <>

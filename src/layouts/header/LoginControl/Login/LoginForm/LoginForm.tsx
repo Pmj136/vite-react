@@ -23,7 +23,7 @@ enum LoginTypes {
 
 function LoginForm() {
     const { login } = userStore
-    const { setLoginFormVisible } = appStore
+    const { setLoginDialogVisible } = appStore
     const [loginType, setLoginType] = useState(LoginTypes.CODE)
     const [disabled, setDisabled] = useState(false)
     const {
@@ -35,7 +35,7 @@ function LoginForm() {
     } = useForm()
     const email = watch('email')
     const hideDialog = () => {
-        setLoginFormVisible.call(appStore, false)
+        setLoginDialogVisible.call(appStore, false)
     }
     const switchLoginType = () => {
         unregister(loginType)
