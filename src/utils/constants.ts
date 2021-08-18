@@ -4,5 +4,5 @@ export const ContentType = {
     FORM_URLENCODED: 'application/x-www-form-urlencoded',
 }
 
-export const StorageInfoKey = 'c_user'
+export const StorageInfoKey = 'user'
 export const StorageThemeKey = 'theme'
