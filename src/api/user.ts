@@ -13,10 +13,13 @@ import { ContentType } from '@/utils/constants'
 // }
 
 //全局授权检测
-export function authApi() {
+export function authApi(rl?: boolean) {
     return request({
         url: '/user/auth',
         method: 'get',
+        params: {
+            rl,
+        },
     })
 }
 
@@ -53,7 +56,15 @@ export function logoutApi() {
 }
 
 //获取用户信息
-export function getInfoApi(id?: number) {
+export function getProfileApi() {
+    return request({
+        url: '/user/profile',
+        method: 'get',
+    })
+}
+
+//获取用户信息
+export function getUserInfoApi(id?: number) {
     return request({
         url: '/user',
         method: 'get',
@@ -97,6 +108,32 @@ export function getCollectionsApi(params: {
 }) {
     return request({
         url: '/user/collections',
+        method: 'get',
+        params,
+    })
+}
+
+//获取关注
+export function getFollowApi(params: {
+    page: number
+    size?: number
+    userId?: number
+}) {
+    return request({
+        url: '/user/follows',
+        method: 'get',
+        params,
+    })
+}
+
+//获取粉丝
+export function getFansApi(params: {
+    page: number
+    size?: number
+    userId?: number
+}) {
+    return request({
+        url: '/user/fans',
         method: 'get',
         params,
     })
