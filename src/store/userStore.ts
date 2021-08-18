@@ -14,6 +14,17 @@ export default makeAutoObservable({
     setUId(id: number) {
         this.uId = id
     },
+    savaUser(data: { info?: any; uId: number }) {
+        runInAction(() => {
+            this.uId = data.uId
+            if (data.info) {
+                this.info = data.info
+            }
+        })
+        if (data.info) {
+            set(StorageInfoKey, data.info)
+        }
+    },
     reset() {
         runInAction(() => {
             this.info = null
@@ -24,14 +35,12 @@ export default makeAutoObservable({
     async login(e: any) {
         try {
             const res = await loginApi(e)
-            runInAction(() => {
-                this.uId = res.data.uId
-                this.info = res.data.info
-            })
-            set(StorageInfoKey, res.data.info)
+            this.savaUser(res.data)
             return Promise.resolve()
         } catch (e) {
             console.log(e)
+        } finally {
+            history.go(0)
         }
     },
     logout() {
@@ -47,6 +56,7 @@ export default makeAutoObservable({
                 })
                 .finally(() => {
                     toast.dismiss('exit-toast-id')
+                    history.go(0)
                 })
         }, 500)
     },
