@@ -1,4 +1,5 @@
-.container {
+.page {
     width: calc(var(--wrap-width) - 200px);
     margin: 16px auto;
+    display: flex;
 }

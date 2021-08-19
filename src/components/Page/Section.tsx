@@ -1,18 +1,13 @@
 import React, { ReactNode } from 'react'
-import { Grid } from '@material-ui/core'
-import type { GridSize } from '@material-ui/core/Grid/Grid'
 
 interface IProps {
-    xs: GridSize
+    xs: number
     children: ReactNode
 }
 
 function Section(props: IProps) {
-    return (
-        <Grid item xs={props.xs}>
-            {props.children}
-        </Grid>
-    )
+    const width = (props.xs / 12) * 100
+    return <section style={{ width: width + '%' }}>{props.children}</section>
 }
 
 export default Section
