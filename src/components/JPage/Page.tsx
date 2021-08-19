@@ -1,5 +1,4 @@
 import React, { CSSProperties, ReactNode, useEffect } from 'react'
-import styles from './_.module.css'
 
 interface IProps {
     autoScrollToTop?: boolean
@@ -8,7 +7,7 @@ interface IProps {
     children: ReactNode
 }
 
-function InnerPage({
+function Page({
     autoScrollToTop = true,
     width,
     children,
@@ -25,10 +24,10 @@ function InnerPage({
         }
     }, [])
     return (
-        <div className={styles.page} style={style}>
+        <div className="j-page" style={style}>
             {children}
         </div>
     )
 }
 
-export default InnerPage
+export default Page

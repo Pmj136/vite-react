@@ -5,9 +5,9 @@ interface IProps {
     children: ReactNode
 }
 
-function Section(props: IProps) {
+function PageSection(props: IProps) {
     const width = (props.xs / 12) * 100
     return <section style={{ width: width + '%' }}>{props.children}</section>
 }
 
-export default Section
+export default PageSection
