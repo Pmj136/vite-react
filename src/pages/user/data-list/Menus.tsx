@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react'
 import { Tab, Tabs } from '@material-ui/core'
 import { useHistory, useParams } from 'react-router-dom'
 
-type TabType = 'creation' | 'collection' | 'dynamic' | 'follow' | 'fans'
+type TabType = 'dynamic' | 'creation' | 'collection' | 'follow' | 'fans'
 
 function Menus() {
     const params = useParams<{ id: string; type: string }>()
@@ -21,8 +21,8 @@ function Menus() {
             <Tab label="动态" value="dynamic" /> {/*评论、点赞*/}
             <Tab label="创作" value="creation" />
             <Tab label="收藏" value="collection" />
-            <Tab label="关注" value="follow" />
-            <Tab label="粉丝" value="fans" />
+            {params.type === 'follow' && <Tab label="关注" value="follow" />}
+            {params.type === 'fans' && <Tab label="粉丝" value="fans" />}
         </Tabs>
     )
 }

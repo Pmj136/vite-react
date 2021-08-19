@@ -21,17 +21,17 @@ function ArticleList(props: IProps) {
     const params = useParams<any>()
     const { isLoading, list, hasMore, loadMore } = useLazyFetch<IUser>(
         apis[props.type],
-        { userId: params.id, size: 4 }
+        { userId: params.id }
     )
     return (
         <InfiniteScroll
             isLoading={isLoading}
             hasData={list.length > 0}
             hasMore={hasMore}
-            loadingEl={<ArticleSkeleton />}
-            noDataEl={<NoData />}
-            noMoreEl={<NoMore />}
-            onLoadMore={loadMore}
+            loadingEl={ArticleSkeleton}
+            noDataEl={NoData}
+            noMoreEl={NoMore}
+            onScrollToBottom={loadMore}
         >
             {list.map(v => (
                 <Article key={v.id} data={v} />

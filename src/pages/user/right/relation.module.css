@@ -1,0 +1,10 @@
+.relation{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.relation-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

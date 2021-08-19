@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
+import { Box, Button } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import styles from './profile.module.css'
 
@@ -11,9 +11,9 @@ function ProfileSkeleton() {
                 <Skeleton width={120} height={25.6} />
             </div>
             <div className={styles['user-extra']}>
-                <Skeleton width={120} height={20.8} />
+                <Skeleton width={160} height={20.8} />
                 <Box p={1} />
-                <Skeleton width={70} height={20.8} />
+                <Skeleton width={80} height={20.8} />
             </div>
             <Skeleton width={200} height={20.8} />
         </div>

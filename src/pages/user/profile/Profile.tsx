@@ -5,15 +5,17 @@ import { IUser } from '@/types/user'
 import Action from './Action'
 import Male from '@/svg/Male'
 import Female from '@/svg/Female'
-import { useSWR } from '@/hooks'
-import { getInfoApi } from '@/api/user'
+import { getUserInfoApi } from '@/api/user'
 import ProfileSkeleton from './ProfileSkeleton'
 import { useParams } from 'react-router-dom'
+import useFetch from '@/hooks/useFetch'
 
 function Profile() {
     const params = useParams<any>()
-    const fetchApi = () => getInfoApi(params.id)
-    const { data, isLoading } = useSWR<IUser>(fetchApi, {})
+    const { data, isLoading } = useFetch<IUser>(
+        () => getUserInfoApi(params.id),
+        {}
+    )
     if (isLoading) return <ProfileSkeleton />
     return (
         <div className={styles.container}>
@@ -67,7 +69,7 @@ function Profile() {
                 {data.intro || '这个人很懒啥也没有！'}
             </Typography>
             <div className={styles['action-wrap']}>
-                <Action userId={data.id} />
+                <Action userId={data.id} isFollow={data.isFollow} />
             </div>
         </div>
     )

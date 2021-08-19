@@ -10,15 +10,11 @@ function DataList() {
     return (
         <>
             <Menus />
-            <section>
-                {params.type === 'dynamic' && <DynamicList />}
-                {params.type === 'creation' && <ArticleList type="creation" />}
-                {params.type === 'collection' && (
-                    <ArticleList type="collection" />
-                )}
-                {params.type === 'follow' && <UserList />}
-                {params.type === 'fans' && <UserList />}
-            </section>
+            {params.type === 'dynamic' && <DynamicList />}
+            {params.type === 'creation' && <ArticleList type="creation" />}
+            {params.type === 'collection' && <ArticleList type="collection" />}
+            {params.type === 'follow' && <UserList type="follow" />}
+            {params.type === 'fans' && <UserList type="fans" />}
         </>
     )
 }

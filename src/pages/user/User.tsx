@@ -1,24 +1,25 @@
 import React from 'react'
-import Page from '@/components/Page'
-import { Paper } from '@material-ui/core'
+import { JPage, JPageSection } from '@/components/JPage'
+import { Card } from '@material-ui/core'
 import Profile from './profile/Profile'
 import DataList from './data-list/DataList'
+import Right from './right'
 
 function User() {
     return (
-        <Page>
-            <Page.Section xs={9}>
-                <Paper elevation={0}>
+        <JPage>
+            <JPageSection xs={9}>
+                <Card elevation={0}>
                     <Profile />
-                </Paper>
-                <Paper elevation={0} style={{ marginTop: 16 }}>
+                </Card>
+                <Card elevation={0} style={{ marginTop: 16 }}>
                     <DataList />
-                </Paper>
-            </Page.Section>
-            <Page.Section xs={3}>
-                <Paper elevation={0}>extra</Paper>
-            </Page.Section>
-        </Page>
+                </Card>
+            </JPageSection>
+            <JPageSection xs={3}>
+                <Right />
+            </JPageSection>
+        </JPage>
     )
 }
 
