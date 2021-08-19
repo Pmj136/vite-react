@@ -8,13 +8,13 @@ import {
 } from '@material-ui/core'
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons'
 import { useForm } from 'react-hook-form'
-import appStore from '@/store/appStore'
-import userStore from '@/store/userStore'
+import { setLoginDialogVisible } from '@/store/appStore'
+import { savaUser } from '@/store/userStore'
 import TextDivider from '@/components/TextDivider/TextDivider'
 import CodeFetcher from './CodeFetcher'
 import ThirdLogin from './ThirdLogin'
-
 import styles from './loginform.module.css'
+import { loginApi } from '@/api/user'
 
 enum LoginTypes {
     PASSWORD = 'password',
@@ -22,8 +22,6 @@ enum LoginTypes {
 }
 
 function LoginForm() {
-    const { login } = userStore
-    const { setLoginDialogVisible } = appStore
     const [loginType, setLoginType] = useState(LoginTypes.CODE)
     const [disabled, setDisabled] = useState(false)
     const {
@@ -35,7 +33,7 @@ function LoginForm() {
     } = useForm()
     const email = watch('email')
     const hideDialog = () => {
-        setLoginDialogVisible.call(appStore, false)
+        setLoginDialogVisible(false)
     }
     const switchLoginType = () => {
         unregister(loginType)
@@ -46,9 +44,14 @@ function LoginForm() {
     const onLoginBtnClick = () => {
         validForm(e => {
             setDisabled(true)
-            login.call(userStore, { ...e, type: loginType }).finally(() => {
-                setDisabled(false)
-            })
+            loginApi({ ...e, type: loginType })
+                .then(res => {
+                    savaUser(res.data)
+                    history.go(0)
+                })
+                .finally(() => {
+                    setDisabled(false)
+                })
         })()
     }
     return (

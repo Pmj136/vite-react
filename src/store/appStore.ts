@@ -1,17 +1,23 @@
-import { makeAutoObservable } from 'mobx'
+import { observable, runInAction } from 'mobx'
 import { StorageThemeKey } from '@/utils/constants'
 import { get, set } from '@/utils/storage'
 
-export default makeAutoObservable({
-    //主题
-    theme: get(StorageThemeKey, 'light'),
-    setTheme(theme: 'light' | 'dark') {
-        this.theme = theme
-        set(StorageThemeKey, theme)
-    },
-    //登录弹窗可见性
-    loginDialogVisible: false,
-    setLoginDialogVisible(visible: boolean) {
-        this.loginDialogVisible = visible
-    },
+const state = observable({
+    theme: get(StorageThemeKey, 'light'), //主题
+    loginDialogVisible: false, //登录弹窗可见性
 })
+
+export default state
+
+export function setTheme(theme: 'light' | 'dark') {
+    runInAction(() => {
+        state.theme = theme
+    })
+    set(StorageThemeKey, theme)
+}
+
+export function setLoginDialogVisible(visible: boolean) {
+    runInAction(() => {
+        state.loginDialogVisible = visible
+    })
+}

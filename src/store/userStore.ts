@@ -1,62 +1,34 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { observable, runInAction } from 'mobx'
 import { get, remove, set } from '@/utils/storage'
-import { toast } from 'react-hot-toast'
-import { loginApi, logoutApi } from '@/api/user'
 
 import { StorageInfoKey } from '@/utils/constants'
 
-export default makeAutoObservable({
+const state = observable({
     uId: 0,
     info: get(StorageInfoKey, null),
     get isLogin() {
         return this.info?.isLogin
     },
-    setUId(id: number) {
-        this.uId = id
-    },
-    savaUser(data: { info?: any; uId: number }) {
-        runInAction(() => {
-            this.uId = data.uId
-            if (data.info) {
-                this.info = data.info
-            }
-        })
-        if (data.info) {
-            set(StorageInfoKey, data.info)
-        }
-    },
-    reset() {
-        runInAction(() => {
-            this.info = null
-            this.uId = 0
-        })
-        remove(StorageInfoKey)
-    },
-    async login(e: any) {
-        try {
-            const res = await loginApi(e)
-            this.savaUser(res.data)
-            history.go(0)
-            return Promise.resolve()
-        } catch (e) {
-            console.log(e)
-        }
-    },
-    logout() {
-        toast.loading('正在退出', {
-            id: 'exit-toast-id',
-        })
-        const timer = setTimeout(() => {
-            logoutApi()
-                .then(() => {
-                    toast.success('你已退出')
-                    this.reset()
-                    history.go(0)
-                    clearTimeout(timer)
-                })
-                .finally(() => {
-                    toast.dismiss('exit-toast-id')
-                })
-        }, 500)
-    },
 })
+
+export default state
+
+export function savaUser(data: { info?: any; uId: number }) {
+    runInAction(() => {
+        state.uId = data.uId
+        if (data.info) {
+            state.info = data.info
+        }
+    })
+    if (data.info) {
+        set(StorageInfoKey, data.info)
+    }
+}
+
+export function reset() {
+    runInAction(() => {
+        state.info = null
+        state.uId = 0
+    })
+    remove(StorageInfoKey)
+}
