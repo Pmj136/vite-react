@@ -4,7 +4,7 @@ import { stringify } from 'qs'
 
 export function doFollowApi(data: { targetId: number }) {
     return request({
-        url: '/user/follow',
+        url: '/follow/do',
         method: 'post',
         headers: {
             'Content-Type': ContentType.FORM_URLENCODED,
@@ -15,7 +15,7 @@ export function doFollowApi(data: { targetId: number }) {
 
 export function undoFollowApi(data: { targetId: number }) {
     return request({
-        url: '/user/follow',
+        url: '/follow/undo',
         method: 'delete',
         headers: {
             'Content-Type': ContentType.FORM_URLENCODED,
