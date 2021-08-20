@@ -30,6 +30,7 @@ function LoginForm() {
         handleSubmit: validForm,
         formState: { errors },
         watch,
+        setError,
     } = useForm()
     const email = watch('email')
     const hideDialog = () => {
@@ -41,6 +42,11 @@ function LoginForm() {
         else setLoginType(LoginTypes.CODE)
     }
 
+    const onEmailError = (message: string) => {
+        setError('email', {
+            message,
+        })
+    }
     const onLoginBtnClick = () => {
         validForm(e => {
             setDisabled(true)
@@ -66,8 +72,15 @@ function LoginForm() {
                 <h3 className={styles.title2}>填写以下信息登录</h3>
                 <TextField
                     label="邮箱"
-                    {...register('email', { required: true })}
+                    {...register('email', {
+                        required: '请输入邮箱',
+                        pattern: {
+                            value: /^\w+\@+[0-9a-zA-Z]+\.(com|com.cn|edu|hk|cn|net)$/,
+                            message: '请输入正确的邮箱',
+                        },
+                    })}
                     error={!!errors.email}
+                    helperText={!!errors.email ? errors.email.message : ''}
                     margin="dense"
                     fullWidth
                     autoComplete="off"
@@ -77,15 +90,19 @@ function LoginForm() {
                     <TextField
                         label="验证码"
                         {...register(LoginTypes.CODE, {
-                            required: true,
+                            required: '请输入6位验证码',
                             maxLength: 6,
                             minLength: 6,
                         })}
                         error={!!errors.code}
+                        helperText={!!errors.code ? errors.code.message : ''}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <CodeFetcher email={email} />
+                                    <CodeFetcher
+                                        email={email}
+                                        setEmailError={onEmailError}
+                                    />
                                 </InputAdornment>
                             ),
                         }}
@@ -100,9 +117,16 @@ function LoginForm() {
                         label="密码"
                         type="password"
                         {...register(LoginTypes.PASSWORD, {
-                            required: true,
+                            required: '请输入密码',
+                            minLength: {
+                                value: 8,
+                                message: '密码不能少于8位',
+                            },
                         })}
                         error={!!errors.password}
+                        helperText={
+                            !!errors.password ? errors.password.message : ''
+                        }
                         fullWidth
                         margin="dense"
                         autoComplete="off"

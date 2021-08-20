@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast'
 
 interface IProps {
     email: string
+    setEmailError: (message: string) => void
 }
 
 const INIT_SECONDS = 59
@@ -12,11 +13,11 @@ let timer: NodeJS.Timer
 
 function CodeFetcher(props: IProps) {
     const [disabled, setDisabled] = useState(false)
-    const [resetTimes, setResetTimes] = useState(INIT_SECONDS)
+    const [restSeconds, setRestSeconds] = useState(INIT_SECONDS)
     const _lessSecond = () => {
         setDisabled(true)
         timer = setInterval(() => {
-            setResetTimes((prevState: number) => {
+            setRestSeconds((prevState: number) => {
                 if (prevState === 1) {
                     clearInterval(timer)
                     setDisabled(false)
@@ -28,7 +29,15 @@ function CodeFetcher(props: IProps) {
     }
     const getCode = () => {
         if (!props.email) {
-            toast('请输入验证码')
+            props.setEmailError('请输入邮箱')
+            return
+        }
+        if (
+            !/^\w+\@+[0-9a-zA-Z]+\.(com|com.cn|edu|hk|cn|net)$/.test(
+                props.email
+            )
+        ) {
+            props.setEmailError('请输入正确的邮箱')
             return
         }
         sendCodeApi(props.email).then((res: any) => {
@@ -42,7 +51,7 @@ function CodeFetcher(props: IProps) {
         }
     }, [])
     if (disabled) {
-        return <Typography>重新发送({resetTimes}s)</Typography>
+        return <Typography>重新发送({restSeconds}s)</Typography>
     }
     return (
         <Typography
