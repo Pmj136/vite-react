@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import useIsObserver from '@/hooks/useIsObserver'
 
 interface IProps {
@@ -6,9 +6,9 @@ interface IProps {
 }
 
 function Observer(props: IProps) {
-    const observeRef = useIsObserver({
-        onShow: props.onShow,
-    })
+    const observeRef = useRef(null)
+    const { onShow } = useIsObserver(observeRef)
+    onShow(props.onShow)
     return <div role="observer-tag" ref={observeRef} />
 }
 

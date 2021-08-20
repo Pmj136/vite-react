@@ -1,26 +1,32 @@
-import { RefObject, useEffect, useRef } from 'react'
+import { RefObject, useEffect } from 'react'
 
-interface IProps {
-    onShow?: () => void
-    onHide?: () => void
+interface IUserIsObserver {
+    onShow: (callback: () => void) => void
+    onHide: (callback: () => void) => void
 }
 
-function useIsObserver(props: IProps): RefObject<any> {
-    const observeRef = useRef(null)
+function useIsObserver(ref: RefObject<any>): IUserIsObserver {
+    const fnMap: { [key: string]: () => void } = {}
+    const onShow = (callback: () => void) => {
+        fnMap['onShow'] = callback
+    }
+    const onHide = (callback: () => void) => {
+        fnMap['onHide'] = callback
+    }
     const io = new IntersectionObserver(entries => {
         if (entries[0].intersectionRatio === 0) {
-            props.onHide && props.onHide()
+            fnMap['onHide'] && fnMap['onHide']()
             return
         }
-        props.onShow && props.onShow()
+        fnMap['onShow'] && fnMap['onShow']()
     })
     useEffect(() => {
-        io.observe(observeRef.current as unknown as Element)
+        io.observe(ref.current as unknown as Element)
         return () => {
             io.disconnect()
         }
     }, [])
-    return observeRef
+    return { onShow, onHide }
 }
 
 export default useIsObserver
