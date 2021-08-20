@@ -1,10 +1,10 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
 import { Tab, Tabs } from '@material-ui/core'
 import { useHistory, useParams } from 'react-router-dom'
 
 type TabType = 'dynamic' | 'creation' | 'collection' | 'follow' | 'fans'
 
-function Menus() {
+function Menus(props: any, ref: ForwardedRef<any>) {
     const params = useParams<{ id: string; type: string }>()
     const history = useHistory()
     const handleChange = (event: ChangeEvent<any>, newValue: TabType) => {
@@ -12,6 +12,7 @@ function Menus() {
     }
     return (
         <Tabs
+            ref={ref}
             value={params.type}
             onChange={handleChange}
             textColor="secondary"
@@ -27,4 +28,4 @@ function Menus() {
     )
 }
 
-export default Menus
+export default forwardRef(Menus)

@@ -1,22 +1,26 @@
 import React, { createElement } from 'react'
 import styles from './profile.module.css'
 import { Avatar, Badge, Box, Typography } from '@material-ui/core'
-import { IUser } from '@/types/user'
 import Action from './Action'
 import Male from '@/svg/Male'
 import Female from '@/svg/Female'
-import { getUserInfoApi } from '@/api/user'
 import ProfileSkeleton from './ProfileSkeleton'
-import { useParams } from 'react-router-dom'
-import useFetch from '@/hooks/useFetch'
 
-function Profile() {
-    const params = useParams<any>()
-    const { data, isLoading } = useFetch<IUser>(
-        () => getUserInfoApi(params.id),
-        {}
-    )
-    if (isLoading) return <ProfileSkeleton />
+interface IProps {
+    data?: {
+        id: number
+        nick: string
+        gender: number
+        avatarUrl: string
+        createTime: string
+        address: string
+        intro: string
+        isFollow?: boolean
+    }
+}
+
+function Profile({ data }: IProps) {
+    if (data === undefined) return <ProfileSkeleton />
     return (
         <div className={styles.container}>
             <Badge
@@ -48,7 +52,7 @@ function Profile() {
                     component="span"
                     variant="body2"
                 >
-                    {data.createAt} 加入
+                    {data.createTime} 加入
                 </Typography>
                 <Box p={1} />
                 <Typography

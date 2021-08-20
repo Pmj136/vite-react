@@ -8,9 +8,15 @@ import {
 } from '@material-ui/core'
 import { Eco, Favorite, Visibility } from '@material-ui/icons'
 
-interface IProps {}
+interface IProps {
+    data: {
+        likeCount: number
+        browseCount: number
+        integral: number
+    }
+}
 
-function Merit(props: IProps) {
+function Merit({ data }: IProps) {
     return (
         <section style={{ marginBottom: 16 }}>
             <Typography style={{ marginBottom: 10 }}>个人成就</Typography>
@@ -24,7 +30,7 @@ function Merit(props: IProps) {
                             获得点赞
                         </Typography>
                         <Typography variant="body1" color="secondary">
-                            16
+                            {data?.likeCount || 0}
                         </Typography>
                     </ListItem>
                     <ListItem>
@@ -35,7 +41,7 @@ function Merit(props: IProps) {
                             文章被阅读
                         </Typography>
                         <Typography variant="body1" color="secondary">
-                            236
+                            {data?.browseCount || 0}
                         </Typography>
                     </ListItem>
                     <ListItem>
@@ -46,7 +52,7 @@ function Merit(props: IProps) {
                             威望值
                         </Typography>
                         <Typography variant="body1" color="secondary">
-                            965
+                            {data?.integral || 0}
                         </Typography>
                     </ListItem>
                 </List>
