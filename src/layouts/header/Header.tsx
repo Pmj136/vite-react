@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Paper } from '@material-ui/core'
 import SearchInput from './SearchInput'
 import NavLink from './NavLink/NavLink'
@@ -37,4 +37,4 @@ function Header() {
     )
 }
 
-export default Header
+export default memo(Header)
