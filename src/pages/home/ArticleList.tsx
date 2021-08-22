@@ -1,43 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Article from '@/components/Article/Article'
 import { Typography } from '@material-ui/core'
-import { listApi } from '@/api/article'
+import { getArticlesApi } from '@/api/article'
+import { InfiniteScroll, useLazyFetch } from '@/components/InfiniteScroll'
+import ArticleSkeleton from '@/components/LoadingSkeleton/ArticleSkeleton'
+import NoData from '@/components/NoData/NoData'
+import NoMore from '@/components/NoMore/NoMore'
+import type { IArticle } from '@/types/article'
 
-interface IProps {
-    // children: ReactElement
-}
-
-interface Item {
-    id: number
-    cover: null | string
-    title: string
-    content: string
-    browseCount: number
-    commentCount: number
-    likeCount: number
-    createId: number
-    createTime: string
-    userId: number
-    userNick: string
-}
-
-function ArticleList(props: IProps) {
-    const [currPage, setCurrPage] = useState(1)
-    const [list, setList] = useState([])
-    useEffect(() => {
-        listApi({ page: currPage }).then(res => {
-            setList(res.data.records)
-        })
-    }, [])
+function ArticleList() {
+    const { isLoading, list, hasMore, loadMore } =
+        useLazyFetch<IArticle>(getArticlesApi)
     return (
-        <>
+        <InfiniteScroll
+            isLoading={isLoading}
+            hasData={list.length > 0}
+            hasMore={hasMore}
+            loadingEl={ArticleSkeleton}
+            noDataEl={NoData}
+            noMoreEl={NoMore}
+            onScrollToBottom={loadMore}
+        >
             <Typography component="div" color="textPrimary">
                 全部文章
             </Typography>
-            {list.map((v: Item) => (
+            {list.map(v => (
                 <Article key={v.id} data={v} />
             ))}
-        </>
+        </InfiniteScroll>
     )
 }
 
