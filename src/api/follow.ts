@@ -1,25 +1,19 @@
 import request from '@/utils/request'
-import { ContentType } from '@/utils/constants'
-import { stringify } from 'qs'
 
 export function doFollowApi(data: { targetId: number }) {
     return request({
-        url: '/follow/do',
+        url: '/follow',
         method: 'post',
-        headers: {
-            'Content-Type': ContentType.FORM_URLENCODED,
-        },
-        data: stringify(data),
+        data,
     })
 }
 
-export function undoFollowApi(data: { targetId: number }) {
+export function undoFollowApi(delId: number) {
     return request({
-        url: '/follow/undo',
+        url: '/follow',
         method: 'delete',
-        headers: {
-            'Content-Type': ContentType.FORM_URLENCODED,
+        params: {
+            delId,
         },
-        data: stringify(data),
     })
 }

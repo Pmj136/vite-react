@@ -8,12 +8,12 @@ export function addArticleApi(data: any) {
     })
 }
 
-export function delArticleApi(id: any) {
+export function delArticleApi(delId: any) {
     return request({
         url: '/article',
         method: 'delete',
         params: {
-            id,
+            delId,
         },
     })
 }
