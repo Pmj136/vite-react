@@ -6,12 +6,11 @@ import { InfiniteScroll, useLazyFetch } from '@/components/InfiniteScroll'
 import NoData from '@/components/NoData/NoData'
 import NoMore from '@/components/NoMore/NoMore'
 import ArticleSkeleton from '@/components/LoadingSkeleton/ArticleSkeleton'
-import type { IUser } from '@/types/user'
+import type { IArticle } from '@/types/article'
 
 interface IProps {
     type: 'creation' | 'collection'
 }
-
 const apis = {
     creation: getCreationsApi,
     collection: getCollectionsApi,
@@ -19,7 +18,7 @@ const apis = {
 
 function ArticleList(props: IProps) {
     const params = useParams<any>()
-    const { isLoading, list, hasMore, loadMore } = useLazyFetch<IUser>(
+    const { isLoading, list, hasMore, loadMore } = useLazyFetch<IArticle>(
         apis[props.type],
         { userId: params.id }
     )

@@ -7,6 +7,7 @@ import {
     Typography,
 } from '@material-ui/core'
 import { Eco, Favorite, Visibility } from '@material-ui/icons'
+import AnimationNumber from '@/components/AnimationNumber'
 
 interface IProps {
     data: {
@@ -30,7 +31,7 @@ function Merit({ data }: IProps) {
                             获得点赞
                         </Typography>
                         <Typography variant="body1" color="secondary">
-                            {data?.likeCount || 0}
+                            <AnimationNumber toNumber={data?.likeCount} />
                         </Typography>
                     </ListItem>
                     <ListItem>
@@ -41,7 +42,7 @@ function Merit({ data }: IProps) {
                             文章被阅读
                         </Typography>
                         <Typography variant="body1" color="secondary">
-                            {data?.browseCount || 0}
+                            <AnimationNumber toNumber={data?.browseCount} />
                         </Typography>
                     </ListItem>
                     <ListItem>
@@ -52,7 +53,7 @@ function Merit({ data }: IProps) {
                             威望值
                         </Typography>
                         <Typography variant="body1" color="secondary">
-                            {data?.integral || 0}
+                            <AnimationNumber toNumber={data?.integral} />
                         </Typography>
                     </ListItem>
                 </List>

@@ -4,12 +4,15 @@ import Menus from './Menus'
 import DynamicList from './views/DynamicList'
 import UserList from './views/UserList'
 import ArticleList from './views/ArticleList'
+import { Card } from '@material-ui/core'
 
 function DataList() {
     const params = useParams<{ type: string }>()
     return (
         <>
-            <Menus />
+            <Card elevation={0} style={{ marginTop: 16 }}>
+                <Menus />
+            </Card>
             {params.type === 'dynamic' && <DynamicList />}
             {params.type === 'creation' && <ArticleList type="creation" />}
             {params.type === 'collection' && <ArticleList type="collection" />}

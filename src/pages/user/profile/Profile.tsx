@@ -37,7 +37,7 @@ function Profile({ data }: IProps) {
                 }
             >
                 <Avatar
-                    style={{ width: 100, height: 100 }}
+                    style={{ width: 120, height: 120 }}
                     src={data.avatarUrl}
                 />
             </Badge>

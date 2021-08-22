@@ -20,9 +20,7 @@ function User() {
                 <Card elevation={0}>
                     <Profile data={data.profile} />
                 </Card>
-                <Card elevation={0} style={{ marginTop: 16 }}>
-                    <DataList />
-                </Card>
+                <DataList />
             </JPageSection>
             <JPageSection xs={3}>
                 <Merit data={data.merit} />

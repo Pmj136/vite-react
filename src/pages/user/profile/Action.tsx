@@ -20,9 +20,8 @@ function Action(props: IProps) {
         history.push('/setting/profile')
     }
     const handleUnFollow = () => {
-        setIsFollow(false)
-        undoFollowApi({ targetId: +params.id }).catch(() => {
-            setIsFollow(true)
+        undoFollowApi(+params.id).then(() => {
+            setIsFollow(false)
         })
     }
     const handleFollow = () => {
@@ -30,9 +29,8 @@ function Action(props: IProps) {
             setLoginDialogVisible(true)
             return
         }
-        setIsFollow(true)
-        doFollowApi({ targetId: +params.id }).catch(() => {
-            setIsFollow(false)
+        doFollowApi({ targetId: +params.id }).then(() => {
+            setIsFollow(true)
         })
     }
     if (uId === props.userId)

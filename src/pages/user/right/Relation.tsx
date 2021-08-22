@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Card, Typography } from '@material-ui/core'
 import styles from './relation.module.css'
 import ButtonLink from '@/components/ButtonLink'
+import AnimationNumber from '@/components/AnimationNumber'
 
 interface IProps {
     data: {
@@ -18,7 +19,7 @@ function Relation({ data }: IProps) {
                     <div className={styles['relation-item']}>
                         <Typography>关注</Typography>
                         <Typography variant="body2">
-                            {data?.followCount || 0}
+                            <AnimationNumber toNumber={data?.followCount} />
                         </Typography>
                     </div>
                 </ButtonLink>
@@ -26,7 +27,7 @@ function Relation({ data }: IProps) {
                     <div className={styles['relation-item']}>
                         <Typography>粉丝</Typography>
                         <Typography variant="body2">
-                            {data?.fansCount || 0}
+                            <AnimationNumber toNumber={data?.fansCount} />
                         </Typography>
                     </div>
                 </ButtonLink>
