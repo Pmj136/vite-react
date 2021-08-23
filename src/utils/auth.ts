@@ -2,7 +2,7 @@ import { authApi } from '@/api/user'
 import Cookie from 'js-cookie'
 import { savaUser, reset } from '@/store/userStore'
 import { has } from '@/utils/storage'
-import { StorageInfoKey } from '@/utils/constants'
+import { StorageInfoKey, TokenKey } from '@/utils/constants'
 
 export default function () {
     authApi(!has(StorageInfoKey))
@@ -11,7 +11,7 @@ export default function () {
         })
         .catch(e => {
             if (e.code !== undefined) {
-                Cookie.remove('token')
+                Cookie.remove(TokenKey)
                 reset()
             }
         })
