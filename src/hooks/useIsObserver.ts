@@ -5,7 +5,7 @@ interface IUserIsObserver {
     onHide: (callback: () => void) => void
 }
 
-function useIsObserver(ref: RefObject<any>): IUserIsObserver {
+function useIsObserver(ref: RefObject<HTMLElement>): IUserIsObserver {
     const fnMap: { [key: string]: () => void } = {}
     const onShow = (callback: () => void) => {
         fnMap['onShow'] = callback
@@ -21,7 +21,7 @@ function useIsObserver(ref: RefObject<any>): IUserIsObserver {
         fnMap['onShow'] && fnMap['onShow']()
     })
     useEffect(() => {
-        io.observe(ref.current as unknown as Element)
+        io.observe(ref.current as HTMLElement)
         return () => {
             io.disconnect()
         }
