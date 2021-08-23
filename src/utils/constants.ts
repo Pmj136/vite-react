@@ -6,3 +6,4 @@ export const ContentType = {
 
 export const StorageInfoKey = 'user'
 export const StorageThemeKey = 'theme'
+export const TokenKey = 'U_TOKEN'
