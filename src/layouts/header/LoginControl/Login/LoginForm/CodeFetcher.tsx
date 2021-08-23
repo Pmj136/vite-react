@@ -40,10 +40,17 @@ function CodeFetcher(props: IProps) {
             props.setEmailError('请输入正确的邮箱')
             return
         }
-        sendCodeApi(props.email).then((res: any) => {
-            toast.success(res.msg)
-            _lessSecond()
-        })
+        sendCodeApi(props.email)
+            .then((res: any) => {
+                toast.success(res.msg)
+                _lessSecond()
+            })
+            .catch(err => {
+                if (err.data && typeof err.data === 'number') {
+                    setRestSeconds(err.data)
+                    _lessSecond()
+                }
+            })
     }
     useEffect(() => {
         return () => {
