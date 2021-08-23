@@ -1,6 +1,8 @@
 @import "/src/assets/css/light.css";
 @import "/src/assets/css/dark.css";
 
+@import "/src/components/JPage/index.css";
+
 :root {
     --header-height: 64px;
     --wrap-width: 1200px;
