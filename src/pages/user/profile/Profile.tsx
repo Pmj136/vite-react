@@ -1,6 +1,6 @@
 import React, { createElement } from 'react'
 import styles from './profile.module.css'
-import { Avatar, Badge, Box, Typography } from '@material-ui/core'
+import { Avatar, Badge, Box, Link, Typography } from '@material-ui/core'
 import Action from './Action'
 import Male from '@/svg/Male'
 import Female from '@/svg/Female'
@@ -63,16 +63,15 @@ function Profile({ data }: IProps) {
                     {data.address ? (
                         <>
                             来自{' '}
-                            <a
+                            <Link
                                 href={
                                     'https://www.baidu.com/s?ie=UTF-8&wd=' +
                                     data.address
                                 }
                                 target="_blank"
-                                rel="noreferrer"
                             >
                                 {data.address}
-                            </a>
+                            </Link>
                         </>
                     ) : (
                         '似乎来自外星……'
