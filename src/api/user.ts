@@ -1,16 +1,6 @@
 import request from '@/utils/request'
 import { ContentType } from '@/utils/constants'
-
-// export function testApi(data: { email: string; code: string }) {
-//     return request({
-//         url: '/user/login',
-//         method: 'post',
-//         headers: {
-//             'Content-Type': ContentType.FORM_URLENCODED,
-//         },
-//         data: stringify(data),
-//     })
-// }
+import { IUser } from '@/types/user'
 
 //全局授权检测
 export function authApi(rl?: boolean) {
@@ -37,6 +27,30 @@ export function sendCodeApi(email: string) {
     })
 }
 
+export function verifyCodeApi(email: string, code: string) {
+    return request({
+        url: '/user/verifyCode',
+        method: 'get',
+        headers: {
+            'Content-Type': ContentType.FORM_URLENCODED,
+        },
+        params: {
+            email,
+            code,
+        },
+    })
+}
+
+export function updatePwdApi(newPwd: string) {
+    return request({
+        url: '/user/password',
+        method: 'put',
+        data: {
+            password: newPwd,
+        },
+    })
+}
+
 //登录
 export function loginApi({ type, email, code, password }: any) {
     const params = { type, email, credential: code || password }
@@ -58,8 +72,30 @@ export function logoutApi() {
 //获取用户信息
 export function getProfileApi() {
     return request({
-        url: '/user/profile',
+        url: '/user/settings',
         method: 'get',
+    })
+}
+
+//更新用户信息
+export function updateProfileApi(data: IUser) {
+    return request({
+        url: '/user/settings',
+        method: 'put',
+        data,
+    })
+}
+
+export function uploadAvatar(avatar: File) {
+    const formData = new FormData()
+    formData.append('avatar', avatar)
+    return request({
+        url: '/user/avatar',
+        method: 'put',
+        headers: {
+            'Content-Type': ContentType.FORM_DATA,
+        },
+        data: formData,
     })
 }
 
