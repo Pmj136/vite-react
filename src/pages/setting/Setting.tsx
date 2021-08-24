@@ -1,34 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import Page from '@/components/Page'
+import React from 'react'
+import { JPage, JPageSection } from '@/components/JPage'
 import { useParams } from 'react-router-dom'
-import LeftMenu from './components/LeftMenu'
-import Profile from './components/Profile'
-import Account from './components/Account'
-import { getInfoApi } from '@/api/user'
-import type { IUser } from '@/types/user'
+import LeftMenu from './LeftMenu'
+import Loading from '@/components/Loading'
+import Profile from './profile/Profile'
+import Account from './account/Account'
+import { getProfileApi } from '@/api/user'
 
 import { Card } from '@material-ui/core'
-import userStore from '@/store/userStore'
+import useFetch from '@/hooks/useFetch'
+import type { IUser } from '@/types/user'
 
 function Setting() {
-    const { uId } = userStore
     const params: { component: string } = useParams()
-    const [info, setInfo] = useState<IUser>({})
-    useEffect(() => {
-        getInfoApi(uId).then(res => {
-            setInfo(res.data)
-        })
-    }, [])
-    const { component } = params
+    const { data, isLoading } = useFetch<IUser>(getProfileApi, {})
+    const profileData = {
+        avatarUrl: data.avatarUrl as string,
+        nick: data.nick as string,
+        gender: data.gender as number,
+        address: data.address as string,
+        intro: data.intro as string,
+    }
+    const accountData = {
+        email: data.email as string,
+        githubId: data.githubId as number,
+        githubNick: data.githubNick as string,
+        qqId: data.qqId as string,
+        qqNick: data.qqNick as string,
+        giteeId: data.giteeId as number,
+        giteeNick: data.giteeNick as string,
+        isSetPassword: data.isSetPassword as boolean,
+    }
     return (
-        <Page>
-            <Page.Section xs={12}>
+        <JPage>
+            <JPageSection xs={2.5} style={{ position: 'sticky', top: 80 }}>
                 <Card elevation={0} square>
-                    {/*{component === 'profile' && <Profile data={info} />}*/}
-                    {/*{component === 'account' && <Account data={info} />}*/}
+                    <LeftMenu currComponent={params.component} />
                 </Card>
-            </Page.Section>
-        </Page>
+            </JPageSection>
+            <JPageSection xs={9.5}>
+                {isLoading ? (
+                    <Loading />
+                ) : (
+                    <Card elevation={0} square>
+                        <section hidden={params.component !== 'profile'}>
+                            <Profile data={profileData} />
+                        </section>
+                        <section hidden={params.component !== 'account'}>
+                            <Account data={accountData} />
+                        </section>
+                    </Card>
+                )}
+            </JPageSection>
+        </JPage>
     )
 }
 

@@ -1,13 +1,7 @@
 import React from 'react'
-import {
-    Card,
-    List,
-    ListItem,
-    ListItemIcon,
-    Typography,
-} from '@material-ui/core'
+import { List, ListItem, ListItemIcon, Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { AccountCircle, Settings } from '@material-ui/icons'
+import { AccountCircle, Settings, VisibilityOff } from '@material-ui/icons'
 
 interface IProps {
     currComponent: string
@@ -39,6 +33,18 @@ function LeftMenu(props: IProps) {
                     <Settings />
                 </ListItemIcon>
                 <Typography variant="body2">账号设置</Typography>
+            </ListItem>
+            <ListItem
+                button
+                component={Link}
+                to="/setting/privacy"
+                replace
+                selected={props.currComponent === 'privacy'}
+            >
+                <ListItemIcon>
+                    <VisibilityOff />
+                </ListItemIcon>
+                <Typography variant="body2">隐私管理</Typography>
             </ListItem>
         </List>
     )
