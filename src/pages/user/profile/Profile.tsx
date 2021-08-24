@@ -60,7 +60,23 @@ function Profile({ data }: IProps) {
                     component="span"
                     variant="body2"
                 >
-                    {data.address || '似乎来自外星……'}
+                    {data.address ? (
+                        <>
+                            来自{' '}
+                            <a
+                                href={
+                                    'https://www.baidu.com/s?ie=UTF-8&wd=' +
+                                    data.address
+                                }
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                {data.address}
+                            </a>
+                        </>
+                    ) : (
+                        '似乎来自外星……'
+                    )}
                 </Typography>
             </div>
             <Typography
