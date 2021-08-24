@@ -34,18 +34,6 @@ function LeftMenu(props: IProps) {
                 </ListItemIcon>
                 <Typography variant="body2">账号设置</Typography>
             </ListItem>
-            <ListItem
-                button
-                component={Link}
-                to="/setting/privacy"
-                replace
-                selected={props.currComponent === 'privacy'}
-            >
-                <ListItemIcon>
-                    <VisibilityOff />
-                </ListItemIcon>
-                <Typography variant="body2">隐私管理</Typography>
-            </ListItem>
         </List>
     )
 }

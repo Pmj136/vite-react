@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { JPage, JPageSection } from '@/components/JPage'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import LeftMenu from './LeftMenu'
 import Loading from '@/components/Loading'
 import Profile from './profile/Profile'
@@ -12,6 +12,7 @@ import useFetch from '@/hooks/useFetch'
 import type { IUser } from '@/types/user'
 
 function Setting() {
+    const history = useHistory()
     const params: { component: string } = useParams()
     const { data, isLoading } = useFetch<IUser>(getProfileApi, {})
     const profileData = {
@@ -31,6 +32,11 @@ function Setting() {
         giteeNick: data.giteeNick as string,
         isSetPassword: data.isSetPassword as boolean,
     }
+    useEffect(() => {
+        if (params.component !== 'profile' && params.component !== 'account') {
+            history.replace('/setting/profile')
+        }
+    }, [params])
     return (
         <JPage>
             <JPageSection xs={2.5} style={{ position: 'sticky', top: 80 }}>
