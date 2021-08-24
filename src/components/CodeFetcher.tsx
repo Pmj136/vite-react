@@ -4,14 +4,15 @@ import { sendCodeApi } from '@/api/user'
 import { toast } from 'react-hot-toast'
 
 interface IProps {
+    auto?: boolean
     email: string
-    setEmailError: (message: string) => void
+    onError?: (message: string) => void
 }
 
 const INIT_SECONDS = 59
 let timer: NodeJS.Timer
 
-function CodeFetcher(props: IProps) {
+function CodeFetcher({ auto = false, email, onError }: IProps) {
     const [disabled, setDisabled] = useState(false)
     const [restSeconds, setRestSeconds] = useState(INIT_SECONDS)
     const _lessSecond = () => {
@@ -28,19 +29,15 @@ function CodeFetcher(props: IProps) {
         }, 1000)
     }
     const getCode = () => {
-        if (!props.email) {
-            props.setEmailError('请输入邮箱')
+        if (!email) {
+            onError && onError('请输入邮箱')
             return
         }
-        if (
-            !/^\w+\@+[0-9a-zA-Z]+\.(com|com.cn|edu|hk|cn|net)$/.test(
-                props.email
-            )
-        ) {
-            props.setEmailError('请输入正确的邮箱')
+        if (!/^\w+\@+[0-9a-zA-Z]+\.(com|com.cn|edu|hk|cn|net)$/.test(email)) {
+            onError && onError('请输入正确的邮箱')
             return
         }
-        sendCodeApi(props.email)
+        sendCodeApi(email)
             .then((res: any) => {
                 toast.success(res.msg)
                 _lessSecond()
@@ -53,6 +50,9 @@ function CodeFetcher(props: IProps) {
             })
     }
     useEffect(() => {
+        if (auto) {
+            getCode()
+        }
         return () => {
             clearInterval(timer)
         }

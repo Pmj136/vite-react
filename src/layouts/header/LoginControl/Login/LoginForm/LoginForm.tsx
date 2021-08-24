@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form'
 import { setLoginDialogVisible } from '@/store/appStore'
 import { savaUser } from '@/store/userStore'
 import TextDivider from '@/components/TextDivider/TextDivider'
-import CodeFetcher from './CodeFetcher'
+import CodeFetcher from '@/components/CodeFetcher'
 import ThirdLogin from './ThirdLogin'
 import styles from './loginform.module.css'
 import { loginApi } from '@/api/user'
@@ -22,7 +22,7 @@ enum LoginTypes {
 }
 
 function LoginForm() {
-    const [loginType, setLoginType] = useState(LoginTypes.CODE)
+    const [loginType, setLoginType] = useState(LoginTypes.PASSWORD)
     const [disabled, setDisabled] = useState(false)
     const {
         register,
@@ -31,7 +31,9 @@ function LoginForm() {
         formState: { errors },
         watch,
         setError,
-    } = useForm()
+    } = useForm({
+        mode: 'onChange',
+    })
     const email = watch('email')
     const hideDialog = () => {
         setLoginDialogVisible(false)
@@ -101,7 +103,7 @@ function LoginForm() {
                                 <InputAdornment position="end">
                                     <CodeFetcher
                                         email={email}
-                                        setEmailError={onEmailError}
+                                        onError={onEmailError}
                                     />
                                 </InputAdornment>
                             ),
