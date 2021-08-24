@@ -2,6 +2,7 @@
 @import "/src/assets/css/dark.css";
 
 @import "/src/components/JPage/index.css";
+@import "/src/components/Cell/index.css";
 
 :root {
     --header-height: 64px;

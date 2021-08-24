@@ -1,0 +1,11 @@
+.j-cell-title {
+    min-width: 90px;
+    flex-shrink: 0;
+}
+
+.j-cell-rest {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
