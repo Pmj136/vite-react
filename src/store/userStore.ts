@@ -32,3 +32,8 @@ export function reset() {
     })
     remove(StorageInfoKey)
 }
+
+export function setInfo(obj: { avatarUrl?: string; nick?: string }) {
+    const assign = Object.assign(state.info, obj)
+    set(StorageInfoKey, assign)
+}
