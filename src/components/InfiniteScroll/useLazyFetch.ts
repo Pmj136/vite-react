@@ -41,6 +41,11 @@ function useLazyFetch<T>(
                     hasMore: page < pages,
                 })
             })
+            .catch(() => {
+                setState({
+                    hasMore: false,
+                })
+            })
             .finally(() => {
                 setState({
                     isLoading: false,
