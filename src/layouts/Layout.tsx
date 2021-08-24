@@ -1,17 +1,17 @@
-import React, { ReactElement } from 'react'
+import React, { createElement, FC } from 'react'
 import Header from './header/Header'
 import Main from './main/Main'
 import CopyRight from './footer/CopyRight'
 
 interface IProps {
-    children: ReactElement
+    view: FC
 }
 
 function Layout(props: IProps) {
     return (
         <>
             <Header />
-            <Main>{props.children}</Main>
+            <Main>{createElement(props.view)}</Main>
             <CopyRight />
         </>
     )

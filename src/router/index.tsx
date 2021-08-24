@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import AuthRoute from './AuthRoute'
 
 import Layout from '@/layouts/Layout'
@@ -11,22 +11,32 @@ import Search from '@/pages/search/Search'
 import Notification from '@/pages/notification/Notification'
 import User from '@/pages/user/User'
 import Setting from '@/pages/setting/Setting'
+import Push from '@/pages/push/Push'
 
 function AppRouter() {
     return (
         <BrowserRouter>
-            <Layout>
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/post" component={Post} />
-                    <Route path="/about" component={About} />
-                    <Route path="/search" component={Search} />
-                    <Route path="/user/:id/:type" component={User} />
-                    <AuthRoute path="/setting/:component" component={Setting} />
-                    <AuthRoute path="/notification" component={Notification} />
-                    <Route path="*" component={NotFound} />
-                </Switch>
-            </Layout>
+            <Switch>
+                <Route path="/" exact render={() => <Layout view={Home} />} />
+                <Route path="/post" render={() => <Layout view={Post} />} />
+                <Route path="/about" render={() => <Layout view={About} />} />
+                <Route path="/search" render={() => <Layout view={Search} />} />
+                <Route
+                    path="/user/:id/:type"
+                    render={() => <Layout view={User} />}
+                />
+                <AuthRoute authRedirect path="/push" component={Push} />
+                <AuthRoute
+                    authRedirect
+                    path="/setting/:component"
+                    render={() => <Layout view={Setting} />}
+                />
+                <AuthRoute
+                    path="/notification"
+                    render={() => <Layout view={Notification} />}
+                />
+                <Route path="*" component={NotFound} />
+            </Switch>
         </BrowserRouter>
     )
 }
