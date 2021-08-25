@@ -1,0 +1,32 @@
+.creation-header {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 1200;
+}
+
+.wrap {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    width: var(--wrap-width);
+    height: var(--header-height);
+    box-sizing: border-box;
+}
+
+.title-input {
+    flex: 1;
+    margin-right: 16px;
+    height: 100%;
+    padding: 0;
+    font-size: 1.4rem;
+    border: none;
+    outline: none;
+}
+.title-input::placeholder{
+    color: #aaa;
+}
+
+.header-action {
+
+}

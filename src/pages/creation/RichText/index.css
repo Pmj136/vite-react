@@ -1,0 +1,25 @@
+#rt-toolbar {
+    position: sticky;
+    top: var(--header-height);
+    background-color: #ffffff;
+    border-top: 1px solid #EEE;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 1200;
+    box-shadow: 0 1px 2px 0 rgb(220, 204, 204)
+}
+
+.w-e-toolbar {
+    background-color: transparent;
+}
+
+.w-e-text-container {
+    min-height: 100vh;
+    z-index: 1000 !important;
+    background-color: #f9f9f9;
+}
+
+.w-e-text-container > .placeholder {
+    color: #aaa;
+}
