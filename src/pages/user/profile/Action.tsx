@@ -12,7 +12,7 @@ interface IProps {
 }
 
 function Action(props: IProps) {
-    const { uId, isLogin } = state
+    const { info, isLogin } = state
     const params = useParams<{ id: string }>()
     const [isFollow, setIsFollow] = useState(props.isFollow)
     const history = useHistory()
@@ -33,7 +33,7 @@ function Action(props: IProps) {
             setIsFollow(true)
         })
     }
-    if (uId === props.userId)
+    if (info.id === props.userId)
         return (
             <Button
                 size="small"

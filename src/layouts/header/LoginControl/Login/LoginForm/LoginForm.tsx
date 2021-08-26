@@ -9,12 +9,12 @@ import {
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons'
 import { useForm } from 'react-hook-form'
 import { setLoginDialogVisible } from '@/store/appStore'
-import { savaUser } from '@/store/userStore'
 import TextDivider from '@/components/TextDivider/TextDivider'
 import CodeFetcher from '@/components/CodeFetcher'
 import ThirdLogin from './ThirdLogin'
 import styles from './loginform.module.css'
 import { loginApi } from '@/api/user'
+import { toast } from 'react-hot-toast'
 
 enum LoginTypes {
     PASSWORD = 'password',
@@ -53,8 +53,8 @@ function LoginForm() {
         validForm(e => {
             setDisabled(true)
             loginApi({ ...e, type: loginType })
-                .then(res => {
-                    savaUser(res.data)
+                .then(() => {
+                    toast.success('登录成功')
                     history.go(0)
                 })
                 .finally(() => {

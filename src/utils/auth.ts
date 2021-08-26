@@ -1,18 +1,14 @@
 import { authApi } from '@/api/user'
-import Cookie from 'js-cookie'
-import { savaUser, reset } from '@/store/userStore'
-import { has } from '@/utils/storage'
-import { StorageInfoKey, TokenKey } from '@/utils/constants'
+import { setInfo, clearInfo } from '@/store/userStore'
 
 export default function () {
-    authApi(!has(StorageInfoKey))
+    authApi()
         .then(res => {
-            savaUser(res.data)
+            setInfo(res.data)
         })
         .catch(e => {
             if (e.code !== undefined) {
-                Cookie.remove(TokenKey)
-                reset()
+                clearInfo()
             }
         })
 }

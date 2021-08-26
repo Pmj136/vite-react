@@ -6,14 +6,14 @@ import UserAvatar from './UserAvatar'
 import { useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 
-import state, { reset } from '@/store/userStore'
+import state, { clearInfo } from '@/store/userStore'
 import { Typography } from '@material-ui/core'
 import { toast } from 'react-hot-toast'
 import { logoutApi } from '@/api/user'
 
 function AvatarFuncList() {
     const location = useLocation()
-    const { info, uId } = state
+    const { info } = state
     const exitSys = () => {
         toast.loading('正在退出', {
             id: 'exit-toast-id',
@@ -22,7 +22,7 @@ function AvatarFuncList() {
             logoutApi()
                 .then(() => {
                     toast.success('你已退出')
-                    reset()
+                    clearInfo()
                     history.go(0)
                     clearTimeout(timer)
                 })
@@ -35,7 +35,7 @@ function AvatarFuncList() {
         <DropDown header={<UserAvatar url={info.avatarUrl} />}>
             <DropDownLinkItem
                 active={location.pathname.includes('/user')}
-                to={'/user/' + uId + '/dynamic'}
+                to={'/user/' + info.id + '/dynamic'}
             >
                 <Typography variant="body2">我的主页</Typography>
             </DropDownLinkItem>
