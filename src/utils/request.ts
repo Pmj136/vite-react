@@ -11,9 +11,9 @@ const service = axios.create({
 
 service.interceptors.response.use(
     response => {
-        const { code, msg } = response.data
-        if (code !== 0) {
-            if (code % 1000 === 0) {
+        const { error, msg } = response.data
+        if (error !== 0) {
+            if (error % 1000 === 0) {
                 toast(msg, {
                     id: toastId,
                     duration: 2500,
