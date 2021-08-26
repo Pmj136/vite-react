@@ -1,13 +1,12 @@
 #rt-toolbar {
     position: sticky;
     top: var(--header-height);
-    background-color: #ffffff;
+    background-color: #f1f1f1;
     border-top: 1px solid #EEE;
     width: 100%;
     display: flex;
     justify-content: center;
     z-index: 1200;
-    box-shadow: 0 1px 2px 0 rgb(220, 204, 204)
 }
 
 .w-e-toolbar {
@@ -17,9 +16,19 @@
 .w-e-text-container {
     min-height: 100vh;
     z-index: 1000 !important;
-    background-color: #f9f9f9;
+    background-color: #fcfcfc;
+    /*background-color: transparent;*/
 }
 
 .w-e-text-container > .placeholder {
     color: #aaa;
+}
+
+.w-e-toolbar .w-e-menu {
+    width: 45px;
+}
+
+[class^="w-e-icon-"], [class*=" w-e-icon-"] {
+    color: #777 !important;
+    font-size: 16px;
 }

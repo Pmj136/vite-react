@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import styles from './_.module.css'
 import { useHistory } from 'react-router-dom'
+import { Button } from '@material-ui/core'
 
 interface IProps {
-    onSubmit: () => void
+    onSubmit: (title: string) => void
 }
 
 function PageHeader(props: IProps) {
@@ -13,6 +14,9 @@ function PageHeader(props: IProps) {
     const toggleEditor = () => {
         if (currPath === '/creation/rt') history.replace('/creation/md')
         if (currPath === '/creation/md') history.replace('/creation/rt')
+    }
+    const doSubmit = () => {
+        props.onSubmit(title)
     }
     return (
         <div className={styles['creation-header']}>
@@ -25,8 +29,23 @@ function PageHeader(props: IProps) {
                     onChange={e => setTitle(e.target.value)}
                 />
                 <section className={styles['header-action']}>
-                    <button onClick={toggleEditor}>切换</button>
-                    <button>发布</button>
+                    <Button
+                        variant="text"
+                        color="primary"
+                        size="small"
+                        onClick={toggleEditor}
+                        style={{ marginRight: 16 }}
+                    >
+                        切换编辑器
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        size="small"
+                        onClick={doSubmit}
+                    >
+                        发布
+                    </Button>
                 </section>
             </div>
         </div>
