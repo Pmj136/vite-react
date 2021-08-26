@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import { ContentType } from '@/utils/constants'
 
 export function addArticleApi(data: any) {
     return request({
@@ -43,5 +44,18 @@ export function getArticlesApi(params: {
         url: '/articles',
         method: 'get',
         params,
+    })
+}
+
+export function uploadImg(file: File) {
+    const formData = new FormData()
+    formData.append('file', file)
+    return request({
+        url: '/img',
+        method: 'post',
+        headers: {
+            'Content-Type': ContentType.FORM_DATA,
+        },
+        data: formData,
     })
 }

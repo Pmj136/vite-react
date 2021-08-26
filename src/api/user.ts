@@ -3,13 +3,10 @@ import { ContentType } from '@/utils/constants'
 import { IUser } from '@/types/user'
 
 //全局授权检测
-export function authApi(rl?: boolean) {
+export function authApi() {
     return request({
         url: '/user/auth',
         method: 'get',
-        params: {
-            rl,
-        },
     })
 }
 
