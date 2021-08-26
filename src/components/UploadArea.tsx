@@ -2,14 +2,21 @@ import React, { ReactElement, useRef } from 'react'
 import type { CSSProperties } from 'react'
 
 interface IProps {
+    accept?: string
     multiple?: boolean
-    children: ReactElement
-    onSelect?: (files: FileList | File) => void
     className?: string
     style?: CSSProperties
+    children: ReactElement
+    onComplete?: (files: FileList | File) => void
 }
 
-function Upload({ multiple = false, children, onSelect, ...others }: IProps) {
+function UploadArea({
+    accept = 'image/*',
+    multiple = false,
+    children,
+    onComplete,
+    ...others
+}: IProps) {
     const fileRef = useRef<HTMLInputElement>(null)
     const handleClick = () => {
         const el = fileRef.current as HTMLInputElement
@@ -20,16 +27,16 @@ function Upload({ multiple = false, children, onSelect, ...others }: IProps) {
         <div onClick={handleClick} {...others}>
             {children}
             <input
+                accept={accept}
                 type="file"
                 ref={fileRef}
                 style={{ display: 'none' }}
-                multiple={multiple}
                 onChange={e => {
                     const files: FileList = e.target.files as FileList
                     if (multiple) {
-                        onSelect && onSelect(files)
+                        onComplete && onComplete(files)
                     } else {
-                        onSelect && onSelect(files[0])
+                        onComplete && onComplete(files[0])
                     }
                 }}
             />
@@ -37,4 +44,4 @@ function Upload({ multiple = false, children, onSelect, ...others }: IProps) {
     )
 }
 
-export default Upload
+export default UploadArea
