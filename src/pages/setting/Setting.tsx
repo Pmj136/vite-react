@@ -39,7 +39,13 @@ function Setting() {
     }, [params])
     return (
         <JPage>
-            <JPageSection xs={2.5} style={{ position: 'sticky', top: 80 }}>
+            <JPageSection
+                xs={2.5}
+                style={{
+                    position: 'sticky',
+                    top: 'calc(var(--header-height) + 16px)',
+                }}
+            >
                 <Card elevation={0} square>
                     <LeftMenu currComponent={params.component} />
                 </Card>

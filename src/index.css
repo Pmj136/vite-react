@@ -5,17 +5,17 @@
 @import "/src/components/Cell/index.css";
 
 :root {
-    --header-height: 64px;
+    --header-height: 60px;
     --wrap-width: 1200px;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
+    border-radius: 12px;
     background: #cccccc;
 }
 
@@ -26,4 +26,6 @@
 
 #app {
     min-width: calc(var(--wrap-width) + 100px);
+    min-height: 100vh;
+    display: flow-root;
 }
