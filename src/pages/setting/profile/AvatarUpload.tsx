@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import Upload from '@/components/Upload'
+import UploadArea from '@/components/UploadArea'
 import { Avatar, Button } from '@material-ui/core'
 import Crop from '@/components/Crop/Crop'
 import { uploadAvatar } from '@/api/user'
@@ -18,21 +18,18 @@ function AvatarUpload({ avatarUrl }: IProps) {
         uploadAvatar(evt.file).then(res => {
             setPreviewAvatar(res.data)
             setCropAvatar('')
-            setInfo({ avatarUrl: res.data })
+            setInfo({ avatarUrl: res.data, id: 0 })
         })
     }
     return (
         <>
             <Avatar style={{ width: 100, height: 100 }} src={previewAvatar} />
-            <Upload
+            <UploadArea
+                accept="image/png,image/jpeg"
                 style={{ marginLeft: 24 }}
-                onSelect={(e: any) => {
-                    if (
-                        e.type !== 'image/jpeg' &&
-                        e.type !== 'image/jpg' &&
-                        e.type !== 'image/png'
-                    ) {
-                        toast('仅支持png、jpg的图片类型', {
+                onComplete={(e: any) => {
+                    if (e.type !== 'image/jpeg' && e.type !== 'image/png') {
+                        toast('仅支持png、jpeg的图片类型', {
                             id: 'au-toast-error',
                             duration: 4000,
                             icon: '🧐',
@@ -54,7 +51,7 @@ function AvatarUpload({ avatarUrl }: IProps) {
                 >
                     上传头像
                 </Button>
-            </Upload>
+            </UploadArea>
             {cropVisible && (
                 <Crop
                     imgStr={cropAvatar}
