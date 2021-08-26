@@ -1,39 +1,36 @@
 import { observable, runInAction } from 'mobx'
-import { get, remove, set } from '@/utils/storage'
 
-import { StorageInfoKey } from '@/utils/constants'
+import { TokenKey } from '@/utils/constants'
+import Cookies from 'js-cookie'
 
-const state = observable({
-    uId: 0,
-    info: get(StorageInfoKey, null),
-    get isLogin() {
-        return this.info?.isLogin
+interface Info {
+    id: number
+    avatarUrl: string
+}
+
+const state: { info: Info; isLogin: boolean } = observable({
+    info: {
+        id: 0,
+        avatarUrl: '',
     },
+    isLogin: Cookies.get(TokenKey) !== undefined,
 })
 
 export default state
 
-export function savaUser(data: { info?: any; uId: number }) {
+export function setInfo(data: Info) {
     runInAction(() => {
-        state.uId = data.uId
-        if (data.info) {
-            state.info = data.info
+        state.info = data
+    })
+}
+
+export function clearInfo() {
+    runInAction(() => {
+        state.info = {
+            id: 0,
+            avatarUrl: '',
         }
+        state.isLogin = false
     })
-    if (data.info) {
-        set(StorageInfoKey, data.info)
-    }
-}
-
-export function reset() {
-    runInAction(() => {
-        state.info = null
-        state.uId = 0
-    })
-    remove(StorageInfoKey)
-}
-
-export function setInfo(obj: { avatarUrl?: string; nick?: string }) {
-    const assign = Object.assign(state.info, obj)
-    set(StorageInfoKey, assign)
+    Cookies.remove(TokenKey)
 }
