@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Dialog, DialogActions } from '@material-ui/core'
 import { Cell, CellGroup } from '@/components/Cell'
 import CoverUpload from '@/pages/creation/PushDialog/CoverUpload'
 
 interface IProps {
+    value: { cover: string | null }
     visible: boolean
     onClose: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void
     onConfirm: (extraParams: { [key: string]: any }) => void
 }
 
 function PushDialog(props: IProps) {
-    const [form, setForm] = useState<{ [key: string]: any }>({ cover: null })
+    const [form, setForm] = useState<{ [key: string]: any }>({})
+    useEffect(() => {
+        setForm(props.value)
+    }, [props.value])
     const handleConfirm = () => {
         props.onConfirm(form)
     }

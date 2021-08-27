@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Button, styled } from '@material-ui/core'
 import { toast } from 'react-hot-toast'
 
 interface IProps {
+    value: string
     onSubmit: (title: string) => void
 }
 
@@ -37,9 +38,12 @@ const TitleInput = styled('input')({
 
 const toastId = 'editor-header-warn'
 
-function PageHeader(props: IProps) {
+function PageHeader({ value, onSubmit }: IProps) {
     const [title, setTitle] = useState('')
     const history = useHistory()
+    useEffect(() => {
+        setTitle(value)
+    }, [value])
     const toHome = () => {
         history.replace('/')
     }
@@ -60,7 +64,7 @@ function PageHeader(props: IProps) {
             })
             return
         }
-        props.onSubmit(title)
+        onSubmit(title)
     }
     return (
         <Root>
