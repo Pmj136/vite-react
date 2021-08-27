@@ -25,7 +25,7 @@ function PushDialog(props: IProps) {
                 <Cell title="封面(可选)：" titleAlign="flex-start">
                     <CoverUpload
                         cover={form.cover}
-                        onUploaded={url => {
+                        onChange={url => {
                             setForm({ ...form, cover: url })
                         }}
                     />

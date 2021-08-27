@@ -42,7 +42,12 @@ function AppRouter() {
                         path="/user/:id/:type"
                         render={() => <Layout view={User} />}
                     />
-                    <Route path="/creation" component={Creation} />
+                    <AuthRoute
+                        authRedirect
+                        exact
+                        path="/creation"
+                        component={Creation}
+                    />
                     <AuthRoute
                         authRedirect
                         path="/setting/:component"
