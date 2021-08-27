@@ -47,11 +47,12 @@ export function getArticlesApi(params: {
     })
 }
 
-export function uploadImg(file: File) {
+export function uploadFileApi(dir: string, file: File) {
     const formData = new FormData()
+    formData.append('dir', dir)
     formData.append('file', file)
     return request({
-        url: '/img',
+        url: '/file/upload',
         method: 'post',
         headers: {
             'Content-Type': ContentType.FORM_DATA,
