@@ -1,8 +1,6 @@
 #rt-toolbar {
     position: sticky;
     top: var(--header-height);
-    background-color: #f1f1f1;
-    border-top: 1px solid #EEE;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -13,22 +11,10 @@
     background-color: transparent;
 }
 
-.w-e-text-container {
-    min-height: 100vh;
-    z-index: 1000 !important;
-    background-color: #fcfcfc;
-    /*background-color: transparent;*/
-}
-
 .w-e-text-container > .placeholder {
     color: #aaa;
 }
 
 .w-e-toolbar .w-e-menu {
     width: 45px;
-}
-
-[class^="w-e-icon-"], [class*=" w-e-icon-"] {
-    color: #777 !important;
-    font-size: 16px;
 }

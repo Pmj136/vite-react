@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button, styled } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
 import { toast } from 'react-hot-toast'
 
 interface IProps {
@@ -8,39 +8,46 @@ interface IProps {
     onSubmit: (title: string) => void
 }
 
-const Root = styled('div')({
-    position: 'sticky',
-    top: 0,
-    backgroundColor: ' #ffffff',
-    zIndex: 1200,
+const useThemeStyles = makeStyles(theme => {
+    return {
+        root: {
+            position: 'sticky',
+            top: 0,
+            backgroundColor: theme.palette.background.paper,
+            zIndex: 1200,
+            boxSizing: 'border-box',
+        },
+        wrap: {
+            display: 'flex',
+            alignItems: 'center',
+            margin: '0 auto',
+            width: 'var(--wrap-width)',
+            height: 'var(--header-height)',
+            boxSizing: 'border-box',
+        },
+        input: {
+            flex: 1,
+            marginRight: 16,
+            height: '100%',
+            padding: 0,
+            fontSize: '1.4rem',
+            border: 'none',
+            outline: 'none',
+            backgroundColor: 'transparent',
+            color: theme.palette.text.primary,
+            '&::placeholder': {
+                color: '#aaa',
+            },
+        },
+    }
 })
-const Wrap = styled('div')({
-    display: 'flex',
-    alignItems: 'center',
-    margin: '0 auto',
-    width: 'var(--wrap-width)',
-    height: 'var(--header-height)',
-    boxSizing: 'border-box',
-})
-const TitleInput = styled('input')({
-    flex: 1,
-    marginRight: 16,
-    height: '100%',
-    padding: 0,
-    fontSize: '1.4rem',
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'transparent',
-    '&::placeholder': {
-        color: '#aaa',
-    },
-})
-
 const toastId = 'editor-header-warn'
 
 function PageHeader({ value, onSubmit }: IProps) {
     const [title, setTitle] = useState('')
     const history = useHistory()
+    const themeStyles = useThemeStyles()
+
     useEffect(() => {
         setTitle(value)
     }, [value])
@@ -67,9 +74,10 @@ function PageHeader({ value, onSubmit }: IProps) {
         onSubmit(title)
     }
     return (
-        <Root>
-            <Wrap>
-                <TitleInput
+        <div className={themeStyles.root}>
+            <div className={themeStyles.wrap}>
+                <input
+                    className={themeStyles.input}
                     value={title}
                     type="text"
                     placeholder="输入文章标题"
@@ -93,8 +101,8 @@ function PageHeader({ value, onSubmit }: IProps) {
                         发布
                     </Button>
                 </section>
-            </Wrap>
-        </Root>
+            </div>
+        </div>
     )
 }
 

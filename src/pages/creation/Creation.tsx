@@ -13,12 +13,35 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 
 import './index.css'
-import { Backdrop, CircularProgress } from '@material-ui/core'
+import { Backdrop, CircularProgress, makeStyles } from '@material-ui/core'
 
 let editor: any
 const toastId = 'editor-rich-warn'
+const useThemeStyles = makeStyles(theme => {
+    const isLight = theme.palette.type === 'light'
+    return {
+        'rt-toolbar': {
+            backgroundColor: isLight ? '#f1f1f1' : '#4b4b4b',
+            '& [class^="w-e-icon-"], [class*=" w-e-icon-"]': {
+                color: isLight ? '#777' : '#ccc' + ' !important',
+                fontSize: 16,
+            },
+            '& .w-e-menu:hover': {
+                backgroundColor: isLight ? '' : '#424242 !important',
+            },
+        },
+        'rt-text-container': {
+            '&  .w-e-text-container': {
+                minHeight: '100vh',
+                zIndex: '1000 !important',
+                backgroundColor: isLight ? '#fff' : '#424242',
+            },
+        },
+    }
+})
 
 function Creation() {
+    const themeStyles = useThemeStyles()
     const [drawerVisible, setDrawerVisible] = useState(false)
     const [form, setForm] = useState({
         title: '',
@@ -28,6 +51,8 @@ function Creation() {
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const location = useLocation()
+
+    //判断是新增还是更新，若为更新则加载数据
     useEffect(() => {
         const articleId = location.state as number
         if (articleId !== undefined) {
@@ -37,7 +62,6 @@ function Creation() {
                     .then(res => {
                         const article = res.data
                         setForm({
-                            ...form,
                             ...article,
                             cover: article.cover === '' ? null : article.cover,
                         })
@@ -47,9 +71,11 @@ function Creation() {
                         setLoading(false)
                         clearTimeout(timer)
                     })
-            }, 500)
+            }, 400)
         }
     }, [])
+
+    //初始化编辑器
     useEffect(() => {
         editor = new E('#rt-toolbar', '#rt-text-container')
         editor.config.showMenuTooltips = true
@@ -103,6 +129,8 @@ function Creation() {
             editor.destroy()
         }
     }, [])
+
+    //显示确认发布弹框
     const showDialog = (title: string) => {
         const content = editor.txt.html()
         if (content === '') {
@@ -117,8 +145,10 @@ function Creation() {
         setDrawerVisible(true)
     }
 
+    //提交数据
     const pushData = (extraParams: { [key: string]: any }) => {
         const articleData: any = { ...form, ...extraParams }
+        setLoading(true)
         if (articleData.id !== undefined) {
             //有id存在，更新操作
             updateArticleApi(articleData).then(() => {
@@ -130,6 +160,8 @@ function Creation() {
             })
         }
     }
+
+    //关闭确认发布弹窗
     const handleDrawerClose = (e: any, reason: string) => {
         if (reason === 'backdropClick') return
         setDrawerVisible(false)
@@ -140,10 +172,13 @@ function Creation() {
                 <CircularProgress color="inherit" />
             </Backdrop>
             <PageHeader value={form.title} onSubmit={showDialog} />
-            <div id="rt-toolbar" />
+            <div id="rt-toolbar" className={themeStyles['rt-toolbar']} />
             <JPage directionMargin={16}>
                 <JPageSection xs={8.8}>
-                    <div id="rt-text-container" />
+                    <div
+                        id="rt-text-container"
+                        className={themeStyles['rt-text-container']}
+                    />
                 </JPageSection>
             </JPage>
             <PushDialog

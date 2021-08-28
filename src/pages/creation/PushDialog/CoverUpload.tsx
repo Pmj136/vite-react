@@ -9,25 +9,28 @@ interface IProps {
     onChange: (url: string | null) => void
 }
 
-const useStyles = makeStyles({
-    box: {
-        width: 100,
-        height: 100,
-        border: '1px dashed #d9d9d9',
-        borderRadius: 2,
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        backgroundColor: '#fafafa',
-        position: 'relative',
-    },
-    view: {
-        position: 'absolute',
-        top: 2,
-        right: 2,
-    },
+const useStyles = makeStyles(theme => {
+    const isLight = theme.palette.type === 'light'
+    return {
+        box: {
+            width: 100,
+            height: 100,
+            border: '1px dashed #aaa',
+            borderRadius: 2,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            backgroundColor: isLight ? '#fafafa' : '',
+            position: 'relative',
+        },
+        view: {
+            position: 'absolute',
+            top: 2,
+            right: 2,
+        },
+    }
 })
 
 function CoverUpload({ cover, onChange }: IProps) {
