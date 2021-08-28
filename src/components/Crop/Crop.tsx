@@ -29,7 +29,10 @@ function Crop({ imgStr, size = 400, onClose, onCrop }: IProps) {
         })
     }
     useEffect(() => {
-        document.body.setAttribute('style', 'padding-right:8px;overflow:hidden')
+        document.body.setAttribute(
+            'style',
+            'padding-right:12px;overflow:hidden'
+        )
         cropper = new Cropper(imgRef.current as HTMLImageElement)
         return () => {
             document.body.removeAttribute('style')
