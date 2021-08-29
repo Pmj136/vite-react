@@ -10,12 +10,14 @@ import Loading from '@/components/Loading'
 // import Search from '@/pages/search/Search'
 // import User from '@/pages/user/User'
 // import Setting from '@/pages/setting/Setting'
-// import Creation from "@/pages/creation/Creation";
+import Creation from '@/pages/creation/Creation'
+import Article from '@/pages/article/Article'
+
 const Post = lazy(() => import('@/pages/post/Post'))
 const About = lazy(() => import('@/pages/about/About'))
 const Search = lazy(() => import('@/pages/search/Search'))
 const User = lazy(() => import('@/pages/user/User'))
-const Creation = lazy(() => import('@/pages/creation/Creation'))
+// const Creation = lazy(() => import('@/pages/creation/Creation'))
 const Setting = lazy(() => import('@/pages/setting/Setting'))
 const Notification = lazy(() => import('@/pages/notification/Notification'))
 
@@ -33,6 +35,10 @@ function AppRouter() {
                     <Route
                         path="/about"
                         render={() => <Layout view={About} />}
+                    />
+                    <Route
+                        path="/article/:id"
+                        render={() => <Layout view={Article} />}
                     />
                     <Route
                         path="/search"
