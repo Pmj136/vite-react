@@ -32,6 +32,14 @@ export const light = createTheme({
                 },
             },
         },
+        MuiOutlinedInput: {
+            root: {
+                fontSize: 16,
+            },
+            multiline: {
+                padding: 10,
+            },
+        },
     },
 })
 
@@ -68,6 +76,14 @@ export const dark = createTheme({
                 '@media (min-width: 600px)': {
                     minWidth: 120,
                 },
+            },
+        },
+        MuiOutlinedInput: {
+            root: {
+                fontSize: 16,
+            },
+            multiline: {
+                padding: 10,
             },
         },
     },

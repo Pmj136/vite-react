@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import E from 'wangeditor'
 import { JPage, JPageSection } from '@/components/JPage'
 import PageHeader from './PageHeader'
@@ -46,6 +46,7 @@ function Creation() {
         title: '',
         cover: '',
         content: '',
+        briefContent: '',
     })
 
     const location = useLocation()
@@ -138,6 +139,14 @@ function Creation() {
         }
         setForm({ ...form, title, content })
         setDrawerVisible(true)
+    }
+    if (form.briefContent.length < 30) {
+        toast('摘要内容不得少于30字', {
+            id: toastId,
+            duration: 2500,
+            icon: '😅',
+        })
+        return Promise.reject()
     }
 
     //提交数据

@@ -1,17 +1,28 @@
 import React, { useState } from 'react'
-import { Button, Dialog, DialogActions } from '@material-ui/core'
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    FormControl,
+    OutlinedInput,
+} from '@material-ui/core'
 import { Cell, CellGroup } from '@/components/Cell'
 import CoverUpload from '@/pages/creation/PushDialog/CoverUpload'
 import { useHistory } from 'react-router-dom'
+import WordCounter from '@/pages/creation/PushDialog/WordCounter'
+import { toast } from 'react-hot-toast'
 
 interface IProps {
     type: string
     visible: boolean
     onClose: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void
-    value: { cover: string }
+    value: { cover: string; briefContent: string }
     onChange: (extraParams: { [key: string]: any }) => void
     onConfirm: () => Promise<any>
 }
+
+const MAX_WORDS_LEN = 100
 
 function PushDialog(props: IProps) {
     const [isLoading, setIsLoading] = useState(false)
@@ -24,6 +35,9 @@ function PushDialog(props: IProps) {
             .then(() => {
                 history.replace('/')
             })
+            .catch(() => {
+                console.log(1)
+            })
             .finally(() => {
                 setIsLoading(false)
             })
@@ -35,16 +49,64 @@ function PushDialog(props: IProps) {
             open={props.visible}
             onClose={props.onClose}
         >
-            <CellGroup>
-                <Cell title="封面(可选)：" titleAlign="flex-start">
-                    <CoverUpload
-                        cover={props.value.cover}
-                        onChange={url => {
-                            props.onChange({ cover: url })
-                        }}
-                    />
-                </Cell>
-            </CellGroup>
+            <DialogContent>
+                <CellGroup gap={6}>
+                    <Cell
+                        title="封面(可选)"
+                        disableGutters
+                        titleAlign="flex-start"
+                    >
+                        <CoverUpload
+                            cover={props.value.cover}
+                            onChange={url => {
+                                props.onChange({ cover: url })
+                            }}
+                        />
+                    </Cell>
+                    <Cell
+                        title="编辑摘要"
+                        disableGutters
+                        titleAlign="flex-start"
+                    >
+                        <FormControl hiddenLabel style={{ flex: 0.95 }}>
+                            <OutlinedInput
+                                value={props.value.briefContent}
+                                onChange={e => {
+                                    const newVal = e.target.value
+                                    if (newVal.length > MAX_WORDS_LEN) {
+                                        return
+                                    }
+                                    props.onChange({ briefContent: newVal })
+                                }}
+                                onPaste={e => {
+                                    const pasteTxt =
+                                        e.clipboardData.getData('text')
+                                    if (
+                                        pasteTxt.length +
+                                            props.value.briefContent.length >
+                                        100
+                                    ) {
+                                        toast('字数超出限制', {
+                                            id: 'toast-warn-inputPaste',
+                                            duration: 2500,
+                                            icon: '😅',
+                                        })
+                                    }
+                                }}
+                                multiline
+                                minRows={3}
+                                maxRows={3}
+                                placeholder="此处可以填写文章的主旨内容"
+                            />
+                            <WordCounter
+                                active={30}
+                                curr={props.value.briefContent.length}
+                                end={MAX_WORDS_LEN}
+                            />
+                        </FormControl>
+                    </Cell>
+                </CellGroup>
+            </DialogContent>
             <DialogActions>
                 <Button
                     size="small"
