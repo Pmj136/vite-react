@@ -6,11 +6,12 @@ interface IProps {
     title?: string
     children: ReactNode
     titleAlign?: Property.AlignSelf
+    disableGutters?: boolean
 }
 
-function Cell({ title, children, titleAlign }: IProps) {
+function Cell({ title, children, titleAlign, disableGutters = false }: IProps) {
     return (
-        <ListItem>
+        <ListItem disableGutters={disableGutters}>
             <div className="j-cell-title" style={{ alignSelf: titleAlign }}>
                 <Typography>{title}</Typography>
             </div>
