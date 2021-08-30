@@ -9,12 +9,11 @@ import {
 } from '@material-ui/core'
 import { Cell, CellGroup } from '@/components/Cell'
 import CoverUpload from '@/pages/creation/PushDialog/CoverUpload'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import WordCounter from '@/pages/creation/PushDialog/WordCounter'
 import { toast } from 'react-hot-toast'
 
 interface IProps {
-    type: string
     visible: boolean
     onClose: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void
     value: { cover: string; briefContent: string }
@@ -27,7 +26,8 @@ const MAX_WORDS_LEN = 100
 function PushDialog(props: IProps) {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
-    const typeStr = props.type === 'create' ? '发布' : '更新'
+    const location = useLocation()
+    const typeStr = location.state === undefined ? '发布' : '更新'
     const handleConfirm = () => {
         setIsLoading(true)
         props

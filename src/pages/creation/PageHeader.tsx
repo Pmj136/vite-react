@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { Button, makeStyles } from '@material-ui/core'
 import { toast } from 'react-hot-toast'
 
 interface IProps {
-    type: string
     value: string
     onSubmit: (title: string) => void
 }
@@ -44,9 +43,10 @@ const useThemeStyles = makeStyles(theme => {
 })
 const toastId = 'editor-header-warn'
 
-function PageHeader({ type, value, onSubmit }: IProps) {
+function PageHeader({ value, onSubmit }: IProps) {
     const [title, setTitle] = useState('')
     const history = useHistory()
+    const location = useLocation()
     const themeStyles = useThemeStyles()
 
     useEffect(() => {
@@ -99,7 +99,7 @@ function PageHeader({ type, value, onSubmit }: IProps) {
                         size="small"
                         onClick={doSubmit}
                     >
-                        {type === 'create' ? '发布' : '更新'}
+                        {location.state === undefined ? '发布' : '更新'}
                     </Button>
                 </section>
             </div>

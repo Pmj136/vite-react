@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import E from 'wangeditor'
 import { JPage, JPageSection } from '@/components/JPage'
 import PageHeader from './PageHeader'
@@ -48,19 +48,15 @@ function Creation() {
         content: '',
         briefContent: '',
     })
-
     const location = useLocation()
-    const type = useMemo(
-        () => (location.state !== undefined ? 'update' : 'create'),
-        [location.state]
-    )
 
     //判断是新增还是更新，若为更新则加载数据
     useEffect(() => {
-        if (type === 'update') {
+        const articleId = location.state
+        if (articleId !== undefined) {
             const timer = setTimeout(async () => {
                 try {
-                    const res = await getDetailApi(location.state as number)
+                    const res = await getDetailApi(articleId as number)
                     const article = res.data
                     setForm(article)
                     editor.txt.html(article.content)
@@ -167,7 +163,7 @@ function Creation() {
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <PageHeader type={type} value={form.title} onSubmit={showDialog} />
+            <PageHeader value={form.title} onSubmit={showDialog} />
             <div id="rt-toolbar" className={themeStyles['rt-toolbar']} />
             <JPage directionMargin={16}>
                 <JPageSection xs={8.8}>
@@ -178,7 +174,6 @@ function Creation() {
                 </JPageSection>
             </JPage>
             <PushDialog
-                type={type}
                 value={{ cover: form.cover, briefContent: form.briefContent }}
                 onChange={e => setForm({ ...form, ...e })}
                 visible={drawerVisible}
