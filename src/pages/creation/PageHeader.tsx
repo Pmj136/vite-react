@@ -4,6 +4,7 @@ import { Button, makeStyles } from '@material-ui/core'
 import { toast } from 'react-hot-toast'
 
 interface IProps {
+    type: string
     value: string
     onSubmit: (title: string) => void
 }
@@ -43,7 +44,7 @@ const useThemeStyles = makeStyles(theme => {
 })
 const toastId = 'editor-header-warn'
 
-function PageHeader({ value, onSubmit }: IProps) {
+function PageHeader({ type, value, onSubmit }: IProps) {
     const [title, setTitle] = useState('')
     const history = useHistory()
     const themeStyles = useThemeStyles()
@@ -98,7 +99,7 @@ function PageHeader({ value, onSubmit }: IProps) {
                         size="small"
                         onClick={doSubmit}
                     >
-                        发布
+                        {type === 'create' ? '发布' : '更新'}
                     </Button>
                 </section>
             </div>

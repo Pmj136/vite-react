@@ -5,6 +5,7 @@ import CoverUpload from '@/pages/creation/PushDialog/CoverUpload'
 import { useHistory } from 'react-router-dom'
 
 interface IProps {
+    type: string
     visible: boolean
     onClose: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void
     value: { cover: string }
@@ -15,6 +16,7 @@ interface IProps {
 function PushDialog(props: IProps) {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
+    const typeStr = props.type === 'create' ? '发布' : '更新'
     const handleConfirm = () => {
         setIsLoading(true)
         props
@@ -58,7 +60,7 @@ function PushDialog(props: IProps) {
                     disabled={isLoading}
                     onClick={handleConfirm}
                 >
-                    {isLoading ? '正在发布中' : '确定并发布'}
+                    {isLoading ? '正在发布中' : '确定并' + typeStr}
                 </Button>
             </DialogActions>
         </Dialog>

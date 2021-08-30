@@ -49,13 +49,17 @@ function Creation() {
     })
 
     const location = useLocation()
+    const type = useMemo(
+        () => (location.state !== undefined ? 'update' : 'create'),
+        [location.state]
+    )
+
     //判断是新增还是更新，若为更新则加载数据
     useEffect(() => {
-        const articleId = location.state
-        if (articleId !== undefined) {
+        if (type === 'update') {
             const timer = setTimeout(async () => {
                 try {
-                    const res = await getDetailApi(articleId as number)
+                    const res = await getDetailApi(location.state as number)
                     const article = res.data
                     setForm(article)
                     editor.txt.html(article.content)
@@ -154,12 +158,12 @@ function Creation() {
     return (
         <>
             <Backdrop
-                style={{ zIndex: 2000 }}
+                style={{ zIndex: 1000 }}
                 open={form.title === '' && location.state !== undefined}
             >
                 <CircularProgress color="inherit" />
             </Backdrop>
-            <PageHeader value={form.title} onSubmit={showDialog} />
+            <PageHeader type={type} value={form.title} onSubmit={showDialog} />
             <div id="rt-toolbar" className={themeStyles['rt-toolbar']} />
             <JPage directionMargin={16}>
                 <JPageSection xs={8.8}>
@@ -170,7 +174,8 @@ function Creation() {
                 </JPageSection>
             </JPage>
             <PushDialog
-                value={{ cover: form.cover }}
+                type={type}
+                value={{ cover: form.cover, briefContent: form.briefContent }}
                 onChange={e => setForm({ ...form, ...e })}
                 visible={drawerVisible}
                 onClose={handleDrawerClose}
