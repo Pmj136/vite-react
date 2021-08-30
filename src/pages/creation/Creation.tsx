@@ -9,11 +9,10 @@ import {
     updateArticleApi,
     uploadFileApi,
 } from '@/api/article'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
-
-import './index.css'
 import { Backdrop, CircularProgress, makeStyles } from '@material-ui/core'
+import './index.css'
 
 let editor: any
 const toastId = 'editor-rich-warn'
@@ -33,7 +32,7 @@ const useThemeStyles = makeStyles(theme => {
         'rt-text-container': {
             '&  .w-e-text-container': {
                 minHeight: '100vh',
-                zIndex: '1000 !important',
+                zIndex: '499 !important',
                 backgroundColor: isLight ? '#fff' : '#424242',
             },
         },
@@ -43,34 +42,29 @@ const useThemeStyles = makeStyles(theme => {
 function Creation() {
     const themeStyles = useThemeStyles()
     const [drawerVisible, setDrawerVisible] = useState(false)
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<any>({
         title: '',
         cover: null,
         content: '',
     })
-    const [loading, setLoading] = useState(false)
-    const history = useHistory()
-    const location = useLocation()
 
+    const location = useLocation()
     //判断是新增还是更新，若为更新则加载数据
     useEffect(() => {
-        const articleId = location.state as number
+        const articleId = location.state
         if (articleId !== undefined) {
-            setLoading(true)
-            const timer = setTimeout(() => {
-                getDetailApi(articleId)
-                    .then(res => {
-                        const article = res.data
-                        setForm({
-                            ...article,
-                            cover: article.cover === '' ? null : article.cover,
-                        })
-                        editor.txt.html(article.content)
+            const timer = setTimeout(async () => {
+                try {
+                    const res = await getDetailApi(articleId as number)
+                    const article = res.data
+                    setForm({
+                        ...article,
+                        cover: article.cover === '' ? null : article.cover,
                     })
-                    .finally(() => {
-                        setLoading(false)
-                        clearTimeout(timer)
-                    })
+                    editor.txt.html(article.content)
+                } finally {
+                    clearTimeout(timer)
+                }
             }, 400)
         }
     }, [])
@@ -146,19 +140,13 @@ function Creation() {
     }
 
     //提交数据
-    const pushData = (extraParams: { [key: string]: any }) => {
-        const articleData: any = { ...form, ...extraParams }
-        setLoading(true)
-        if (articleData.id !== undefined) {
+    const pushData = () => {
+        if (form.id !== undefined) {
             //有id存在，更新操作
-            updateArticleApi(articleData).then(() => {
-                history.replace('/')
-            })
-        } else {
-            addArticleApi(articleData).then(() => {
-                history.replace('/')
-            })
+            return updateArticleApi(form)
         }
+        //否则是插入操作
+        return addArticleApi(form)
     }
 
     //关闭确认发布弹窗
@@ -168,7 +156,10 @@ function Creation() {
     }
     return (
         <>
-            <Backdrop style={{ zIndex: 2000 }} open={loading}>
+            <Backdrop
+                style={{ zIndex: 2000 }}
+                open={form.title === '' && location.state !== undefined}
+            >
                 <CircularProgress color="inherit" />
             </Backdrop>
             <PageHeader value={form.title} onSubmit={showDialog} />
@@ -183,6 +174,7 @@ function Creation() {
             </JPage>
             <PushDialog
                 value={{ cover: form.cover }}
+                onChange={e => setForm({ ...form, ...e })}
                 visible={drawerVisible}
                 onClose={handleDrawerClose}
                 onConfirm={pushData}

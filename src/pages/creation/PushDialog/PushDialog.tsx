@@ -1,22 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Dialog, DialogActions } from '@material-ui/core'
 import { Cell, CellGroup } from '@/components/Cell'
 import CoverUpload from '@/pages/creation/PushDialog/CoverUpload'
+import { useHistory } from 'react-router-dom'
 
 interface IProps {
-    value: { cover: string | null }
     visible: boolean
     onClose: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void
-    onConfirm: (extraParams: { [key: string]: any }) => void
+    value: { cover: string | null }
+    onChange: (extraParams: { [key: string]: any }) => void
+    onConfirm: () => Promise<any>
 }
 
 function PushDialog(props: IProps) {
-    const [form, setForm] = useState<{ [key: string]: any }>({})
-    useEffect(() => {
-        setForm(props.value)
-    }, [props.value])
+    const [isLoading, setIsLoading] = useState(false)
+    const history = useHistory()
     const handleConfirm = () => {
-        props.onConfirm(form)
+        setIsLoading(true)
+        props
+            .onConfirm()
+            .then(() => {
+                history.replace('/')
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
     }
     return (
         <Dialog
@@ -28,9 +36,9 @@ function PushDialog(props: IProps) {
             <CellGroup>
                 <Cell title="封面(可选)：" titleAlign="flex-start">
                     <CoverUpload
-                        cover={form.cover}
+                        cover={props.value.cover}
                         onChange={url => {
-                            setForm({ ...form, cover: url })
+                            props.onChange({ cover: url })
                         }}
                     />
                 </Cell>
@@ -47,9 +55,10 @@ function PushDialog(props: IProps) {
                     size="small"
                     variant="contained"
                     color="primary"
+                    disabled={isLoading}
                     onClick={handleConfirm}
                 >
-                    确定并发布
+                    {isLoading ? '正在发布中' : '确定并发布'}
                 </Button>
             </DialogActions>
         </Dialog>

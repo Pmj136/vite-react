@@ -14,7 +14,7 @@ const useThemeStyles = makeStyles(theme => {
             position: 'sticky',
             top: 0,
             backgroundColor: theme.palette.background.paper,
-            zIndex: 1200,
+            zIndex: 500,
             boxSizing: 'border-box',
         },
         wrap: {
