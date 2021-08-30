@@ -15,7 +15,7 @@ import { Backdrop, CircularProgress, makeStyles } from '@material-ui/core'
 import './index.css'
 
 let editor: any
-const toastId = 'editor-rich-warn'
+const toastId = 'editor-warn-creation'
 const useThemeStyles = makeStyles(theme => {
     const isLight = theme.palette.type === 'light'
     return {
@@ -140,17 +140,12 @@ function Creation() {
         setForm({ ...form, title, content })
         setDrawerVisible(true)
     }
-    if (form.briefContent.length < 30) {
-        toast('摘要内容不得少于30字', {
-            id: toastId,
-            duration: 2500,
-            icon: '😅',
-        })
-        return Promise.reject()
-    }
 
     //提交数据
     const pushData = () => {
+        if (form.briefContent.length < 30) {
+            return Promise.reject('摘要内容不得少于30字')
+        }
         if (form.id !== undefined) {
             //有id存在，更新操作
             return updateArticleApi(form)

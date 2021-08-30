@@ -35,8 +35,12 @@ function PushDialog(props: IProps) {
             .then(() => {
                 history.replace('/')
             })
-            .catch(() => {
-                console.log(1)
+            .catch(msg => {
+                toast(msg, {
+                    id: 'toast-warn-contentNull',
+                    duration: 2500,
+                    icon: '😅',
+                })
             })
             .finally(() => {
                 setIsLoading(false)
