@@ -44,7 +44,7 @@ function Creation() {
     const [drawerVisible, setDrawerVisible] = useState(false)
     const [form, setForm] = useState<any>({
         title: '',
-        cover: null,
+        cover: '',
         content: '',
     })
 
@@ -57,10 +57,7 @@ function Creation() {
                 try {
                     const res = await getDetailApi(articleId as number)
                     const article = res.data
-                    setForm({
-                        ...article,
-                        cover: article.cover === '' ? null : article.cover,
-                    })
+                    setForm(article)
                     editor.txt.html(article.content)
                 } finally {
                     clearTimeout(timer)

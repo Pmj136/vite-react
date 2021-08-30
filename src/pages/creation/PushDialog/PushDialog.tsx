@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 interface IProps {
     visible: boolean
     onClose: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void
-    value: { cover: string | null }
+    value: { cover: string }
     onChange: (extraParams: { [key: string]: any }) => void
     onConfirm: () => Promise<any>
 }
