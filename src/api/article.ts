@@ -27,11 +27,13 @@ export function updateArticleApi(data: any) {
     })
 }
 
-export function getDetailApi(params: { id: number }) {
+export function getDetailApi(id: number) {
     return request({
         url: '/article',
         method: 'get',
-        params,
+        params: {
+            id,
+        },
     })
 }
 
