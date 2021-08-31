@@ -5,7 +5,7 @@ import { Add, HighlightOff } from '@material-ui/icons'
 import { uploadFileApi } from '@/api/article'
 
 interface IProps {
-    cover: string
+    value: string
     onChange: (url: string) => void
 }
 
@@ -19,13 +19,13 @@ const useStyles = makeStyles(theme => {
         },
         box: {
             border: '1px dashed #aaa',
-            borderRadius: 2,
+            borderRadius: 4,
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             flexDirection: 'column',
             justifyContent: 'center',
-            backgroundColor: isLight ? '#fafafa' : '',
+            backgroundColor: isLight ? '#fff' : '',
         },
         view: {
             position: 'absolute',
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => {
     }
 })
 
-function CoverUpload({ cover, onChange }: IProps) {
+function CoverUpload({ value, onChange }: IProps) {
     const [isLoading, setIsLoading] = useState(false)
     const styles = useStyles()
     const removeImg = (e: any) => {
@@ -62,11 +62,11 @@ function CoverUpload({ cover, onChange }: IProps) {
                     })
             }}
         >
-            {cover !== '' ? (
+            {value !== '' ? (
                 <div className={styles.size100}>
                     <img
                         style={{ width: '100%', height: '100%' }}
-                        src={cover}
+                        src={value}
                         alt=""
                     />
                     <HighlightOff
