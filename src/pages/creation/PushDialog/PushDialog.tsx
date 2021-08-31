@@ -37,7 +37,7 @@ function PushDialog(props: IProps) {
             })
             .catch(msg => {
                 toast(msg, {
-                    id: 'toast-warn-contentNull',
+                    id: 'toast-warn-catch',
                     duration: 2500,
                     icon: '😅',
                 })
@@ -88,7 +88,7 @@ function PushDialog(props: IProps) {
                                     if (
                                         pasteTxt.length +
                                             props.value.briefContent.length >
-                                        100
+                                        MAX_WORDS_LEN
                                     ) {
                                         toast('字数超出限制', {
                                             id: 'toast-warn-inputPaste',
