@@ -44,9 +44,11 @@ function Creation() {
     const [drawerVisible, setDrawerVisible] = useState(false)
     const [form, setForm] = useState<any>({
         title: '',
-        cover: '',
         content: '',
+        cover: '',
         briefContent: '',
+        tagId: 0,
+        tagName: '',
     })
     const location = useLocation()
 
@@ -63,7 +65,7 @@ function Creation() {
                 } finally {
                     clearTimeout(timer)
                 }
-            }, 400)
+            }, 200)
         }
     }, [])
 
@@ -139,6 +141,9 @@ function Creation() {
 
     //提交数据
     const pushData = () => {
+        if (form.tagId === 0) {
+            return Promise.reject('请选择文章标签')
+        }
         if (form.briefContent.length < 30) {
             return Promise.reject('摘要内容不得少于30字')
         }
@@ -174,7 +179,14 @@ function Creation() {
                 </JPageSection>
             </JPage>
             <PushDialog
-                value={{ cover: form.cover, briefContent: form.briefContent }}
+                value={{
+                    tagInfo: {
+                        id: form.tagId,
+                        name: form.tagName,
+                    },
+                    cover: form.cover,
+                    briefContent: form.briefContent,
+                }}
                 onChange={e => setForm({ ...form, ...e })}
                 visible={drawerVisible}
                 onClose={handleDrawerClose}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, ClipboardEvent, useState } from 'react'
 import {
     Button,
     Dialog,
@@ -8,15 +8,27 @@ import {
     OutlinedInput,
 } from '@material-ui/core'
 import { Cell, CellGroup } from '@/components/Cell'
-import CoverUpload from '@/pages/creation/PushDialog/CoverUpload'
 import { useHistory, useLocation } from 'react-router-dom'
-import WordCounter from '@/pages/creation/PushDialog/WordCounter'
 import { toast } from 'react-hot-toast'
+import CoverUpload from './CoverUpload'
+import WordCounter from './WordCounter'
+import TagSelector from './TagSelector'
+
+interface IDialogState {
+    tagInfo:
+        | {
+              id: number
+              name: string
+          }
+        | undefined
+    cover: string
+    briefContent: string
+}
 
 interface IProps {
     visible: boolean
     onClose: (event: any, reason: 'backdropClick' | 'escapeKeyDown') => void
-    value: { cover: string; briefContent: string }
+    value: IDialogState
     onChange: (extraParams: { [key: string]: any }) => void
     onConfirm: () => Promise<any>
 }
@@ -27,7 +39,34 @@ function PushDialog(props: IProps) {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
     const location = useLocation()
-    const typeStr = location.state === undefined ? '发布' : '更新'
+    //标签变化
+    const handleTagChange = (newState: { id: number; name: string }) => {
+        props.onChange(newState)
+    }
+    // 封面变化
+    const handleCoverChange = (url: string) => {
+        props.onChange({ cover: url })
+    }
+    //摘要变化
+    const handleBriefContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const newVal = e.target.value
+        if (newVal.length > MAX_WORDS_LEN) {
+            return
+        }
+        props.onChange({ briefContent: newVal })
+    }
+    //粘贴至摘要
+    const handleBriefContentPaste = (e: ClipboardEvent) => {
+        const pasteTxt = e.clipboardData.getData('text')
+        if (pasteTxt.length + props.value.briefContent.length > MAX_WORDS_LEN) {
+            toast('字数超出限制', {
+                id: 'toast-warn-inputPaste',
+                duration: 2500,
+                icon: '😅',
+            })
+        }
+    }
+    //提交
     const handleConfirm = () => {
         setIsLoading(true)
         props
@@ -49,22 +88,26 @@ function PushDialog(props: IProps) {
     return (
         <Dialog
             fullWidth
-            maxWidth="xs"
+            maxWidth="sm"
             open={props.visible}
             onClose={props.onClose}
         >
             <DialogContent>
-                <CellGroup gap={6}>
+                <CellGroup gap={10}>
+                    <Cell disableGutters title="文章标签">
+                        <TagSelector
+                            value={props.value.tagInfo}
+                            onChange={handleTagChange}
+                        />
+                    </Cell>
                     <Cell
                         title="封面(可选)"
                         disableGutters
                         titleAlign="flex-start"
                     >
                         <CoverUpload
-                            cover={props.value.cover}
-                            onChange={url => {
-                                props.onChange({ cover: url })
-                            }}
+                            value={props.value.cover}
+                            onChange={handleCoverChange}
                         />
                     </Cell>
                     <Cell
@@ -72,35 +115,15 @@ function PushDialog(props: IProps) {
                         disableGutters
                         titleAlign="flex-start"
                     >
-                        <FormControl hiddenLabel style={{ flex: 0.95 }}>
+                        <FormControl hiddenLabel style={{ flex: 0.9 }}>
                             <OutlinedInput
-                                value={props.value.briefContent}
-                                onChange={e => {
-                                    const newVal = e.target.value
-                                    if (newVal.length > MAX_WORDS_LEN) {
-                                        return
-                                    }
-                                    props.onChange({ briefContent: newVal })
-                                }}
-                                onPaste={e => {
-                                    const pasteTxt =
-                                        e.clipboardData.getData('text')
-                                    if (
-                                        pasteTxt.length +
-                                            props.value.briefContent.length >
-                                        MAX_WORDS_LEN
-                                    ) {
-                                        toast('字数超出限制', {
-                                            id: 'toast-warn-inputPaste',
-                                            duration: 2500,
-                                            icon: '😅',
-                                        })
-                                    }
-                                }}
                                 multiline
                                 minRows={3}
                                 maxRows={3}
                                 placeholder="此处可以填写文章的主旨内容"
+                                value={props.value.briefContent}
+                                onChange={handleBriefContentChange}
+                                onPaste={handleBriefContentPaste}
                             />
                             <WordCounter
                                 active={30}
@@ -126,7 +149,10 @@ function PushDialog(props: IProps) {
                     disabled={isLoading}
                     onClick={handleConfirm}
                 >
-                    {isLoading ? '正在发布中' : '确定并' + typeStr}
+                    {isLoading
+                        ? '正在发布中'
+                        : '确定并' +
+                          (location.state === undefined ? '发布' : '更新')}
                 </Button>
             </DialogActions>
         </Dialog>
