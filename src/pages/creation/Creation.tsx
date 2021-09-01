@@ -142,7 +142,7 @@ function Creation() {
     //提交数据
     const pushData = () => {
         if (form.tagId === 0) {
-            return Promise.reject('请选择文章标签')
+            return Promise.reject('请添加一个文章标签')
         }
         if (form.briefContent.length < 30) {
             return Promise.reject('摘要内容不得少于30字')

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ClipboardEvent, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Button,
     Dialog,
@@ -15,12 +15,10 @@ import WordCounter from './WordCounter'
 import TagSelector from './TagSelector'
 
 interface IDialogState {
-    tagInfo:
-        | {
-              id: number
-              name: string
-          }
-        | undefined
+    tagInfo: {
+        id: number
+        name: string
+    }
     cover: string
     briefContent: string
 }
@@ -34,38 +32,18 @@ interface IProps {
 }
 
 const MAX_WORDS_LEN = 100
+const toastId = 'toast-warn-pushDialog'
 
 function PushDialog(props: IProps) {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
     const location = useLocation()
-    //标签变化
-    const handleTagChange = (newState: { id: number; name: string }) => {
-        props.onChange(newState)
-    }
-    // 封面变化
-    const handleCoverChange = (url: string) => {
-        props.onChange({ cover: url })
-    }
-    //摘要变化
-    const handleBriefContentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const newVal = e.target.value
-        if (newVal.length > MAX_WORDS_LEN) {
-            return
+    useEffect(() => {
+        return () => {
+            toast.dismiss(toastId)
+            setIsLoading(false)
         }
-        props.onChange({ briefContent: newVal })
-    }
-    //粘贴至摘要
-    const handleBriefContentPaste = (e: ClipboardEvent) => {
-        const pasteTxt = e.clipboardData.getData('text')
-        if (pasteTxt.length + props.value.briefContent.length > MAX_WORDS_LEN) {
-            toast('字数超出限制', {
-                id: 'toast-warn-inputPaste',
-                duration: 2500,
-                icon: '😅',
-            })
-        }
-    }
+    }, [])
     //提交
     const handleConfirm = () => {
         setIsLoading(true)
@@ -76,12 +54,10 @@ function PushDialog(props: IProps) {
             })
             .catch(msg => {
                 toast(msg, {
-                    id: 'toast-warn-catch',
+                    id: toastId,
                     duration: 2500,
                     icon: '😅',
                 })
-            })
-            .finally(() => {
                 setIsLoading(false)
             })
     }
@@ -94,10 +70,10 @@ function PushDialog(props: IProps) {
         >
             <DialogContent>
                 <CellGroup gap={10}>
-                    <Cell disableGutters title="文章标签">
+                    <Cell title="文章标签" disableGutters>
                         <TagSelector
                             value={props.value.tagInfo}
-                            onChange={handleTagChange}
+                            onChange={newState => props.onChange(newState)}
                         />
                     </Cell>
                     <Cell
@@ -107,7 +83,7 @@ function PushDialog(props: IProps) {
                     >
                         <CoverUpload
                             value={props.value.cover}
-                            onChange={handleCoverChange}
+                            onChange={url => props.onChange({ cover: url })}
                         />
                     </Cell>
                     <Cell
@@ -122,8 +98,30 @@ function PushDialog(props: IProps) {
                                 maxRows={3}
                                 placeholder="此处可以填写文章的主旨内容"
                                 value={props.value.briefContent}
-                                onChange={handleBriefContentChange}
-                                onPaste={handleBriefContentPaste}
+                                onPaste={e => {
+                                    //用户粘贴时检测字数是否超出限制
+                                    const pasteTxt =
+                                        e.clipboardData.getData('text')
+                                    if (
+                                        pasteTxt.length +
+                                            props.value.briefContent.length >
+                                        MAX_WORDS_LEN
+                                    ) {
+                                        toast('字数超出限制', {
+                                            id: toastId,
+                                            duration: 2500,
+                                            icon: '😅',
+                                        })
+                                    }
+                                }}
+                                onChange={e => {
+                                    //字数检测
+                                    const newVal = e.target.value
+                                    if (newVal.length > MAX_WORDS_LEN) {
+                                        return
+                                    }
+                                    props.onChange({ briefContent: newVal })
+                                }}
                             />
                             <WordCounter
                                 active={30}

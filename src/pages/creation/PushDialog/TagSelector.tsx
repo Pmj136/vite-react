@@ -22,8 +22,19 @@ const hasItem = (raw: OptionType[], k: string) => {
 }
 
 function TagSelector(props: IProps) {
+    const [info, setInfo] = useState(props.value)
     const [isLoading, setIsLoading] = useState(false)
     const [options, setOptions] = useState<OptionType[]>([])
+
+    useEffect(() => {
+        if (props.value.id !== 0) {
+            setOptions([props.value])
+        }
+    }, [])
+    useEffect(() => {
+        setInfo(props.value)
+    }, [props.value])
+
     //防抖搜索 tag
     const searchTags = useDebouncedCallback((value: string) => {
         getTagsApi(value)
@@ -37,13 +48,7 @@ function TagSelector(props: IProps) {
             .finally(() => {
                 setIsLoading(false)
             })
-    }, 500)
-    useEffect(() => {
-        if (props.value.id !== 0) {
-            setOptions([props.value])
-        }
-    }, [])
-
+    }, 800)
     //用户输入值变化
     const handleInputChange = (e: any, value: string, reason: string) => {
         if (reason === 'reset') return
@@ -51,6 +56,7 @@ function TagSelector(props: IProps) {
             setOptions([])
             return
         }
+        setInfo({ id: 0, name: value })
         setIsLoading(true)
         searchTags(value)
     }
@@ -65,6 +71,8 @@ function TagSelector(props: IProps) {
                     props.onChange({ tagId: res.data, tagName })
                 })
             }
+        } else {
+            props.onChange({ tagId: 0, tagName: '' })
         }
     }
     return (
@@ -74,7 +82,7 @@ function TagSelector(props: IProps) {
             size="small"
             loadingText="加载中……"
             noOptionsText="输入关键词搜索"
-            value={props.value}
+            value={info}
             options={options}
             onChange={handleChange}
             filterOptions={opt => opt}
