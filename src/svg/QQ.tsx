@@ -1,14 +1,20 @@
 import React from 'react'
 
-function Qq() {
+interface IProps {
+    size?: number
+    pointer?: boolean
+}
+
+function Qq({ size = 36, pointer = true }: IProps) {
     return (
         <svg
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             p-id="11851"
-            width="36"
-            height="36"
+            width={size}
+            height={size}
+            style={{ cursor: pointer ? 'pointer' : '' }}
         >
             <path
                 d="M511.037 986.94c-85.502 0-163.986-26.686-214.517-66.544-25.66 7.149-58.486 18.655-79.202 32.921-17.725 12.202-15.516 24.647-12.32 29.67 14.027 22.069 240.622 14.092 306.04 7.219v-3.265z"
