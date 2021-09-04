@@ -8,7 +8,7 @@ interface IProps {
 
 function CellGroup({ gap = 24, children }: IProps) {
     return (
-        <List style={{ gap, display: 'flex', flexDirection: 'column' }}>
+        <List className="j-cell-group" style={{ gap }}>
             {children}
         </List>
     )
