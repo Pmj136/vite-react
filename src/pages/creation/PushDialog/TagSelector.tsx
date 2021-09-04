@@ -95,7 +95,7 @@ function TagSelector(props: IProps) {
             renderInput={params => (
                 <TextField
                     {...params}
-                    placeholder="请搜索添加标签"
+                    placeholder="添加文章标签"
                     variant="outlined"
                 />
             )}
