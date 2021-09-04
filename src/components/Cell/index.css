@@ -1,3 +1,8 @@
+.j-cell-group {
+    display: flex;
+    flex-direction: column;
+}
+
 .j-cell-title {
     min-width: 90px;
     flex-shrink: 0;
