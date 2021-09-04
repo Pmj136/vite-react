@@ -5,7 +5,7 @@ import { IUser } from '@/types/user'
 //全局授权检测
 export function authApi() {
     return request({
-        url: '/user/auth',
+        url: '/user/authorization',
         method: 'get',
     })
 }
