@@ -3,6 +3,7 @@ import UploadArea from '@/components/UploadArea'
 import { CircularProgress, makeStyles, Typography } from '@material-ui/core'
 import { Add, HighlightOff } from '@material-ui/icons'
 import { uploadFileApi } from '@/api/article'
+import classNames from 'classnames'
 
 interface IProps {
     value: string
@@ -45,7 +46,7 @@ function CoverUpload({ value, onChange }: IProps) {
     }
     if (isLoading)
         return (
-            <div className={[styles.size100, styles.box].join(' ')}>
+            <div className={classNames(styles.size100, styles.box)}>
                 <CircularProgress color="inherit" size={20} />
             </div>
         )
@@ -76,7 +77,7 @@ function CoverUpload({ value, onChange }: IProps) {
                     />
                 </div>
             ) : (
-                <div className={[styles.size100, styles.box].join(' ')}>
+                <div className={classNames(styles.size100, styles.box)}>
                     <Add fontSize="large" color="disabled" />
                     <Typography variant="body2" color="textSecondary">
                         上传封面
