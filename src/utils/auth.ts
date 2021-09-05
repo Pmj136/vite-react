@@ -7,7 +7,7 @@ export default function () {
             setInfo(res.data)
         })
         .catch(e => {
-            if (e.error !== undefined) {
+            if (e.error !== undefined && e.error > 0) {
                 clearInfo()
             }
         })
