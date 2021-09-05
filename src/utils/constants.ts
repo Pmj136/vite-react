@@ -5,4 +5,4 @@ export const ContentType = {
 }
 
 export const StorageThemeKey = 'theme'
-export const TokenKey = 'U_TOKEN'
+export const TokenKey = 'u_token'
