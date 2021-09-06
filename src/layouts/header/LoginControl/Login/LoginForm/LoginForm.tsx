@@ -55,6 +55,7 @@ function LoginForm() {
             loginApi({ ...e, type: loginType })
                 .then(() => {
                     toast.success('登录成功')
+                    setLoginDialogVisible(false)
                     history.go(0)
                 })
                 .finally(() => {
