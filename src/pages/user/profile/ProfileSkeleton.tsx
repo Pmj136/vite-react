@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import styles from './profile.module.css'
 
