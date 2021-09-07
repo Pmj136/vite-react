@@ -1,26 +1,32 @@
 import React from 'react'
-import Page from '@/components/Page'
+import { JPage, JPageSection } from '@/components/JPage'
 import ArticleList from '@/pages/home/ArticleList'
-import { Card } from '@material-ui/core'
+import { Card, styled } from '@material-ui/core'
 
 // import dayjs from 'dayjs'
 
 // console.log(dayjs().format('YYYY-MM-DD'))
+const MyDiv = styled('div')({
+    cursor: 'pointer',
+})
+
 function Home() {
+    console.log('render')
+    // const styles=useStyles()
     return (
-        <Page>
-            <Page.Section xs={9}>
+        <JPage>
+            <JPageSection xs={9}>
                 <ArticleList />
-            </Page.Section>
-            <Page.Section xs={3}>
-                <div style={{ position: 'sticky', top: 80 }}>
+            </JPageSection>
+            <JPageSection xs={3}>
+                <MyDiv>
                     test
                     <Card elevation={0} square>
                         <p>1111</p>
                     </Card>
-                </div>
-            </Page.Section>
-        </Page>
+                </MyDiv>
+            </JPageSection>
+        </JPage>
     )
 }
 
