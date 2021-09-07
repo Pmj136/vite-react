@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, ListItem, ListItemIcon, Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { AccountCircle, Settings, VisibilityOff } from '@material-ui/icons'
+import { AccountCircle, Settings } from '@material-ui/icons'
 
 interface IProps {
     currComponent: string
