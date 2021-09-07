@@ -22,11 +22,13 @@ const useThemeStyles = makeStyles(theme => {
         'rt-toolbar': {
             backgroundColor: isLight ? '#f1f1f1' : '#4b4b4b',
             '& [class^="w-e-icon-"], [class*=" w-e-icon-"]': {
-                color: isLight ? '#777' : '#ccc' + ' !important',
+                color: '#777',
                 fontSize: 16,
             },
             '& .w-e-menu:hover': {
-                backgroundColor: isLight ? '' : '#424242 !important',
+                backgroundColor: isLight
+                    ? '#ddd !important'
+                    : '#666 !important',
             },
         },
         'rt-text-container': {
