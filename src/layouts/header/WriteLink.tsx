@@ -13,7 +13,7 @@ function WriteLink() {
             setLoginDialogVisible(true)
             return
         }
-        history.push('/push')
+        history.push('/creation')
     }
     return (
         <Button
