@@ -14,4 +14,6 @@ export interface IUser {
     giteeNick?: string
     createAt?: string
     state?: number
+    isFollow?: boolean
+    isSetPassword?: boolean
 }

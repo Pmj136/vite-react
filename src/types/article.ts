@@ -1,13 +1,15 @@
 export interface IArticle {
     id: number
-    cover: null | string
+    cover: string
     title: string
     content: string
     browseCount: number
     commentCount: number
     likeCount: number
-    createId: number
+    createId?: number
     createTime: string
-    userId: number
-    userNick: string
+    author: {
+        id: number
+        nick: string
+    }
 }
