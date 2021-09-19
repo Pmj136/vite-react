@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from '@material-ui/core'
+import { Card } from '@mui/material'
 import { IArticle } from '@/types/article'
 import Image from '@/components/Image/Image'
 

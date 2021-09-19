@@ -1,6 +1,6 @@
 import React from 'react'
 import { JPage, JPageSection } from '@/components/JPage'
-import { Card } from '@material-ui/core'
+import { Card } from '@mui/material'
 import Profile from './profile/Profile'
 import DataList from './data-list/DataList'
 import useFetch from '@/hooks/useFetch'

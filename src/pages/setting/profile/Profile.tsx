@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControlLabel, Input, Radio, RadioGroup } from '@material-ui/core'
+import { FormControlLabel, Input, Radio, RadioGroup } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { Cell, CellGroup } from '@/components/Cell'
 import AvatarUpload from '@/pages/setting/profile/AvatarUpload'

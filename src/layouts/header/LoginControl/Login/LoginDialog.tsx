@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react'
-import { Dialog, Slide } from '@material-ui/core'
-import type { TransitionProps } from '@material-ui/core/transitions'
+import { Dialog, Slide } from '@mui/material'
+import type { TransitionProps } from '@mui/material/transitions'
 import { observer } from 'mobx-react-lite'
 import state from '@/store/appStore'
 

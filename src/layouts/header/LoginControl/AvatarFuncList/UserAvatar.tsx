@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, IconButton } from '@material-ui/core'
+import { Avatar, IconButton } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 
 interface IProps {

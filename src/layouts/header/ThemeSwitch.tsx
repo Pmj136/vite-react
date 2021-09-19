@@ -1,6 +1,6 @@
 import React, { createElement } from 'react'
-import { Brightness7Outlined, Brightness4Outlined } from '@material-ui/icons'
-import { IconButton } from '@material-ui/core'
+import { Brightness7Outlined, Brightness4Outlined } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import state, { setTheme } from '@/store/appStore'
 

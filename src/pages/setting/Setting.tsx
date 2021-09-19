@@ -7,7 +7,7 @@ import Profile from './profile/Profile'
 import Account from './account/Account'
 import { getProfileApi } from '@/api/user'
 
-import { Card } from '@material-ui/core'
+import { Card } from '@mui/material'
 import useFetch from '@/hooks/useFetch'
 import type { IUser } from '@/types/user'
 

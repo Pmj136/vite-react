@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import styles from './_.module.css'
-import { Backdrop, Button } from '@material-ui/core'
+import { Backdrop, Button } from '@mui/material'
 
 interface IProps {
     size?: number

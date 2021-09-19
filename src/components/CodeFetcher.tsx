@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import { sendCodeApi } from '@/api/user'
 import { toast } from 'react-hot-toast'
 

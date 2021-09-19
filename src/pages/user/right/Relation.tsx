@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Typography } from '@material-ui/core'
+import { Button, Card, Typography } from '@mui/material'
 import styles from './relation.module.css'
 import ButtonLink from '@/components/ButtonLink'
 import AnimationNumber from '@/components/AnimationNumber'

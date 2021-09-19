@@ -1,6 +1,6 @@
 import React from 'react'
 import Article from '@/components/Article/Article'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import { getArticlesApi } from '@/api/article'
 import { InfiniteScroll, useLazyFetch } from '@/components/InfiniteScroll'
 import ArticleSkeleton from '@/components/LoadingSkeleton/ArticleSkeleton'

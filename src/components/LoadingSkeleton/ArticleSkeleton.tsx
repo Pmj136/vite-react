@@ -1,6 +1,5 @@
 import React from 'react'
-import { Skeleton } from '@material-ui/lab'
-import { Card } from '@material-ui/core'
+import { Card, Skeleton } from '@mui/material'
 
 interface IProps {
     show: boolean

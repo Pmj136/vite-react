@@ -1,6 +1,6 @@
 import React from 'react'
 import { CellGroup, Cell, CellRest } from '@/components/Cell'
-import { Button, Typography } from '@material-ui/core'
+import { Button, Typography } from '@mui/material'
 import PasswordCellRest from './PasswordCellRest/PasswordCellRest'
 import EmailCellRest from './EmailCellRest'
 

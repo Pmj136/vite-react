@@ -1,5 +1,5 @@
 import React, { ChangeEvent, ForwardedRef, forwardRef } from 'react'
-import { Tab, Tabs } from '@material-ui/core'
+import { Tab, Tabs } from '@mui/material'
 import { useHistory, useParams } from 'react-router-dom'
 
 type TabType = 'dynamic' | 'creation' | 'collection' | 'follow' | 'fans'

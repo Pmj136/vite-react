@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { List } from '@material-ui/core'
+import { List } from '@mui/material'
 
 interface IProps {
     gap?: number

@@ -1,53 +1,53 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import { Button, makeStyles } from '@material-ui/core'
+import { Button } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import { toast } from 'react-hot-toast'
+import type { Theme } from '@mui/material'
 
 interface IProps {
     value: string
     onSubmit: (title: string) => void
 }
 
-const useThemeStyles = makeStyles(theme => {
-    return {
-        root: {
-            position: 'sticky',
-            top: 0,
-            backgroundColor: theme.palette.background.paper,
-            zIndex: 500,
-            boxSizing: 'border-box',
+const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+        position: 'sticky',
+        top: 0,
+        backgroundColor: theme.palette.background.paper,
+        zIndex: 500,
+        boxSizing: 'border-box',
+    },
+    wrap: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: '0 auto',
+        width: 'var(--wrap-width)',
+        height: 'var(--header-height)',
+        boxSizing: 'border-box',
+    },
+    input: {
+        flex: 1,
+        marginRight: 16,
+        height: '100%',
+        padding: 0,
+        fontSize: '1.4rem',
+        border: 'none',
+        outline: 'none',
+        backgroundColor: 'transparent',
+        color: theme.palette.text.primary,
+        '&::placeholder': {
+            color: '#aaa',
         },
-        wrap: {
-            display: 'flex',
-            alignItems: 'center',
-            margin: '0 auto',
-            width: 'var(--wrap-width)',
-            height: 'var(--header-height)',
-            boxSizing: 'border-box',
-        },
-        input: {
-            flex: 1,
-            marginRight: 16,
-            height: '100%',
-            padding: 0,
-            fontSize: '1.4rem',
-            border: 'none',
-            outline: 'none',
-            backgroundColor: 'transparent',
-            color: theme.palette.text.primary,
-            '&::placeholder': {
-                color: '#aaa',
-            },
-        },
-    }
-})
+    },
+}))
 const toastId = 'editor-header-warn'
 
 function PageHeader({ value, onSubmit }: IProps) {
     const [title, setTitle] = useState('')
     const history = useHistory()
     const location = useLocation()
-    const themeStyles = useThemeStyles()
+    const themeStyles = useStyles()
 
     useEffect(() => {
         setTitle(value)

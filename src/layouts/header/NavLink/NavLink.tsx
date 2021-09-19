@@ -1,6 +1,6 @@
 import React from 'react'
 import ButtonLink from '@/components/ButtonLink'
-import { Box, Button } from '@material-ui/core'
+import { Box, Button } from '@mui/material'
 
 import classes from './_.module.css'
 

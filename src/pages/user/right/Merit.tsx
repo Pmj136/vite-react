@@ -1,12 +1,6 @@
 import React from 'react'
-import {
-    Card,
-    List,
-    ListItem,
-    ListItemIcon,
-    Typography,
-} from '@material-ui/core'
-import { Eco, Favorite, Visibility } from '@material-ui/icons'
+import { Card, List, ListItem, ListItemIcon, Typography } from '@mui/material'
+import { DownhillSkiing, Favorite, Visibility } from '@mui/icons-material'
 import AnimationNumber from '@/components/AnimationNumber'
 
 interface IProps {
@@ -47,7 +41,7 @@ function Merit({ data }: IProps) {
                     </ListItem>
                     <ListItem>
                         <ListItemIcon>
-                            <Eco />
+                            <DownhillSkiing />
                         </ListItemIcon>
                         <Typography variant="body2" style={{ marginRight: 10 }}>
                             威望值

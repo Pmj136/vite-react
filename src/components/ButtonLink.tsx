@@ -1,4 +1,4 @@
-import React, { ComponentType, createElement, ReactNode } from 'react'
+import { ComponentType, createElement, ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 interface IProps {
@@ -15,7 +15,7 @@ function ButtonLink(props: IProps) {
         to: props.to,
         replace: props.replace || false,
         children: props.children,
-        color: location.pathname === props.to ? 'primary' : 'default',
+        color: location.pathname === props.to ? 'primary' : 'inherit',
     })
 }
 

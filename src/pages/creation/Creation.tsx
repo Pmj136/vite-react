@@ -11,16 +11,18 @@ import {
 } from '@/api/article'
 import { useLocation } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
-import { Backdrop, CircularProgress, makeStyles } from '@material-ui/core'
+import { Backdrop, CircularProgress } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import type { Theme } from '@mui/material'
 import './index.css'
 
 let editor: any
 const toastId = 'editor-warn-creation'
-const useThemeStyles = makeStyles(theme => {
-    const isLight = theme.palette.type === 'light'
+const useThemeStyles = makeStyles((theme: Theme) => {
+    const isLight = theme.palette.mode === 'light'
     return {
         'rt-toolbar': {
-            backgroundColor: isLight ? '#f1f1f1' : '#4b4b4b',
+            backgroundColor: isLight ? '#f1f1f1' : '#333333',
             '& [class^="w-e-icon-"], [class*=" w-e-icon-"]': {
                 color: '#777',
                 fontSize: 16,
@@ -35,7 +37,7 @@ const useThemeStyles = makeStyles(theme => {
             '&  .w-e-text-container': {
                 minHeight: '100vh',
                 zIndex: '499 !important',
-                backgroundColor: isLight ? '#fff' : '#424242',
+                backgroundColor: isLight ? '#fff' : '#333333',
             },
         },
     }

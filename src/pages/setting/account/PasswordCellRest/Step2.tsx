@@ -5,7 +5,7 @@ import {
     DialogContent,
     TextField,
     Typography,
-} from '@material-ui/core'
+} from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { updatePwdApi } from '@/api/user'
 import { toast } from 'react-hot-toast'

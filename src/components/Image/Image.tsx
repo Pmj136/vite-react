@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState } from 'react'
-import { Backdrop, styled } from '@material-ui/core'
+import { Backdrop, styled } from '@mui/material'
 import type { Property } from 'csstype'
 
 interface IProps {
@@ -47,6 +47,7 @@ function Image({ view = true, src, alt, fit = 'fill', ...others }: IProps) {
                 onClick={closeMask}
             >
                 <Img
+                    alt={alt}
                     src={src}
                     onClick={handleClick}
                     style={{ width: '85vh', objectFit: 'contain' }}

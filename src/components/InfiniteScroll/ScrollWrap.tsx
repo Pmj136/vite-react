@@ -1,4 +1,4 @@
-import React, { createElement, FC, ReactElement, ReactNode } from 'react'
+import React, { createElement, FC, ReactNode } from 'react'
 import Observer from './Observer'
 
 interface IProps {

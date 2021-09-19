@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dialog } from '@material-ui/core'
+import { Dialog } from '@mui/material'
 import Step1 from './Step1'
 import Step2 from './Step2'
 

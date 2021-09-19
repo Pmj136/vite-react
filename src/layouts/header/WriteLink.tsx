@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
-import { Create as WriteIcon } from '@material-ui/icons'
+import { Button } from '@mui/material'
+import { Create as WriteIcon } from '@mui/icons-material'
 import { observer } from 'mobx-react-lite'
 import state from '@/store/userStore'
 import { setLoginDialogVisible } from '@/store/appStore'

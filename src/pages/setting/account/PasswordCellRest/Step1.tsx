@@ -6,7 +6,7 @@ import {
     InputAdornment,
     TextField,
     Typography,
-} from '@material-ui/core'
+} from '@mui/material'
 import CodeFetcher from '@/components/CodeFetcher'
 import { verifyCodeApi } from '@/api/user'
 

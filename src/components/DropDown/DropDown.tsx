@@ -1,13 +1,12 @@
 import React, {
     createContext,
     KeyboardEvent,
-    MouseEvent,
     ReactElement,
     ReactNode,
     useRef,
     useState,
 } from 'react'
-import { ClickAwayListener, Grow, List, Paper, Popper } from '@material-ui/core'
+import { ClickAwayListener, Grow, List, Paper, Popper } from '@mui/material'
 
 interface IProps {
     header: ReactElement
@@ -25,7 +24,7 @@ function DropDown(props: IProps) {
         setOpen(prevOpen => !prevOpen)
     }
 
-    const handleClose = (event: MouseEvent<EventTarget>) => {
+    const handleClose = (event: any) => {
         if (anchorRef?.current.contains(event.target as HTMLElement)) {
             return
         }

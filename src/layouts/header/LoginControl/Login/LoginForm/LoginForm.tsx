@@ -5,8 +5,8 @@ import {
     InputAdornment,
     TextField,
     Typography,
-} from '@material-ui/core'
-import { ArrowBack as ArrowBackIcon } from '@material-ui/icons'
+} from '@mui/material'
+import { ArrowBack as ArrowBackIcon } from '@mui/icons-material'
 import { useForm } from 'react-hook-form'
 import { setLoginDialogVisible } from '@/store/appStore'
 import TextDivider from '@/components/TextDivider/TextDivider'
@@ -74,6 +74,7 @@ function LoginForm() {
                 <h2 className={styles.title1}>欢迎您，</h2>
                 <h3 className={styles.title2}>填写以下信息登录</h3>
                 <TextField
+                    variant="standard"
                     label="邮箱"
                     {...register('email', {
                         required: '请输入邮箱',
@@ -91,6 +92,7 @@ function LoginForm() {
 
                 {loginType === 'code' && (
                     <TextField
+                        variant="standard"
                         label="验证码"
                         {...register(LoginTypes.CODE, {
                             required: '请输入6位验证码',
@@ -117,6 +119,7 @@ function LoginForm() {
 
                 {loginType === 'password' && (
                     <TextField
+                        variant="standard"
                         label="密码"
                         type="password"
                         {...register(LoginTypes.PASSWORD, {
@@ -149,7 +152,6 @@ function LoginForm() {
                 </Typography>
                 <Button
                     variant="contained"
-                    color="primary"
                     fullWidth
                     disabled={disabled}
                     onClick={onLoginBtnClick}

@@ -9,8 +9,10 @@ interface IProps {
 function WordCounter({ active, curr, end }: IProps) {
     return (
         <span>
-            <span style={{ color: curr >= active ? 'red' : '' }}>{curr}</span>/
-            {end}
+            <span style={{ color: curr >= active ? '#f604a8' : '' }}>
+                {curr}
+            </span>
+            /{end}
         </span>
     )
 }

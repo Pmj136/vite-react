@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Autocomplete } from '@material-ui/lab'
-import { TextField } from '@material-ui/core'
+import { Autocomplete, TextField } from '@mui/material'
 import { addTagApi, getTagsApi } from '@/api/articleTag'
 import { useDebouncedCallback } from 'use-debounce'
 
@@ -77,6 +76,7 @@ function TagSelector(props: IProps) {
     }
     return (
         <Autocomplete
+            disablePortal
             selectOnFocus
             loading={isLoading}
             size="small"
@@ -87,10 +87,6 @@ function TagSelector(props: IProps) {
             onChange={handleChange}
             filterOptions={opt => opt}
             getOptionLabel={option => option.name}
-            getOptionSelected={(option, value) => {
-                if (value.id === 0) return true
-                return option.name === value.name
-            }}
             style={{ width: 250 }}
             renderInput={params => (
                 <TextField

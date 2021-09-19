@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Paper } from '@material-ui/core'
+import { Paper } from '@mui/material'
 import SearchInput from './SearchInput'
 import NavLink from './NavLink/NavLink'
 import NotificationLink from './NotificationLink'

@@ -7,7 +7,7 @@ import NoData from '@/components/NoData/NoData'
 import NoMore from '@/components/NoMore/NoMore'
 import Article from '@/components/Article/Article'
 import { IArticle } from '@/types/article'
-import { Card } from '@material-ui/core'
+import { Card } from '@mui/material'
 
 interface IData {
     id: number

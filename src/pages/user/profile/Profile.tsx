@@ -1,6 +1,6 @@
 import React, { createElement } from 'react'
 import styles from './profile.module.css'
-import { Avatar, Badge, Box, Link, Typography } from '@material-ui/core'
+import { Avatar, Badge, Box, Link, Typography } from '@mui/material'
 import Action from './Action'
 import Male from '@/svg/Male'
 import Female from '@/svg/Female'

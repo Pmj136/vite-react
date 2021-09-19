@@ -1,12 +1,11 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
-import { Skeleton } from '@material-ui/lab'
+import { Box, Skeleton } from '@mui/material'
 import styles from './profile.module.css'
 
 function ProfileSkeleton() {
     return (
         <div className={styles.container}>
-            <Skeleton variant="circle" width={120} height={120} />
+            <Skeleton variant="circular" width={120} height={120} />
             <div className={styles['user-info']}>
                 <Skeleton width={120} height={25.6} />
             </div>

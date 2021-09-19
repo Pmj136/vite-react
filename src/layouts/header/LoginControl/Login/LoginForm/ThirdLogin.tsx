@@ -1,7 +1,7 @@
 import React from 'react'
 import QqLogo from '@/svg/QQ'
 import GiteeLogo from '@/svg/Gitee'
-import { GitHub as GithubIcon } from '@material-ui/icons'
+import { GitHub as GithubIcon } from '@mui/icons-material'
 
 import styles from './thirdLogin.module.css'
 

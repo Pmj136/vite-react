@@ -6,7 +6,7 @@ import {
     DialogContent,
     DialogProps,
     DialogTitle,
-} from '@material-ui/core'
+} from '@mui/material'
 
 interface IProps {
     children: ReactNode
@@ -60,6 +60,7 @@ function ConfirmDriver(props: IProps) {
                         <Button
                             size="small"
                             variant="contained"
+                            color="info"
                             onClick={handleCancel}
                         >
                             {options?.text.cancel}
@@ -67,7 +68,6 @@ function ConfirmDriver(props: IProps) {
                         <Button
                             size="small"
                             variant="contained"
-                            color="secondary"
                             onClick={handleConfirm}
                         >
                             {options?.text.confirm}

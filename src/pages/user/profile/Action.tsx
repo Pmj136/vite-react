@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import state from '@/store/userStore'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import { useHistory, useParams } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 import { setLoginDialogVisible } from '@/store/appStore'

@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import { Button } from '@material-ui/core'
+import { Button } from '@mui/material'
 import { toast } from 'react-hot-toast'
 import { updateProfileApi } from '@/api/user'
 import type { UseFormHandleSubmit } from 'react-hook-form/dist/types/form'

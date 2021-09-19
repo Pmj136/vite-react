@@ -4,7 +4,7 @@ import Menus from './Menus'
 import DynamicList from './views/DynamicList'
 import UserList from './views/UserList'
 import ArticleList from './views/ArticleList'
-import { Card } from '@material-ui/core'
+import { Card } from '@mui/material'
 
 function DataList() {
     const params = useParams<{ type: string }>()

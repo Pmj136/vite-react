@@ -6,7 +6,7 @@ import {
     DialogContent,
     FormControl,
     OutlinedInput,
-} from '@material-ui/core'
+} from '@mui/material'
 import { Cell, CellGroup } from '@/components/Cell'
 import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
@@ -136,6 +136,7 @@ function PushDialog(props: IProps) {
                 <Button
                     size="small"
                     variant="contained"
+                    color="info"
                     onClick={e => props.onClose(e, 'escapeKeyDown')}
                 >
                     取消
@@ -143,7 +144,6 @@ function PushDialog(props: IProps) {
                 <Button
                     size="small"
                     variant="contained"
-                    color="primary"
                     disabled={isLoading}
                     onClick={handleConfirm}
                 >

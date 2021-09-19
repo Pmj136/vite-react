@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Input, InputAdornment } from '@material-ui/core'
-import { Search as SearchIcon } from '@material-ui/icons'
+import { Input, InputAdornment } from '@mui/material'
+import { Search as SearchIcon } from '@mui/icons-material'
 import { useHistory } from 'react-router-dom'
 
 function SearchInput() {

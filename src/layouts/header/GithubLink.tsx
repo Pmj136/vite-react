@@ -1,6 +1,6 @@
 import React from 'react'
-import { GitHub as GithubIcon } from '@material-ui/icons'
-import { IconButton } from '@material-ui/core'
+import { GitHub as GithubIcon } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
 
 function GithubLink() {
     const toGithub = () => {

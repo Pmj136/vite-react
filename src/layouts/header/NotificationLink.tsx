@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { IconButton, Badge } from '@material-ui/core'
-import { NotificationsNone as NotificationIcon } from '@material-ui/icons'
+import { IconButton, Badge } from '@mui/material'
+import { NotificationsNone as NotificationIcon } from '@mui/icons-material'
 import state from '@/store/userStore'
 import { observer } from 'mobx-react-lite'
 import ButtonLink from '@/components/ButtonLink'
@@ -10,8 +10,8 @@ function NotificationLink() {
     return state.isLogin ? (
         <ButtonLink component={IconButton} to="/notification">
             {hasMsg ? (
-                <Badge variant="dot" color="secondary">
-                    <NotificationIcon />
+                <Badge variant="dot" color="error">
+                    <NotificationIcon color="action" />
                 </Badge>
             ) : (
                 <NotificationIcon />

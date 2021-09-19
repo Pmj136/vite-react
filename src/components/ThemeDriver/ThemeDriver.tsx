@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react'
-import { ThemeProvider } from '@material-ui/core'
-import { light as lightTheme, dark as darkTheme } from './themes'
+import React, { ReactElement, useMemo } from 'react'
+import { ThemeProvider } from '@mui/material/styles'
+import generateTheme from './themes'
 import { observer } from 'mobx-react-lite'
 import state from '@/store/appStore'
 
@@ -11,13 +11,10 @@ interface IProps {
 }
 
 function ThemeDriver(props: IProps) {
-    const theme = state.theme
-    document.body.setAttribute('data-theme', theme)
-    return (
-        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            {props.children}
-        </ThemeProvider>
-    )
+    const themeKey = state.theme
+    document.body.setAttribute('data-theme', themeKey)
+    const theme = useMemo(() => generateTheme(themeKey), [themeKey])
+    return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>
 }
 
 export default observer(ThemeDriver)

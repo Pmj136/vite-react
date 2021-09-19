@@ -1,6 +1,6 @@
 import React from 'react'
-import { Card, Typography } from '@material-ui/core'
-import { Assignment } from '@material-ui/icons'
+import { Card, Typography } from '@mui/material'
+import { Assignment } from '@mui/icons-material'
 
 import styles from './_.module.css'
 

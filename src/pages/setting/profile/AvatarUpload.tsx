@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import UploadArea from '@/components/UploadArea'
-import { Avatar, Button } from '@material-ui/core'
+import { Avatar, Button } from '@mui/material'
 import Crop from '@/components/Crop/Crop'
 import { uploadAvatar } from '@/api/user'
 import { setInfo } from '@/store/userStore'

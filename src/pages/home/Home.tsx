@@ -1,8 +1,8 @@
 import React from 'react'
 import { JPage, JPageSection } from '@/components/JPage'
 import ArticleList from '@/pages/home/ArticleList'
-import { Card, styled } from '@material-ui/core'
-
+import { Card } from '@mui/material'
+import { styled } from '@mui/styles'
 // import dayjs from 'dayjs'
 
 // console.log(dayjs().format('YYYY-MM-DD'))
@@ -11,7 +11,6 @@ const MyDiv = styled('div')({
 })
 
 function Home() {
-    console.log('render')
     // const styles=useStyles()
     return (
         <JPage>

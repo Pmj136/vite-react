@@ -1,90 +1,72 @@
-import { createTheme } from '@material-ui/core'
+import { createTheme } from '@mui/material/styles'
+import type { PaletteMode } from '@mui/material'
 
-/*light theme*/
-export const light = createTheme({
-    palette: {
-        type: 'light',
-    },
-    typography: {
-        fontSize: 15,
-        fontFamily: 'Comic Sans MS',
-    },
-    overrides: {
-        MuiButton: {
-            label: {
-                whiteSpace: 'nowrap',
+const generateTheme = (mode: PaletteMode) =>
+    createTheme({
+        palette: {
+            mode,
+            primary: {
+                main: '#2196f3',
+            },
+            secondary: {
+                light: '#ff4081',
+                main: '#f50057',
+                dark: '#c51162',
+                contrastText: '#fff',
+            },
+            info: {
+                main: '#e0e0e0',
+            },
+            background: {
+                paper: mode === 'dark' ? '#333333' : '#ffffff',
+                default: mode === 'dark' ? '#303030' : '#fafafa',
             },
         },
-        MuiListItemIcon: {
-            root: {
-                minWidth: 42,
-            },
+        typography: {
+            fontSize: 15,
+            fontFamily: 'Comic Sans MS',
         },
-        MuiSvgIcon: {
-            root: {
-                cursor: 'pointer',
+        components: {
+            MuiButton: {
+                styleOverrides: {
+                    text: {
+                        whiteSpace: 'nowrap',
+                    },
+                },
             },
-        },
-        MuiTab: {
-            root: {
-                '@media (min-width: 600px)': {
-                    minWidth: 120,
+            MuiListItemIcon: {
+                styleOverrides: {
+                    root: {
+                        minWidth: 42,
+                    },
+                },
+            },
+            MuiSvgIcon: {
+                styleOverrides: {
+                    root: {
+                        cursor: 'pointer',
+                    },
+                },
+            },
+            MuiTab: {
+                styleOverrides: {
+                    root: {
+                        '@media (min-width: 600px)': {
+                            minWidth: 120,
+                        },
+                    },
+                },
+            },
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    root: {
+                        fontSize: 16,
+                    },
+                    multiline: {
+                        padding: 10,
+                    },
                 },
             },
         },
-        MuiOutlinedInput: {
-            root: {
-                fontSize: 16,
-            },
-            multiline: {
-                padding: 10,
-            },
-        },
-    },
-})
-
-/*dark theme*/
-export const dark = createTheme({
-    palette: {
-        type: 'dark',
-        primary: {
-            main: '#1a91ca',
-        },
-    },
-    typography: {
-        fontSize: 15,
-        fontFamily: 'Comic Sans MS',
-    },
-    overrides: {
-        MuiButton: {
-            label: {
-                whiteSpace: 'nowrap',
-            },
-        },
-        MuiListItemIcon: {
-            root: {
-                minWidth: 42,
-            },
-        },
-        MuiSvgIcon: {
-            root: {
-                cursor: 'pointer',
-            },
-        },
-        MuiTab: {
-            root: {
-                '@media (min-width: 600px)': {
-                    minWidth: 120,
-                },
-            },
-        },
-        MuiOutlinedInput: {
-            root: {
-                fontSize: 16,
-            },
-            multiline: {
-                padding: 10,
-            },
-        },
-    },
-})
+    })
+export default generateTheme
