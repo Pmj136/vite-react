@@ -18,13 +18,11 @@ export default defineConfig({
         port: 9979,
     },
     build: {
-        brotliSize: false,
+        // brotliSize: false,
         // rollupOptions: {
         //     external: [
         //         'axios',
         //         'dayjs',
-        //         'i18next',
-        //         'i18next-browser-languagedetector',
         //         'mobx',
         //         'mobx-react-lite',
         //         'qs',
@@ -34,13 +32,10 @@ export default defineConfig({
         //         '@material-ui/core',
         //     ],
         //     output: {
-        //         format: 'umd',
+        //         // format: 'umd',
         //         globals: {
         //             axios:'axios',
         //             dayjs: 'dayjs',
-        //             i18next: 'i18next',
-        //             'i18next-browser-languagedetector':
-        //                 'i18nextBrowserLanguageDetector',
         //             mobx:'mobx',
         //             'mobx-react-lite':'mobxReactLite',
         //             qs:'Qs',

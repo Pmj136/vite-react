@@ -1,14 +1,14 @@
 import React from 'react'
 import { JPage, JPageSection } from '@/components/JPage'
 
-function About() {
+interface IProps {}
+
+function Article(props: IProps) {
     return (
         <JPage>
-            <JPageSection xs={12}>
-                <div>about</div>
-            </JPageSection>
+            <JPageSection xs={12}>1</JPageSection>
         </JPage>
     )
 }
 
-export default About
+export default Article
