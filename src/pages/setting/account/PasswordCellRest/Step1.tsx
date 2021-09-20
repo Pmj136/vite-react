@@ -35,6 +35,7 @@ function Step1(props: IProps) {
                 </Typography>
                 <Typography color="textSecondary">{props.email}</Typography>
                 <TextField
+                    variant="standard"
                     label="验证码"
                     InputProps={{
                         endAdornment: (
@@ -54,16 +55,12 @@ function Step1(props: IProps) {
                 <Button
                     size="small"
                     variant="contained"
+                    color="info"
                     onClick={props.onClose}
                 >
                     取消
                 </Button>
-                <Button
-                    size="small"
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                >
+                <Button size="small" variant="contained" onClick={handleNext}>
                     下一步
                 </Button>
             </DialogActions>

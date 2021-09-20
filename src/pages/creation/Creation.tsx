@@ -22,7 +22,7 @@ const useThemeStyles = makeStyles((theme: Theme) => {
     const isLight = theme.palette.mode === 'light'
     return {
         'rt-toolbar': {
-            backgroundColor: isLight ? '#f1f1f1' : '#333333',
+            backgroundColor: isLight ? '#f1f1f1' : '#404040',
             '& [class^="w-e-icon-"], [class*=" w-e-icon-"]': {
                 color: '#777',
                 fontSize: 16,

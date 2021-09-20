@@ -56,6 +56,7 @@ function Crop({ imgStr, size = 400, onClose, onCrop }: IProps) {
                     <Button
                         size="small"
                         variant="contained"
+                        color="info"
                         style={{ marginRight: 16 }}
                         onClick={handleClose}
                     >
@@ -64,7 +65,6 @@ function Crop({ imgStr, size = 400, onClose, onCrop }: IProps) {
                     <Button
                         size="small"
                         variant="contained"
-                        color="secondary"
                         onClick={handleConfirm}
                     >
                         保存

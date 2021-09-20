@@ -48,7 +48,6 @@ function SubmitAction({ data, states, handleSubmit, children }: IProps) {
             size="small"
             disabled={JSON.stringify(form) === JSON.stringify(states)}
             variant="contained"
-            color="primary"
             onClick={updateProfile}
         >
             {children}

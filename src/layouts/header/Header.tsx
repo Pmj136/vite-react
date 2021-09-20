@@ -21,7 +21,7 @@ function Header() {
         >
             <section className={styles['header-wrap']}>
                 <section className={styles['header-item']}>
-                    <h2 className={styles.title}>CABIN</h2>
+                    <span className={styles.title}>CABIN</span>
                     <NavLink />
                 </section>
                 <section className={styles['header-item']}>
