@@ -28,6 +28,14 @@ const generateTheme = (mode: PaletteMode) =>
             fontFamily: 'Comic Sans MS',
         },
         components: {
+            MuiCard: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: 4,
+                        boxSizing: 'border-box',
+                    },
+                },
+            },
             MuiButton: {
                 styleOverrides: {
                     text: {
@@ -72,7 +80,6 @@ const generateTheme = (mode: PaletteMode) =>
                 styleOverrides: {
                     root: {
                         zIndex: 1200,
-                        cursor: 'zoom-in',
                     },
                 },
             },
