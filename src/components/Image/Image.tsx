@@ -1,6 +1,7 @@
-import React, { CSSProperties, useEffect, useRef, useState } from 'react'
-import { Backdrop, styled } from '@mui/material'
+import React, { CSSProperties, useRef, useState } from 'react'
+import { Backdrop } from '@mui/material'
 import type { Property } from 'csstype'
+import { makeStyles } from '@mui/styles'
 
 interface IProps {
     className?: string
@@ -12,9 +13,17 @@ interface IProps {
     fit?: Property.ObjectFit
 }
 
-const Img = styled('img')({
-    width: '100%',
-    height: '100%',
+const userStyles = makeStyles({
+    img: {
+        userSelect: 'none',
+        borderRadius: 2,
+    },
+    reviewImg: {
+        transition: 'transform linear 0.2s',
+        objectFit: 'contain',
+        userSelect: 'none',
+        borderRadius: 2,
+    },
 })
 
 function Image({
@@ -27,6 +36,7 @@ function Image({
 }: IProps) {
     const [viewVisible, setViewVisible] = useState(false)
     const imgRef = useRef<any>(null)
+    const classes = userStyles()
     const handleClick = (e: any) => {
         e.stopPropagation()
         if (view) {
@@ -47,11 +57,11 @@ function Image({
         let scale = imgRef.current?.style.transform || 'scale(1)'
         scale = scale.replace(/^scale\((.*)\)$/, '$1')
         if (direction > 0) {
-            if (scale >= 5.5) return
-            scale = +scale + 0.3
+            if (scale >= 3) return
+            scale = +scale + 0.25
         } else {
             if (scale <= 0.5) return
-            scale = +scale - 0.3
+            scale = +scale - 0.25
         }
         imgRef.current.style.transform = `scale(${scale})`
     }
@@ -61,7 +71,12 @@ function Image({
                 src={src}
                 alt={alt}
                 onClick={handleClick}
-                style={{ width: size, height: size, objectFit: fit }}
+                className={classes.img}
+                style={{
+                    width: size,
+                    height: size,
+                    objectFit: fit,
+                }}
                 {...others}
             />
             {view && (
@@ -69,6 +84,7 @@ function Image({
                     open={viewVisible}
                     onClick={closeMask}
                     onWheel={onWheel}
+                    style={{ cursor: 'zoom-in' }}
                 >
                     {viewVisible && (
                         <img
@@ -76,11 +92,10 @@ function Image({
                             alt={alt}
                             src={src}
                             onClick={handleClick}
+                            className={classes.reviewImg}
                             style={{
-                                width: size,
-                                height: size,
-                                transition: 'transform linear 0.2s',
-                                objectFit: 'contain',
+                                width: size * 2,
+                                height: size * 2,
                             }}
                         />
                     )}
