@@ -16,6 +16,7 @@ const generateTheme = (mode: PaletteMode) =>
             },
             info: {
                 main: '#e0e0e0',
+                dark: '#cccccc',
             },
             background: {
                 paper: mode === 'dark' ? '#333333' : '#ffffff',
@@ -64,6 +65,14 @@ const generateTheme = (mode: PaletteMode) =>
                     },
                     multiline: {
                         padding: 10,
+                    },
+                },
+            },
+            MuiBackdrop: {
+                styleOverrides: {
+                    root: {
+                        zIndex: 1200,
+                        cursor: 'zoom-in',
                     },
                 },
             },
