@@ -14,10 +14,10 @@ function Home() {
     // const styles=useStyles()
     return (
         <JPage>
-            <JPageSection xs={9}>
+            <JPageSection xs={8.5}>
                 <ArticleList />
             </JPageSection>
-            <JPageSection xs={3}>
+            <JPageSection xs={3.5}>
                 <MyDiv>
                     test
                     <Card elevation={0} square>

@@ -24,6 +24,9 @@ const generateTheme = (mode: PaletteMode) =>
             },
         },
         typography: {
+            gray: {
+                color: mode === 'dark' ? '#f1f1f1' : '#86909c',
+            },
             fontSize: 15,
             fontFamily: 'Comic Sans MS',
         },
