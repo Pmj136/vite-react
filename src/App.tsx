@@ -1,13 +1,14 @@
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
-import { CssBaseline } from '@mui/material'
+// import { CssBaseline } from '@mui/material'
 import AppRouter from '@/router'
 import ThemeDriver from '@/components/ThemeDriver/ThemeDriver'
 import { GlobalConfirmDriver } from '@/components/Confirm'
 
 function App() {
     return (
-        <CssBaseline>
+        <>
+            {/*<CssBaseline />*/}
             <ThemeDriver>
                 <GlobalConfirmDriver>
                     <AppRouter />
@@ -25,7 +26,7 @@ function App() {
                     },
                 }}
             />
-        </CssBaseline>
+        </>
     )
 }
 
