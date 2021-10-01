@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const INIT_SECONDS = 59
-let timer: NodeJS.Timer
+let timer: number
 
 function CodeFetcher({ auto = false, email, onError }: IProps) {
     const [disabled, setDisabled] = useState(false)
