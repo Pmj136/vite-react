@@ -22,7 +22,7 @@ const useThemeStyles = makeStyles((theme: Theme) => {
     const isLight = theme.palette.mode === 'light'
     return {
         'rt-toolbar': {
-            backgroundColor: isLight ? '#f1f1f1' : '#404040',
+            backgroundColor: isLight ? '#f5f5f5' : '#404040',
             '& [class^="w-e-icon-"], [class*=" w-e-icon-"]': {
                 color: '#777',
                 fontSize: 16,
@@ -174,7 +174,7 @@ function Creation() {
             </Backdrop>
             <PageHeader value={form.title} onSubmit={showDialog} />
             <div id="rt-toolbar" className={themeStyles['rt-toolbar']} />
-            <JPage directionMargin={16}>
+            <JPage directionMargin={16} minHeight="100vh">
                 <JPageSection xs={8.8}>
                     <div
                         id="rt-text-container"

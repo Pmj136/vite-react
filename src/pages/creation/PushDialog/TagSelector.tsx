@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Autocomplete, TextField } from '@mui/material'
+import {
+    Autocomplete,
+    autocompleteClasses,
+    Popper,
+    TextField,
+} from '@mui/material'
 import { addTagApi, getTagsApi } from '@/api/articleTag'
 import { useDebouncedCallback } from 'use-debounce'
+import { styled } from '@mui/styles'
 
 interface OptionType {
     id: number
@@ -13,11 +19,20 @@ interface IProps {
     onChange: (newState: { tagId: number; tagName: string }) => void
 }
 
-const hasItem = (raw: OptionType[], k: string) => {
+const StyledPopper = styled(Popper)({
+    [`& .${autocompleteClasses.listbox}`]: {
+        boxSizing: 'border-box',
+        '& ul': {
+            padding: 0,
+            margin: 0,
+        },
+    },
+})
+const findId = (raw: OptionType[], k: string) => {
     for (const v of raw) {
-        if (v.name === k) return true
+        if (v.name === k) return v.id
     }
-    return false
+    return 0
 }
 
 function TagSelector(props: IProps) {
@@ -30,47 +45,56 @@ function TagSelector(props: IProps) {
             setOptions([props.value])
         }
     }, [])
-    useEffect(() => {
-        setInfo(props.value)
-    }, [props.value])
 
     //防抖搜索 tag
-    const searchTags = useDebouncedCallback((value: string) => {
+    const searchTags = (value: string) => {
         getTagsApi(value)
             .then(res => {
                 const arr = res.data
-                if (!hasItem(res.data, value)) {
+                const id = findId(res.data, value)
+                if (id === 0) {
                     arr.unshift({ id: 0, name: value })
                 }
                 setOptions(arr)
+                setInfo({ id, name: value })
             })
             .finally(() => {
                 setIsLoading(false)
             })
-    }, 800)
-    //用户输入值变化
-    const handleInputChange = (e: any, value: string, reason: string) => {
-        if (reason === 'reset') return
-        if (value.trim() === '') {
-            setOptions([])
-            return
-        }
-        setInfo({ id: 0, name: value })
-        setIsLoading(true)
-        searchTags(value)
     }
+    //用户输入值变化
+    const handleInputChange = useDebouncedCallback(
+        (e: any, value: string, reason: string) => {
+            if (reason === 'reset') return
+            if (reason === 'clear') {
+                setOptions([])
+                return
+            }
+            setIsLoading(true)
+            searchTags(value)
+        },
+        500
+    )
     //用户选中变化
     const handleChange = (e: any, state: any) => {
         if (state != null) {
             const tagName = state.name
-            if (state.id !== 0) {
+            let info
+            if (state.id > 0) {
+                info = { id: state.id, name: tagName }
+                setOptions([info])
+                setInfo(info)
                 props.onChange({ tagId: state.id, tagName })
             } else {
                 addTagApi({ name: state.name }).then(res => {
                     props.onChange({ tagId: res.data, tagName })
+                    info = { id: res.data, name: tagName }
+                    setOptions([info])
+                    setInfo(info)
                 })
             }
         } else {
+            setInfo({ id: 0, name: '' })
             props.onChange({ tagId: 0, tagName: '' })
         }
     }
@@ -87,7 +111,12 @@ function TagSelector(props: IProps) {
             onChange={handleChange}
             filterOptions={opt => opt}
             getOptionLabel={option => option.name}
-            style={{ width: 250 }}
+            isOptionEqualToValue={(option, value) => {
+                if (option.id === 0) return true
+                return option.name === value.name
+            }}
+            PopperComponent={StyledPopper}
+            sx={{ width: 250 }}
             renderInput={params => (
                 <TextField
                     {...params}
@@ -95,6 +124,17 @@ function TagSelector(props: IProps) {
                     variant="outlined"
                 />
             )}
+            renderOption={(props1, option, state) => {
+                return (
+                    <li {...props1}>
+                        {option.id === 0 ? (
+                            <span>{option.name}（点击新增）</span>
+                        ) : (
+                            <span>{option.name}</span>
+                        )}
+                    </li>
+                )
+            }}
             onInputChange={handleInputChange}
         />
     )
