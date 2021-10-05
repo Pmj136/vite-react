@@ -7,9 +7,15 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    "allowJs": false, //允许编译js
-    "skipLibCheck": false, //是否跳过声明文件检查
-    "esModuleInterop": true, //
+    "types": [
+      "vite/client"
+    ],
+    "allowJs": false,
+    //允许编译js
+    "skipLibCheck": true,
+    //是否跳过声明文件检查
+    "esModuleInterop": true,
+    //
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -21,7 +27,9 @@
     "jsx": "react",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
   },
   "include": [
