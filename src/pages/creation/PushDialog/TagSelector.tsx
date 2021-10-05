@@ -6,7 +6,7 @@ import {
     TextField,
 } from '@mui/material'
 import { addTagApi, getTagsApi } from '@/api/articleTag'
-import { useDebouncedCallback } from 'use-debounce'
+import useDebounce from '@/hooks/useDebounce'
 import { styled } from '@mui/styles'
 
 interface OptionType {
@@ -63,7 +63,7 @@ function TagSelector(props: IProps) {
             })
     }
     //用户输入值变化
-    const handleInputChange = useDebouncedCallback(
+    const handleInputChange = useDebounce(
         (e: any, value: string, reason: string) => {
             if (reason === 'reset') return
             if (reason === 'clear') {
