@@ -6,6 +6,7 @@ interface IProps {
     spacing?: number
     children: ReactNode
     directionMargin?: number
+    minHeight?: string | number
 }
 
 function Page({
@@ -14,10 +15,14 @@ function Page({
     children,
     spacing = 16,
     directionMargin = 16,
+    minHeight,
 }: IProps) {
     const style: CSSProperties = { width, margin: `${directionMargin}px auto` }
     if (children instanceof Array) {
         style.gap = spacing + 'px'
+    }
+    if (minHeight !== undefined) {
+        style.minHeight = minHeight
     }
     useEffect(() => {
         if (autoScrollToTop) {
