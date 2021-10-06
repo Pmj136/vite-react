@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
     Autocomplete,
     autocompleteClasses,
@@ -39,7 +39,6 @@ function TagSelector(props: IProps) {
     const [info, setInfo] = useState(props.value)
     const [isLoading, setIsLoading] = useState(false)
     const [options, setOptions] = useState<OptionType[]>([])
-
     useEffect(() => {
         if (props.value.id !== 0) {
             setOptions([props.value])
@@ -98,45 +97,48 @@ function TagSelector(props: IProps) {
             props.onChange({ tagId: 0, tagName: '' })
         }
     }
-    return (
-        <Autocomplete
-            disablePortal
-            selectOnFocus
-            loading={isLoading}
-            size="small"
-            loadingText="加载中……"
-            noOptionsText="输入关键词搜索"
-            value={info}
-            options={options}
-            onChange={handleChange}
-            filterOptions={opt => opt}
-            getOptionLabel={option => option.name}
-            isOptionEqualToValue={(option, value) => {
-                if (option.id === 0) return true
-                return option.name === value.name
-            }}
-            PopperComponent={StyledPopper}
-            sx={{ width: 250 }}
-            renderInput={params => (
-                <TextField
-                    {...params}
-                    placeholder="添加文章标签"
-                    variant="outlined"
-                />
-            )}
-            renderOption={(props1, option, state) => {
-                return (
-                    <li {...props1}>
-                        {option.id === 0 ? (
-                            <span>{option.name}（点击新增）</span>
-                        ) : (
-                            <span>{option.name}</span>
-                        )}
-                    </li>
-                )
-            }}
-            onInputChange={handleInputChange}
-        />
+    return useMemo(
+        () => (
+            <Autocomplete
+                disablePortal
+                selectOnFocus
+                loading={isLoading}
+                size="small"
+                loadingText="加载中……"
+                noOptionsText="输入关键词搜索"
+                value={info}
+                options={options}
+                onChange={handleChange}
+                filterOptions={opt => opt}
+                getOptionLabel={option => option.name}
+                isOptionEqualToValue={(option, value) => {
+                    if (option.id === 0) return true
+                    return option.name === value.name
+                }}
+                PopperComponent={StyledPopper}
+                sx={{ width: 250 }}
+                renderInput={params => (
+                    <TextField
+                        {...params}
+                        placeholder="添加文章标签"
+                        variant="outlined"
+                    />
+                )}
+                renderOption={(props1, option, state) => {
+                    return (
+                        <li {...props1}>
+                            {option.id === 0 ? (
+                                <span>{option.name}（点击新增）</span>
+                            ) : (
+                                <span>{option.name}</span>
+                            )}
+                        </li>
+                    )
+                }}
+                onInputChange={handleInputChange}
+            />
+        ),
+        [info, isLoading, options]
     )
 }
 
