@@ -1,6 +1,8 @@
 import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import AuthRoute from './AuthRoute'
+import ScrollToTop from './ScrollToTop'
+// import Loading from '@/components/Loading'
 
 import Layout from '@/layouts/Layout'
 import Home from '@/pages/home/Home'
@@ -23,8 +25,8 @@ const Notification = lazy(() => import('@/pages/notification/Notification'))
 
 function AppRouter() {
     return (
-        <Suspense fallback={<Loading />}>
-            <BrowserRouter>
+        <BrowserRouter>
+            <ScrollToTop>
                 <Switch>
                     <Route
                         path="/"
@@ -65,8 +67,8 @@ function AppRouter() {
                     />
                     <Redirect path="*" to="/" />
                 </Switch>
-            </BrowserRouter>
-        </Suspense>
+            </ScrollToTop>
+        </BrowserRouter>
     )
 }
 

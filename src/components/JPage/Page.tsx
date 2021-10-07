@@ -1,7 +1,6 @@
-import React, { CSSProperties, ReactNode, useEffect } from 'react'
+import React, { CSSProperties, ReactNode } from 'react'
 
 interface IProps {
-    autoScrollToTop?: boolean
     width?: number | string
     spacing?: number
     children: ReactNode
@@ -10,7 +9,6 @@ interface IProps {
 }
 
 function Page({
-    autoScrollToTop = true,
     width,
     children,
     spacing = 16,
@@ -24,12 +22,6 @@ function Page({
     if (minHeight !== undefined) {
         style.minHeight = minHeight
     }
-    useEffect(() => {
-        if (autoScrollToTop) {
-            const el = document.querySelector('html') as Element
-            el.scrollTo(0, 0)
-        }
-    }, [])
     return (
         <div className="j-page" style={style}>
             {children}
