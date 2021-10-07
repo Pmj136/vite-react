@@ -6,7 +6,7 @@ import {
     TextField,
 } from '@mui/material'
 import { addTagApi, getTagsApi } from '@/api/articleTag'
-import useDebounce from '@/hooks/useDebounce'
+import { useDebounce } from '@/hooks'
 import { styled } from '@mui/styles'
 
 interface OptionType {

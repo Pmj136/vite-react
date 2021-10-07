@@ -8,7 +8,7 @@ import Account from './account/Account'
 import { getProfileApi } from '@/api/user'
 
 import { Card } from '@mui/material'
-import useFetch from '@/hooks/useFetch'
+import { useFetch } from '@/hooks'
 import type { IUser } from '@/types/user'
 
 function Setting() {

@@ -5,7 +5,7 @@ interface IUserIsObserver {
     onHide: (callback: () => void) => void
 }
 
-function useIsObserver(ref: RefObject<HTMLElement>): IUserIsObserver {
+function useIntersectionObserver(ref: RefObject<HTMLElement>): IUserIsObserver {
     const fnMap: { [key: string]: () => void } = {}
     const onShow = (callback: () => void) => {
         fnMap['onShow'] = callback
@@ -29,4 +29,4 @@ function useIsObserver(ref: RefObject<HTMLElement>): IUserIsObserver {
     return { onShow, onHide }
 }
 
-export default useIsObserver
+export default useIntersectionObserver

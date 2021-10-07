@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import useIsObserver from '@/hooks/useIsObserver'
+import { useIntersectionObserver } from '@/hooks'
 
 interface IProps {
     onShow: () => void
@@ -7,7 +7,7 @@ interface IProps {
 
 function Observer(props: IProps) {
     const observeRef = useRef(null)
-    const { onShow } = useIsObserver(observeRef)
+    const { onShow } = useIntersectionObserver(observeRef)
     onShow(props.onShow)
     return <div role="observer-tag" ref={observeRef} />
 }
